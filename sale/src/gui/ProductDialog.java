@@ -1,6 +1,7 @@
 package gui;
 
 import java.math.BigDecimal;
+import domain.Product;
 
 /**
  *
@@ -174,17 +175,28 @@ public class ProductDialog extends javax.swing.JDialog {
 
    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
       // TODO add your handling code here:
-		System.out.println("The ID is: "+txtID.getText());
-		System.out.println("The name is: "+txtName.getText());
-		System.out.println("The description is:"+txtDescription.getText());
-		System.out.println("The category is:"+comboCategory.getSelectedItem());
-		System.out.println("The price is: "+txtPrice.getText());
-		System.out.println("The quantity is: "+txtQuantity.getText());
-		
+//		System.out.println("The ID is: "+txtID.getText());
+//		System.out.println("The name is: "+txtName.getText());
+//		System.out.println("The description is:"+txtDescription.getText());
+//		System.out.println("The category is:"+comboCategory.getSelectedItem());
+//		System.out.println("The price is: "+txtPrice.getText());
+//		System.out.println("The quantity is: "+txtQuantity.getText());
+//		
 		
 		Integer id = new Integer(txtID.getText());
 		BigDecimal price = new BigDecimal(txtPrice.getText());
 		Integer quantity = new Integer(txtQuantity.getText());
+		
+		
+		Product product = new Product();
+		product.setId(id);
+		product.setName(txtName.getText());
+		product.setDescription(txtDescription.getText());
+		product.setCategory((String)comboCategory.getSelectedItem());
+		product.setPrice(price);
+		product.setQuantity(quantity);
+		
+		System.out.println(product);
 		
 		
 		
