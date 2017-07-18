@@ -1,5 +1,7 @@
 package gui;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author liji8162
@@ -12,6 +14,7 @@ public class ProductDialog extends javax.swing.JDialog {
 	public ProductDialog(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		comboCategory.setEditable(true);
 	}
 
 	/**
@@ -31,11 +34,13 @@ public class ProductDialog extends javax.swing.JDialog {
       jLabel6 = new javax.swing.JLabel();
       txtID = new javax.swing.JTextField();
       txtName = new javax.swing.JTextField();
-      txtCategory = new javax.swing.JTextField();
       txtPrice = new javax.swing.JTextField();
       txtQuantity = new javax.swing.JTextField();
       jScrollPane1 = new javax.swing.JScrollPane();
       txtDescription = new javax.swing.JTextArea();
+      saveButton = new javax.swing.JButton();
+      cancelButton = new javax.swing.JButton();
+      comboCategory = new javax.swing.JComboBox<>();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,8 +66,6 @@ public class ProductDialog extends javax.swing.JDialog {
 
       txtName.setName("txtName"); // NOI18N
 
-      txtCategory.setName("txtCategory"); // NOI18N
-
       txtPrice.setName("txtPrice"); // NOI18N
 
       txtQuantity.setName("txtQuantity"); // NOI18N
@@ -73,6 +76,30 @@ public class ProductDialog extends javax.swing.JDialog {
       txtDescription.setRows(5);
       txtDescription.setName("txtDescription"); // NOI18N
       jScrollPane1.setViewportView(txtDescription);
+
+      saveButton.setText("Save");
+      saveButton.setName("saveButton"); // NOI18N
+      saveButton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            saveButtonActionPerformed(evt);
+         }
+      });
+
+      cancelButton.setText("Cancel");
+      cancelButton.setName("cancelButton"); // NOI18N
+      cancelButton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            cancelButtonActionPerformed(evt);
+         }
+      });
+
+      comboCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+      comboCategory.setName("comboCategory"); // NOI18N
+      comboCategory.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            comboCategoryActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -90,12 +117,18 @@ public class ProductDialog extends javax.swing.JDialog {
             .addGap(102, 102, 102)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(txtName)
-               .addComponent(txtCategory)
                .addComponent(txtPrice)
                .addComponent(txtQuantity)
-               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(txtID))
+               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+               .addComponent(txtID)
+               .addComponent(comboCategory, 0, 100, Short.MAX_VALUE))
             .addGap(154, 154, 154))
+         .addGroup(layout.createSequentialGroup()
+            .addGap(72, 72, 72)
+            .addComponent(saveButton)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(cancelButton)
+            .addGap(84, 84, 84))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,13 +147,14 @@ public class ProductDialog extends javax.swing.JDialog {
                   .addComponent(jLabel3)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                   .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(18, 18, 18)))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(txtCategory, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-            .addGap(33, 33, 33)
+            .addGap(6, 6, 6)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jLabel4)
+               .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(30, 30, 30)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jLabel5))
@@ -128,11 +162,43 @@ public class ProductDialog extends javax.swing.JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jLabel6))
-            .addGap(92, 92, 92))
+            .addGap(37, 37, 37)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(saveButton)
+               .addComponent(cancelButton))
+            .addGap(32, 32, 32))
       );
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
+
+   private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+      // TODO add your handling code here:
+		System.out.println("The ID is: "+txtID.getText());
+		System.out.println("The name is: "+txtName.getText());
+		System.out.println("The description is:"+txtDescription.getText());
+		System.out.println("The category is:"+comboCategory.getSelectedItem());
+		System.out.println("The price is: "+txtPrice.getText());
+		System.out.println("The quantity is: "+txtQuantity.getText());
+		
+		
+		Integer id = new Integer(txtID.getText());
+		BigDecimal price = new BigDecimal(txtPrice.getText());
+		Integer quantity = new Integer(txtQuantity.getText());
+		
+		
+		
+		
+   }//GEN-LAST:event_saveButtonActionPerformed
+
+   private void comboCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoryActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_comboCategoryActionPerformed
+
+   private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+      // TODO add your handling code here:
+		dispose();
+   }//GEN-LAST:event_cancelButtonActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -177,6 +243,8 @@ public class ProductDialog extends javax.swing.JDialog {
 	}
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton cancelButton;
+   private javax.swing.JComboBox<String> comboCategory;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
    private javax.swing.JLabel jLabel3;
@@ -184,7 +252,7 @@ public class ProductDialog extends javax.swing.JDialog {
    private javax.swing.JLabel jLabel5;
    private javax.swing.JLabel jLabel6;
    private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JTextField txtCategory;
+   private javax.swing.JButton saveButton;
    private javax.swing.JTextArea txtDescription;
    private javax.swing.JTextField txtID;
    private javax.swing.JTextField txtName;
