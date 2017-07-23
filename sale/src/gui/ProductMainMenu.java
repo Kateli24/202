@@ -47,6 +47,11 @@ public class ProductMainMenu extends javax.swing.JFrame {
 
       viewProductButton.setText("View Product");
       viewProductButton.setName("viewProductButton"); // NOI18N
+      viewProductButton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            viewProductButtonActionPerformed(evt);
+         }
+      });
 
       exitButton.setText("Exit");
       exitButton.setName("exitButton"); // NOI18N
@@ -93,6 +98,9 @@ public class ProductMainMenu extends javax.swing.JFrame {
    private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
       /*This method is to close the main menu frame before opening the productDialog. */
 		close();
+		/**a new instance of dialog to add new product will be activated once 
+		 * the Add a New Product button is clicked*/
+		 
 		ProductDialog productDialog1 = new ProductDialog(this,true);
 		productDialog1.setLocationRelativeTo(this);
 		productDialog1.setVisible(true);
@@ -103,6 +111,18 @@ public class ProductMainMenu extends javax.swing.JFrame {
       // TODO add your handling code here:
 		System.exit(0);
    }//GEN-LAST:event_exitButtonActionPerformed
+
+   private void viewProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProductButtonActionPerformed
+      /*This method is to close the main menu frame before opening the productDialog. */
+		close();
+		
+		/**a new instance of dialog to view products will be activated once 
+		 * the View Products button is clicked*/
+		ViewProductDialog viewProductDialog1 = new ViewProductDialog(this,true);
+		viewProductDialog1.setLocationRelativeTo(this);
+		viewProductDialog1.setVisible(true);
+		
+   }//GEN-LAST:event_viewProductButtonActionPerformed
 
 	/**
 	 * @param args the command line arguments
