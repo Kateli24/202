@@ -12,6 +12,10 @@ public class ProductMainMenu extends javax.swing.JFrame {
 	public ProductMainMenu() {
 		initComponents();
 	}
+	
+	public void close(){
+		this.setVisible(false);
+	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -46,6 +50,11 @@ public class ProductMainMenu extends javax.swing.JFrame {
 
       exitButton.setText("Exit");
       exitButton.setName("exitButton"); // NOI18N
+      exitButton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            exitButtonActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -73,21 +82,27 @@ public class ProductMainMenu extends javax.swing.JFrame {
             .addComponent(addProductButton)
             .addGap(39, 39, 39)
             .addComponent(viewProductButton)
-            .addGap(40, 40, 40)
+            .addGap(44, 44, 44)
             .addComponent(exitButton)
-            .addContainerGap(71, Short.MAX_VALUE))
+            .addContainerGap(67, Short.MAX_VALUE))
       );
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
    private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
-      // TODO add your handling code here:
-	
+      /*This method is to close the main menu frame before opening the productDialog. */
+		close();
 		ProductDialog productDialog1 = new ProductDialog(this,true);
+		productDialog1.setLocationRelativeTo(this);
 		productDialog1.setVisible(true);
 		
    }//GEN-LAST:event_addProductButtonActionPerformed
+
+   private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+      // TODO add your handling code here:
+		System.exit(0);
+   }//GEN-LAST:event_exitButtonActionPerformed
 
 	/**
 	 * @param args the command line arguments
