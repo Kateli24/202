@@ -35,6 +35,11 @@ public class ProductMainMenu extends javax.swing.JFrame {
 
       addProductButton.setText("Add a New Product");
       addProductButton.setName("addProductButton"); // NOI18N
+      addProductButton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            addProductButtonActionPerformed(evt);
+         }
+      });
 
       viewProductButton.setText("View Product");
       viewProductButton.setName("viewProductButton"); // NOI18N
@@ -75,6 +80,14 @@ public class ProductMainMenu extends javax.swing.JFrame {
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
+
+   private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
+      // TODO add your handling code here:
+	
+		ProductDialog productDialog1 = new ProductDialog(this,true);
+		productDialog1.setVisible(true);
+		
+   }//GEN-LAST:event_addProductButtonActionPerformed
 
 	/**
 	 * @param args the command line arguments
