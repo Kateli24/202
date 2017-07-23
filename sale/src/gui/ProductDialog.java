@@ -2,12 +2,14 @@ package gui;
 
 import java.math.BigDecimal;
 import domain.Product;
+import dao.ProductList;
 
 /**
  *
  * @author liji8162
  */
 public class ProductDialog extends javax.swing.JDialog {
+	private ProductList myProductList = new ProductList();
 
 	/**
 	 * Creates new form ProductDialog
@@ -173,20 +175,14 @@ public class ProductDialog extends javax.swing.JDialog {
    }// </editor-fold>//GEN-END:initComponents
 
    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-      // TODO add your handling code here:
-//		System.out.println("The ID is: "+txtID.getText());
-//		System.out.println("The name is: "+txtName.getText());
-//		System.out.println("The description is:"+txtDescription.getText());
-//		System.out.println("The category is:"+comboCategory.getSelectedItem());
-//		System.out.println("The price is: "+txtPrice.getText());
-//		System.out.println("The quantity is: "+txtQuantity.getText());
-//		
-		
+      	
+		/**convert values to right formats*/
 		Integer id = new Integer(txtID.getText());
 		BigDecimal price = new BigDecimal(txtPrice.getText());
 		Integer quantity = new Integer(txtQuantity.getText());
 		
-		
+		/**create an instance of product to store all the values held 
+		 * by text fields.*/
 		Product product = new Product();
 		product.setId(id);
 		product.setName(txtName.getText());
@@ -194,8 +190,9 @@ public class ProductDialog extends javax.swing.JDialog {
 		product.setCategory((String)comboCategory.getSelectedItem());
 		product.setPrice(price);
 		product.setQuantity(quantity);
-		
-		System.out.println(product);
+		/**store this instance of product into myProductList*/
+		myProductList.addProduct(product);
+	
 		
 		
 		
