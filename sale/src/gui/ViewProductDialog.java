@@ -1,10 +1,28 @@
 package gui;
+import domain.Product;
+import gui.helpers.SimpleListModel;
+import java.util.ArrayList;
+
 
 /**
  *
  * @author liji8162
  */
 public class ViewProductDialog extends javax.swing.JDialog {
+	
+	SimpleListModel viewProductsModel  = new SimpleListModel();
+	//ArrayList<Product> currentProductList = myProductList.getProduct();
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			  
 
 	/**
 	 * Creates new form ViewProductDialog
@@ -12,6 +30,10 @@ public class ViewProductDialog extends javax.swing.JDialog {
 	public ViewProductDialog(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		
+		//this.viewProductsModel.updateItems(.getProductList());
+		this.currentProductList.setModel(viewProductsModel);
+		
 	}
 
 	/**
@@ -24,7 +46,7 @@ public class ViewProductDialog extends javax.swing.JDialog {
    private void initComponents() {
 
       jScrollPane1 = new javax.swing.JScrollPane();
-      jList1 = new javax.swing.JList<>();
+      currentProductList = new javax.swing.JList<>();
       jLabel1 = new javax.swing.JLabel();
       editButton = new javax.swing.JButton();
       deleteButton = new javax.swing.JButton();
@@ -34,13 +56,13 @@ public class ViewProductDialog extends javax.swing.JDialog {
 
       jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-      jList1.setModel(new javax.swing.AbstractListModel<String>() {
+      currentProductList.setModel(new javax.swing.AbstractListModel<String>() {
          String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
          public int getSize() { return strings.length; }
          public String getElementAt(int i) { return strings[i]; }
       });
-      jList1.setName("jList1"); // NOI18N
-      jScrollPane1.setViewportView(jList1);
+      currentProductList.setName("currentProductList"); // NOI18N
+      jScrollPane1.setViewportView(currentProductList);
 
       jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
       jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -146,10 +168,10 @@ public class ViewProductDialog extends javax.swing.JDialog {
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton closeButton;
+   private javax.swing.JList<String> currentProductList;
    private javax.swing.JButton deleteButton;
    private javax.swing.JButton editButton;
    private javax.swing.JLabel jLabel1;
-   private javax.swing.JList<String> jList1;
    private javax.swing.JScrollPane jScrollPane1;
    // End of variables declaration//GEN-END:variables
 }

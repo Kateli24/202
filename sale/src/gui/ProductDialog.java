@@ -3,6 +3,7 @@ package gui;
 import java.math.BigDecimal;
 import domain.Product;
 import dao.ProductList;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +19,10 @@ public class ProductDialog extends javax.swing.JDialog {
 		super(parent, modal);
 		initComponents();
 		comboCategory.setEditable(true);
+	}
+	
+	public ArrayList<Product> getProductList(){
+		return myProductList.getProducts();
 	}
 
 	/**
@@ -192,6 +197,9 @@ public class ProductDialog extends javax.swing.JDialog {
 		product.setQuantity(quantity);
 		/**store this instance of product into myProductList*/
 		myProductList.addProduct(product);
+		
+		//works
+		System.out.println(getProductList());
 	
 		
 		

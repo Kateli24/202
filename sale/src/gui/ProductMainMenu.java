@@ -13,9 +13,7 @@ public class ProductMainMenu extends javax.swing.JFrame {
 		initComponents();
 	}
 	
-	public void close(){
-		this.setVisible(false);
-	}
+	
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -96,8 +94,7 @@ public class ProductMainMenu extends javax.swing.JFrame {
    }// </editor-fold>//GEN-END:initComponents
 
    private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
-      /*This method is to close the main menu frame before opening the productDialog. */
-		close();
+      
 		/**a new instance of dialog to add new product will be activated once 
 		 * the Add a New Product button is clicked*/
 		 
@@ -113,8 +110,7 @@ public class ProductMainMenu extends javax.swing.JFrame {
    }//GEN-LAST:event_exitButtonActionPerformed
 
    private void viewProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProductButtonActionPerformed
-      /*This method is to close the main menu frame before opening the productDialog. */
-		close();
+      
 		
 		/**a new instance of dialog to view products will be activated once 
 		 * the View Products button is clicked*/
