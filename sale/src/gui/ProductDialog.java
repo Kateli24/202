@@ -5,7 +5,6 @@ import domain.Product;
 import dao.ProductList;
 import gui.helpers.SimpleListModel;
 import java.util.ArrayList;
-import javax.swing.JList;
 
 /**
  *
@@ -13,7 +12,6 @@ import javax.swing.JList;
  */
 public class ProductDialog extends javax.swing.JDialog {
 	private ProductList myProductList = new ProductList();
-	//private JList<String> categoryList = new JList();
 	SimpleListModel mySimpleListModel = new SimpleListModel();
 	
 

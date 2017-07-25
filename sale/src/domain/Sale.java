@@ -12,11 +12,29 @@ import java.util.List;
 public class Sale {
 	private Integer id;
 	private Date date;
-	private List<SaleItem> saleItem  = new ArrayList<>();
+	private List<SaleItem> items  = new ArrayList<>();
+	private Customer customer;
 
-	public Sale(Integer id, Date date) {
+	public Sale(Customer customer, Integer id, Date date) {
+		this.customer = customer;
 		this.id = id;
 		this.date = date;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+	public Customer getCustomer() {
+		return customer;
 	}
 
 	public Integer getId() {
@@ -33,13 +51,13 @@ public class Sale {
 	}
 	
 	public void addItem(SaleItem orderItem){
-		saleItem.add(orderItem);
+		items.add(orderItem);
 		
 	}
 	
 	public BigDecimal getTotal(){
 		BigDecimal amount =  BigDecimal.ZERO;
-		for(SaleItem item:saleItem){
+		for(SaleItem item:items){
 			amount = amount.add(item.getItemTotal());
 		}
 		return amount;
