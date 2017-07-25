@@ -21,9 +21,9 @@ public class ProductDialog extends javax.swing.JDialog {
 		comboCategory.setEditable(true);
 	}
 	
-	public ArrayList<Product> getProductList(){
-		return myProductList.getProducts();
-	}
+//	public ArrayList<Product> getProductList(){
+//		return myProductList.getProducts();
+//	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -198,9 +198,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		/**store this instance of product into myProductList*/
 		myProductList.addProduct(product);
 		
-		//works
-		System.out.println(getProductList());
-	
+		
 		
 		
 		

@@ -1,7 +1,10 @@
 package gui;
+import dao.ProductList;
 import domain.Product;
 import gui.helpers.SimpleListModel;
 import java.util.ArrayList;
+
+
 
 
 /**
@@ -9,21 +12,10 @@ import java.util.ArrayList;
  * @author liji8162
  */
 public class ViewProductDialog extends javax.swing.JDialog {
-	
+	private ProductList myProductList = new ProductList();
 	SimpleListModel viewProductsModel  = new SimpleListModel();
-	//ArrayList<Product> currentProductList = myProductList.getProduct();
+	ArrayList<Product> getProductList = myProductList.getProducts();
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-			  
-
 	/**
 	 * Creates new form ViewProductDialog
 	 */
@@ -31,7 +23,7 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		super(parent, modal);
 		initComponents();
 		
-		//this.viewProductsModel.updateItems(.getProductList());
+		this.viewProductsModel.updateItems(getProductList);
 		this.currentProductList.setModel(viewProductsModel);
 		
 	}
