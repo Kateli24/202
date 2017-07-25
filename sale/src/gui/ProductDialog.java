@@ -3,7 +3,9 @@ package gui;
 import java.math.BigDecimal;
 import domain.Product;
 import dao.ProductList;
+import gui.helpers.SimpleListModel;
 import java.util.ArrayList;
+import javax.swing.JList;
 
 /**
  *
@@ -11,6 +13,9 @@ import java.util.ArrayList;
  */
 public class ProductDialog extends javax.swing.JDialog {
 	private ProductList myProductList = new ProductList();
+	//private JList<String> categoryList = new JList();
+	SimpleListModel mySimpleListModel = new SimpleListModel();
+	
 
 	/**
 	 * Creates new form ProductDialog
@@ -18,12 +23,16 @@ public class ProductDialog extends javax.swing.JDialog {
 	public ProductDialog(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
+		/*make combocategory editable so that users ar able to type new 
+		category in the combo box*/
 		comboCategory.setEditable(true);
+		/*create an ArrayList to hold categories which are retrieved from calling 
+		getCategories method*/
+		ArrayList<String> myCategories = myProductList.getCategories();
+		mySimpleListModel.updateItems(myCategories);
+		this.comboCategory.setModel(mySimpleListModel);
 	}
 	
-//	public ArrayList<Product> getProductList(){
-//		return myProductList.getProducts();
-//	}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -199,18 +208,17 @@ public class ProductDialog extends javax.swing.JDialog {
 		myProductList.addProduct(product);
 		
 		
-		
-		
-		
-		
    }//GEN-LAST:event_saveButtonActionPerformed
 
    private void comboCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoryActionPerformed
-      // TODO add your handling code here:
+
+		
+		
+		
    }//GEN-LAST:event_comboCategoryActionPerformed
 
    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-      // TODO add your handling code here:
+
 		dispose();
    }//GEN-LAST:event_cancelButtonActionPerformed
 
