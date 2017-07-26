@@ -2,8 +2,8 @@ package domain;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -12,7 +12,8 @@ import java.util.List;
 public class Sale {
 	private Integer id;
 	private Date date;
-	private List<SaleItem> items  = new ArrayList<>();
+	/**SaleItems should be in an  ArrayList because quantity can be multiple*/
+	private Collection<SaleItem> items  = new ArrayList<>();
 	private Customer customer;
 
 	public Sale(Customer customer, Integer id, Date date) {

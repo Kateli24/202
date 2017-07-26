@@ -2,14 +2,19 @@ package dao;
 
 import domain.Product;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.TreeSet;
 
 /**
  *
  * @author liji8162
  */
 public class ProductList {
-	private static ArrayList<Product> products = new ArrayList<>();
-	private static ArrayList<String> categories = new ArrayList<>();
+	/**Product should be implemented in an ArrayList because it allows duplicates*/
+	private static Collection<Product> products = new ArrayList<>();
+	/**categories should be implemented in a TreeSet collection because 
+	 * categories are unique and we expect them to be sorted*/
+	private static Collection<String> categories = new TreeSet<>();
 	
 	
 	public void addProduct(Product product){
@@ -19,12 +24,12 @@ public class ProductList {
 		
 	}
 	
-	public ArrayList<String> getCategories(){
+	public Collection<String> getCategories(){
 		return categories;
 		
 	}
 	
-	public ArrayList<Product> getProducts(){
+	public Collection<Product> getProducts(){
 		return products;
 		
 	}

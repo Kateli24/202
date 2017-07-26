@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import domain.Product;
 import dao.ProductList;
 import gui.helpers.SimpleListModel;
-import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -26,7 +26,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		comboCategory.setEditable(true);
 		/*create an ArrayList to hold categories which are retrieved from calling 
 		getCategories method*/
-		ArrayList<String> myCategories = myProductList.getCategories();
+		Collection<String> myCategories = myProductList.getCategories();
 		mySimpleListModel.updateItems(myCategories);
 		this.comboCategory.setModel(mySimpleListModel);
 	}

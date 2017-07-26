@@ -2,7 +2,7 @@ package gui;
 import dao.ProductList;
 import domain.Product;
 import gui.helpers.SimpleListModel;
-import java.util.ArrayList;
+import java.util.Collection;
 
 
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ViewProductDialog extends javax.swing.JDialog {
 	private ProductList myProductList = new ProductList();
 	SimpleListModel viewProductsModel  = new SimpleListModel();
-	ArrayList<Product> getProductList = myProductList.getProducts();
+	Collection<Product> getProductList = myProductList.getProducts();
 	
 	/**
 	 * Creates new form ViewProductDialog
