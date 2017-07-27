@@ -51,7 +51,8 @@ public class SaleItem {
 		this.purchusePrice = purchusePrice;
 	}
 	
-	/**this line is to get total+=(purchsePrice*quantityPurchused)*/
+	/**this line is to get total=(purchsePrice*quantityPurchused)
+	 to make them as the same type, we need to convert Integer to BigDecimal*/
 	public BigDecimal getItemTotal(){
 		return (purchusePrice.multiply(new BigDecimal(quantityPurchused)));
 	}
