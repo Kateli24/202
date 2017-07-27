@@ -11,6 +11,8 @@ import java.util.Collection;
  * @author liji8162
  */
 public class ProductDialog extends javax.swing.JDialog {
+	/**this instance of list from dao package is the list holds all the product objects that 
+	 * typed by users*/
 	private ProductList myProductList = new ProductList();
 	SimpleListModel mySimpleListModel = new SimpleListModel();
 	

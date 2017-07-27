@@ -1,4 +1,60 @@
 @startuml
-A->B : do stuff
-@enduml
+' use strict UML mode
+skinparam style strictuml
 
+actor "User" as user
+
+participant "Administration" as main <<main>>
+main++
+
+create "productMainMenu" as menu <<frame>>
+main -> menu : construct
+main -> menu++ : setVisible(true)
+
+user -> menu++ : click 'add new product'
+
+create "ProductDialog" as editor <<dialog>>
+menu -> editor : construct
+menu -> editor++ : setVisible(true)
+
+
+
+' user enters product details and clicks the save button
+menu -> editor++ : enters product details
+editor--
+user -> editor++ : clicks save button
+
+' construct the product object
+create "Product : product" as product <<domain>>
+editor -> product : construct
+
+' get the details from the text component
+editor -> editor : get details entered by user
+
+
+' set the id field in the product
+editor -> product++ : set fields
+product--
+
+
+
+' create a DAO
+create "PrductList" as dao <<DAO>>
+editor -> dao : construct
+
+' save product
+editor -> dao++ : addProduct(product)
+
+dao--
+
+
+' dispose dialog
+editor -> editor-- : dispose()
+
+' show control returning to the menu as the dialog closes
+return
+
+destroy editor
+
+menu –> user-- : ready for next operation
+@enduml

@@ -15,7 +15,7 @@ public class Sale {
 	/**SaleItems should be in a HashSet because when users try to buy same 
 	 * type of product in one sale, we don't wanna them to be two elements 
 	 * in the collection, we wanna them to be able to combine together. 
-	 * i.e.we wannt them still be unique*/
+	 * i.e.we wanna them still be unique*/
 	private Collection<SaleItem> items  = new HashSet<>();
 	private Customer customer;
 
