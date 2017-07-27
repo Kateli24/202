@@ -15,12 +15,21 @@ user -> menu++ : click 'add new product'
 
 create "ProductDialog" as editor <<dialog>>
 menu -> editor : construct
+
+'activate editor constructor
+editor++
+
+' create a DAO
+create "PrductList" as dao <<DAO>>
+editor -> dao : construct
+editor--
+
 menu -> editor++ : setVisible(true)
 
 
 
 ' user enters product details and clicks the save button
-menu -> editor++ : enters product details
+user -> editor++ : enters product details
 editor--
 user -> editor++ : clicks save button
 
@@ -38,9 +47,7 @@ product--
 
 
 
-' create a DAO
-create "PrductList" as dao <<DAO>>
-editor -> dao : construct
+
 
 ' save product
 editor -> dao++ : addProduct(product)
