@@ -11,7 +11,7 @@ create "productMainMenu" as menu <<frame>>
 main -> menu : construct
 main -> menu++ : setVisible(true)
 
-user -> menu++ : click 'add new product'
+user -> menu++ : click 'Add a New Product'
 
 create "ProductDialog" as editor <<dialog>>
 menu -> editor : construct
@@ -22,6 +22,7 @@ editor++
 ' create a DAO
 create "PrductList" as dao <<DAO>>
 editor -> dao : construct
+
 editor--
 
 menu -> editor++ : setVisible(true)
@@ -37,6 +38,7 @@ user -> editor++ : clicks save button
 create "Product : product" as product <<domain>>
 editor -> product : construct
 
+
 ' get the details from the text component
 editor -> editor : get details entered by user
 
@@ -45,13 +47,18 @@ editor -> editor : get details entered by user
 editor -> product++ : set fields
 product--
 
-
-
-
-
 ' save product
 editor -> dao++ : addProduct(product)
+dao--
 
+'display categories
+editor -> dao++ : getCategories()
+
+create "SimpleListModel" as model <<model>>
+editor -> model : construct
+editor -> model++ :updateItems(dao)
+editor -> model : setModel(model)
+model--
 dao--
 
 
