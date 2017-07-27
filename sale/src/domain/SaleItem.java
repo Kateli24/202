@@ -51,6 +51,7 @@ public class SaleItem {
 		this.purchusePrice = purchusePrice;
 	}
 	
+	/**this line is to get total+=(purchsePrice*quantityPurchused)*/
 	public BigDecimal getItemTotal(){
 		return (purchusePrice.multiply(new BigDecimal(quantityPurchused)));
 	}

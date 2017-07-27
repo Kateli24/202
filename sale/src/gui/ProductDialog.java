@@ -58,6 +58,7 @@ public class ProductDialog extends javax.swing.JDialog {
       saveButton = new javax.swing.JButton();
       cancelButton = new javax.swing.JButton();
       comboCategory = new javax.swing.JComboBox<>();
+      labelTitle = new javax.swing.JLabel();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,12 +118,22 @@ public class ProductDialog extends javax.swing.JDialog {
          }
       });
 
+      labelTitle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+      labelTitle.setText("Product Editor");
+      labelTitle.setName("labelTitle"); // NOI18N
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addGap(33, 33, 33)
+            .addGap(72, 72, 72)
+            .addComponent(saveButton)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+            .addComponent(cancelButton)
+            .addGap(84, 84, 84))
+         .addGroup(layout.createSequentialGroup()
+            .addGap(38, 38, 38)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -137,19 +148,19 @@ public class ProductDialog extends javax.swing.JDialog {
                .addComponent(txtQuantity)
                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                .addComponent(txtID)
-               .addComponent(comboCategory, 0, 100, Short.MAX_VALUE))
-            .addGap(154, 154, 154))
-         .addGroup(layout.createSequentialGroup()
-            .addGap(72, 72, 72)
-            .addComponent(saveButton)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(cancelButton)
-            .addGap(84, 84, 84))
+               .addComponent(comboCategory, 0, 239, Short.MAX_VALUE))
+            .addContainerGap())
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(159, 159, 159))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addContainerGap()
+            .addGap(10, 10, 10)
+            .addComponent(labelTitle)
+            .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel1)
                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -160,12 +171,10 @@ public class ProductDialog extends javax.swing.JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(layout.createSequentialGroup()
                   .addGap(26, 26, 26)
-                  .addComponent(jLabel3)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                  .addComponent(jLabel3))
                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(18, 18, 18)))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(6, 6, 6)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel4)
@@ -178,7 +187,7 @@ public class ProductDialog extends javax.swing.JDialog {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jLabel6))
-            .addGap(37, 37, 37)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(saveButton)
                .addComponent(cancelButton))
@@ -197,6 +206,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		
 		/**create an instance of product to store all the values held 
 		 * by text fields.*/
+		
 		Product product = new Product();
 		product.setId(id);
 		product.setName(txtName.getText());
@@ -274,6 +284,7 @@ public class ProductDialog extends javax.swing.JDialog {
    private javax.swing.JLabel jLabel5;
    private javax.swing.JLabel jLabel6;
    private javax.swing.JScrollPane jScrollPane1;
+   private javax.swing.JLabel labelTitle;
    private javax.swing.JButton saveButton;
    private javax.swing.JTextArea txtDescription;
    private javax.swing.JTextField txtID;
