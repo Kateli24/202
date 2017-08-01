@@ -69,7 +69,7 @@ public class Product implements Comparable<Product>{
 				  ", category=" + category + '}';
 	}
 
-	/**comparing one Product object with another one*/
+	/** a method from library to make Product collection sorted */
 	@Override
 	public int compareTo(Product anotherProduct) {
 		Integer myId = this.getId();
