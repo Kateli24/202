@@ -13,8 +13,12 @@ public class Product implements Comparable<Product>{
 	private String category;
 	private BigDecimal price;
 	private Integer quantity;
+
+	public Product() {
+	}
 	
 
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}

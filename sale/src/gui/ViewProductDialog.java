@@ -25,6 +25,8 @@ public class ViewProductDialog extends javax.swing.JDialog {
 	 * object.*/
 	Collection<Product> getProductList = myProductList.getProducts();
 	
+	
+	
 	/**
 	 * Creates new form ViewProductDialog
 	 */

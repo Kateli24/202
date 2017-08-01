@@ -17,13 +17,16 @@ public class ProductDialog extends javax.swing.JDialog {
 	 * system*/
 	private ProductList myProductList = new ProductList();
 	SimpleListModel mySimpleListModel = new SimpleListModel();
+	Product product = new Product();
+	
 	
 
 	/**
 	 * Creates new form ProductDialog
 	 */
-	public ProductDialog(java.awt.Frame parent, boolean modal) {
-		super(parent, modal);
+	public ProductDialog(java.awt.Window parent, boolean modal) {
+		super(parent);
+		super.setModal(modal);
 		initComponents();
 		/*make combocategory editable so that users ar able to type new 
 		category in the combo box*/
@@ -33,6 +36,24 @@ public class ProductDialog extends javax.swing.JDialog {
 		Collection<String> myCategories = myProductList.getCategories();
 		mySimpleListModel.updateItems(myCategories);
 		this.comboCategory.setModel(mySimpleListModel);
+	}
+	
+	public ProductDialog(java.awt.Window parent, boolean modal, Product product){
+		this(parent, modal);
+		this.product = product;
+		
+		String stringId = String.valueOf(this.product.getId());
+		String stringPrice = String.valueOf(this.product.getPrice());
+		String stringQuantity = String.valueOf(this.product.getQuantity());
+		
+		this.txtID.setText(stringId);
+		this.txtName.setText(this.product.getName());
+		this.txtPrice.setText(stringPrice);
+		this.txtQuantity.setText(stringQuantity);
+		this.txtDescription.setText(this.product.getDescription());
+		this.comboCategory.setSelectedItem(this.product.getCategory());
+		
+		
 	}
 	
 
@@ -213,13 +234,13 @@ public class ProductDialog extends javax.swing.JDialog {
 		/**create an instance of product to store all the values held 
 		 * by text fields.*/
 		
-		Product product = new Product();
-		product.setId(id);
-		product.setName(txtName.getText());
-		product.setDescription(txtDescription.getText());
-		product.setCategory((String)comboCategory.getSelectedItem());
-		product.setPrice(price);
-		product.setQuantity(quantity);
+		
+		this.product.setId(id);
+		this.product.setName(txtName.getText());
+		this.product.setDescription(txtDescription.getText());
+		this.product.setCategory((String)comboCategory.getSelectedItem());
+		this.product.setPrice(price);
+		this.product.setQuantity(quantity);
 		/**store this instance of product into myProductList*/
 		myProductList.addProduct(product);
 		dispose();
