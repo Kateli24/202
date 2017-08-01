@@ -34,6 +34,10 @@ public class ProductList{
 		categories.add(category);
 		
 	}
+	/**delete product by its id*/ 
+	public void deleteProduct(Product product){
+		products.remove(product.getId());
+	}
 	
 	public Collection<String> getCategories(){
 		return categories;
