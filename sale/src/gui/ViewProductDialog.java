@@ -12,8 +12,16 @@ import java.util.Collection;
  * @author liji8162
  */
 public class ViewProductDialog extends javax.swing.JDialog {
+	/**this instance of list from dao package is the list holds all the 
+	 * product objects that typed by users
+	 * since the collection of Product is static, we can refer it in the entire
+	 * system  */
 	private ProductList myProductList = new ProductList();
 	SimpleListModel viewProductsModel  = new SimpleListModel();
+	/**the instance of the list is just an object. if we get the products that 
+	 * users typed in the system, normally users add new product one by one,
+	 * so we update the product one by one using update method in SimpleListModel
+	 * object.*/
 	Collection<Product> getProductList = myProductList.getProducts();
 	
 	/**
@@ -117,7 +125,10 @@ public class ViewProductDialog extends javax.swing.JDialog {
    }//GEN-LAST:event_closeButtonActionPerformed
 
    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-     // Product copyOfProductList = (Product)currentProductList.getSelectedValue();
+      Product copyOfProductList = (Product)currentProductList.getSelectedValue();
+		myProductList.deleteProduct(copyOfProductList);
+		this.viewProductsModel.updateItems(getProductList);
+		
 		
 		
    }//GEN-LAST:event_deleteButtonActionPerformed
