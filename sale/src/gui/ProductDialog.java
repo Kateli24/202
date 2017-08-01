@@ -216,6 +216,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		product.setQuantity(quantity);
 		/**store this instance of product into myProductList*/
 		myProductList.addProduct(product);
+		dispose();
 		
 		
    }//GEN-LAST:event_saveButtonActionPerformed
