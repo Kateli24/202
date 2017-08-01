@@ -3,6 +3,7 @@ import dao.ProductList;
 import domain.Product;
 import gui.helpers.SimpleListModel;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 
 
 
@@ -125,9 +126,16 @@ public class ViewProductDialog extends javax.swing.JDialog {
    }//GEN-LAST:event_closeButtonActionPerformed
 
    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-      Product copyOfProductList = (Product)currentProductList.getSelectedValue();
-		myProductList.deleteProduct(copyOfProductList);
-		this.viewProductsModel.updateItems(getProductList);
+      boolean isEmpty = currentProductList.isSelectionEmpty();
+		if(!isEmpty){
+		int result = JOptionPane.showConfirmDialog(this,"Are you sure that you "
+				  + "want to delete this product?");
+		if (result == JOptionPane.YES_OPTION) {
+			Product copyOfProductList = (Product) currentProductList.getSelectedValue();
+			this.myProductList.deleteProduct(copyOfProductList);
+			this.viewProductsModel.updateItems(getProductList);
+		}
+		}
 		
 		
 		
