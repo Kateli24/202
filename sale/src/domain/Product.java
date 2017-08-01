@@ -6,13 +6,14 @@ import java.math.BigDecimal;
  *
  * @author liji8162
  */
-public class Product {
+public class Product implements Comparable<Product>{
 	private Integer id;
 	private String name;
 	private String description;
 	private String category;
 	private BigDecimal price;
 	private Integer quantity;
+	
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -66,6 +67,15 @@ public class Product {
 	public String toString() {
 		return "Product{" + "id=" + id + ", name=" + name +
 				  ", category=" + category + '}';
+	}
+
+	/**comparing one Product object with another one*/
+	@Override
+	public int compareTo(Product anotherProduct) {
+		Integer myId = this.getId();
+		Integer anotherId = anotherProduct.getId();
+		return myId.compareTo(anotherId);
+
 	}
 	
 	
