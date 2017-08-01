@@ -53,6 +53,8 @@ public class ProductDialog extends javax.swing.JDialog {
 		this.txtDescription.setText(this.product.getDescription());
 		this.comboCategory.setSelectedItem(this.product.getCategory());
 		
+		/**id is the key, can not be changed*/
+		this.txtID.setEditable(false);
 		
 	}
 	
