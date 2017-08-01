@@ -48,11 +48,6 @@ public class ViewProductDialog extends javax.swing.JDialog {
 
       jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-      currentProductList.setModel(new javax.swing.AbstractListModel<String>() {
-         String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-         public int getSize() { return strings.length; }
-         public String getElementAt(int i) { return strings[i]; }
-      });
       currentProductList.setName("currentProductList"); // NOI18N
       jScrollPane1.setViewportView(currentProductList);
 
@@ -66,6 +61,11 @@ public class ViewProductDialog extends javax.swing.JDialog {
 
       deleteButton.setText("Delete");
       deleteButton.setName("deleteButton"); // NOI18N
+      deleteButton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            deleteButtonActionPerformed(evt);
+         }
+      });
 
       closeButton.setText("Close");
       closeButton.setName("closeButton"); // NOI18N
@@ -95,10 +95,13 @@ public class ViewProductDialog extends javax.swing.JDialog {
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(layout.createSequentialGroup()
+                  .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(299, 299, 299))
+               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(18, 18, 18)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -109,9 +112,15 @@ public class ViewProductDialog extends javax.swing.JDialog {
    }// </editor-fold>//GEN-END:initComponents
 
    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-      // TODO add your handling code here:
+      
 		dispose();
    }//GEN-LAST:event_closeButtonActionPerformed
+
+   private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+     // Product copyOfProductList = (Product)currentProductList.getSelectedValue();
+		
+		
+   }//GEN-LAST:event_deleteButtonActionPerformed
 
 	/**
 	 * @param args the command line arguments
@@ -155,9 +164,10 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		});
 	}
 
+	/*JList by default holds strings, went to properties to change the generics*/
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton closeButton;
-   private javax.swing.JList<String> currentProductList;
+   private javax.swing.JList<Product> currentProductList;
    private javax.swing.JButton deleteButton;
    private javax.swing.JButton editButton;
    private javax.swing.JLabel jLabel1;
