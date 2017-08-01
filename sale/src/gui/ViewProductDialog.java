@@ -69,6 +69,11 @@ public class ViewProductDialog extends javax.swing.JDialog {
 
       editButton.setText("Edit");
       editButton.setName("editButton"); // NOI18N
+      editButton.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            editButtonActionPerformed(evt);
+         }
+      });
 
       deleteButton.setText("Delete");
       deleteButton.setName("deleteButton"); // NOI18N
@@ -138,10 +143,18 @@ public class ViewProductDialog extends javax.swing.JDialog {
 			this.viewProductsModel.updateItems(getProductList);
 		}
 		}
-		
-		
-		
+	
    }//GEN-LAST:event_deleteButtonActionPerformed
+
+   private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+		boolean isEmpty = currentProductList.isSelectionEmpty();
+		if (!isEmpty) {
+			Product copyOfProductList2 = (Product) currentProductList.getSelectedValue();
+			ProductDialog currentProductDialog = new ProductDialog(this, true, copyOfProductList2);
+			currentProductDialog.setVisible(true);
+			this.viewProductsModel.updateItems(getProductList);
+   }//GEN-LAST:event_editButtonActionPerformed
+	}
 
 	/**
 	 * @param args the command line arguments
