@@ -179,10 +179,10 @@ public class ProductDialog extends javax.swing.JDialog {
                         .addComponent(txtQuantity))))))
          .addGroup(layout.createSequentialGroup()
             .addGap(115, 115, 115)
-            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGap(240, 240, 240)
-            .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-            .addGap(327, 327, 327))
+            .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(190, 190, 190))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

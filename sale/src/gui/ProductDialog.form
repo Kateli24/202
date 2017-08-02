@@ -60,10 +60,10 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-              <Component id="saveButton" pref="95" max="32767" attributes="0"/>
+              <Component id="saveButton" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
-              <Component id="cancelButton" pref="103" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="327" max="-2" attributes="0"/>
+              <Component id="cancelButton" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="190" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
