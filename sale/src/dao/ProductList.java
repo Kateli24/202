@@ -78,6 +78,10 @@ public class ProductList{
 		return products.values();
 		
 	}
+	
+	public TreeSet<Product> productsByCategory(String category){
+		return filterCategory.get(category);
+	}
 
 	
 			

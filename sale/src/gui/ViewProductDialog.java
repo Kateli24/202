@@ -19,6 +19,7 @@ public class ViewProductDialog extends javax.swing.JDialog {
 	 * system  */
 	private ProductList myProductList = new ProductList();
 	SimpleListModel viewProductsModel  = new SimpleListModel();
+	SimpleListModel categoryFilter = new SimpleListModel();
 	/**the instance of the list is just an object. if we get the products that 
 	 * users typed in the system, normally users add new product one by one,
 	 * so we update the product one by one using update method in SimpleListModel
@@ -33,9 +34,15 @@ public class ViewProductDialog extends javax.swing.JDialog {
 	public ViewProductDialog(java.awt.Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
-		
+		/**the default displays in JList component*/
 		this.viewProductsModel.updateItems(getProductList);
 		this.currentProductList.setModel(viewProductsModel);
+		/**the default displays in category filter(combo box)*/
+		Collection<String> allCatogories = myProductList.getCategories();
+		this.categoryFilter.updateItems(allCatogories);
+		this.comboFilter.setModel(categoryFilter);
+		
+		
 		
 	}
 
@@ -113,6 +120,11 @@ public class ViewProductDialog extends javax.swing.JDialog {
       });
 
       comboFilter.setName("comboFilter"); // NOI18N
+      comboFilter.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            comboFilterActionPerformed(evt);
+         }
+      });
 
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
@@ -205,6 +217,12 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		
 
    }//GEN-LAST:event_buttonSearchActionPerformed
+
+   private void comboFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFilterActionPerformed
+      String seletedCategory = (String)comboFilter.getSelectedItem();
+		
+		this.viewProductsModel.updateItems(myProductList.productsByCategory(seletedCategory));
+   }//GEN-LAST:event_comboFilterActionPerformed
 
 	/**
 	 * @param args the command line arguments
