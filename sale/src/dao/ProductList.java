@@ -39,6 +39,14 @@ public class ProductList{
 		products.remove(product.getId());
 	}
 	
+	public Product findProduct(Integer id){
+		boolean doesExist = products.containsKey(id);
+		if(doesExist){
+			return products.get(id);
+		}
+		return null;
+	}
+	
 	public Collection<String> getCategories(){
 		return categories;
 		
