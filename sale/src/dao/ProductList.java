@@ -2,6 +2,7 @@ package dao;
 
 import domain.Product;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -22,6 +23,7 @@ public class ProductList{
 	/**categories should be implemented in a TreeSet collection because 
 	 * categories are unique and we expect them to be sorted*/
 	private static Collection<String> categories = new TreeSet<>();
+	private static Map<Integer, Product> searchProduct = new HashMap<>();
 	
 	
 	
@@ -32,6 +34,7 @@ public class ProductList{
 		products.put(product.getId(),product);
 		String category = product.getCategory();
 		categories.add(category);
+		searchProduct.put(product.getId(),product);
 		
 	}
 	/**delete product by its id*/ 
@@ -39,14 +42,15 @@ public class ProductList{
 		products.remove(product.getId());
 	}
 	
-	public Product findProduct(Integer id){
-		boolean doesExist = products.containsKey(id);
-		if(doesExist){
-			return products.get(id);
+	public Product findProduct(Integer id) {
+		boolean doesExist = searchProduct.containsKey(id);
+		if (doesExist) {
+			return searchProduct.get(id);
+		} else {
+			return null;
 		}
-		return null;
 	}
-	
+
 	public Collection<String> getCategories(){
 		return categories;
 		

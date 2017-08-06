@@ -106,6 +106,11 @@ public class ViewProductDialog extends javax.swing.JDialog {
 
       buttonSearch.setText("Search");
       buttonSearch.setName("buttonSearch"); // NOI18N
+      buttonSearch.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            buttonSearchActionPerformed(evt);
+         }
+      });
 
       comboFilter.setName("comboFilter"); // NOI18N
 
@@ -192,6 +197,14 @@ public class ViewProductDialog extends javax.swing.JDialog {
 			this.viewProductsModel.updateItems(getProductList);
    }//GEN-LAST:event_editButtonActionPerformed
 	}
+   private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
+		Integer searchId = new Integer(txtSearchId.getText());
+		Product searchProduct = myProductList.findProduct(searchId);
+		viewProductsModel.updateItems(searchProduct);
+		
+		
+
+   }//GEN-LAST:event_buttonSearchActionPerformed
 
 	/**
 	 * @param args the command line arguments
