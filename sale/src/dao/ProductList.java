@@ -24,6 +24,7 @@ public class ProductList{
 	 * categories are unique and we expect them to be sorted*/
 	private static Collection<String> categories = new TreeSet<>();
 	private static Map<Integer, Product> searchProduct = new HashMap<>();
+	private static Map<String, TreeSet<Product>> filterCategory= new HashMap<>();
 	
 	
 	
@@ -35,6 +36,20 @@ public class ProductList{
 		String category = product.getCategory();
 		categories.add(category);
 		searchProduct.put(product.getId(),product);
+		
+		/**if the product's category is exist, then add the product to the 
+		 * existing TreeSet, it is it not, create a new TreeSet corresponding to
+		 * new Category*/
+		boolean doesExist = filterCategory.containsKey(category);
+		if(doesExist){
+			TreeSet<Product> currentProductsByCategory = filterCategory.get(category);
+			currentProductsByCategory.add(product);
+		}
+		else{
+			TreeSet<Product> newProductsByNewCategory = new TreeSet<>();
+			newProductsByNewCategory.add(product);
+			filterCategory.put(category,newProductsByNewCategory);
+		}
 		
 	}
 	/**delete product by its id*/ 
