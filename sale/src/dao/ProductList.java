@@ -55,9 +55,12 @@ public class ProductList{
 	/**delete product by its id*/ 
 	public void deleteProduct(Product product) {
 		products.remove(product.getId());
-		/**th product we wanna delete should be removed from searchProduct as well. 
+		/**the product we wanna delete should be removed from searchProduct as well. 
 		 * otherwise deleted product still can be searched.*/
 		searchProduct.remove(product.getId());
+		/**remove the product in filterCategory collection*/
+		TreeSet<Product> currentProductsByCategory = filterCategory.get(product.getCategory());
+		currentProductsByCategory.remove(product);
 	}
 
 	public Product findProduct(Integer id) {
