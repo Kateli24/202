@@ -54,6 +54,11 @@ public class ViewProductDialog extends javax.swing.JDialog {
       editButton = new javax.swing.JButton();
       deleteButton = new javax.swing.JButton();
       closeButton = new javax.swing.JButton();
+      jLabel2 = new javax.swing.JLabel();
+      jLabel3 = new javax.swing.JLabel();
+      txtSearchId = new javax.swing.JTextField();
+      buttonSearch = new javax.swing.JButton();
+      comboFilter = new javax.swing.JComboBox<>();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -91,39 +96,69 @@ public class ViewProductDialog extends javax.swing.JDialog {
          }
       });
 
+      jLabel2.setText("Search by ID:");
+      jLabel2.setName("jLabel2"); // NOI18N
+
+      jLabel3.setText("Category Filter:");
+      jLabel3.setName("jLabel3"); // NOI18N
+
+      txtSearchId.setName("txtSearchId"); // NOI18N
+
+      buttonSearch.setText("Search");
+      buttonSearch.setName("buttonSearch"); // NOI18N
+
+      comboFilter.setName("comboFilter"); // NOI18N
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(layout.createSequentialGroup()
+         .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
+            .addGap(124, 124, 124)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+               .addComponent(jLabel3)
+               .addComponent(jLabel2))
+            .addGap(32, 32, 32)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(txtSearchId)
+               .addComponent(comboFilter, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(32, 32, 32)
+            .addComponent(buttonSearch)
+            .addGap(112, 112, 112))
+         .addGroup(javax.swing.GroupLayout.Alignment.CENTER, layout.createSequentialGroup()
             .addGap(75, 75, 75)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(jScrollPane1)
                .addGroup(layout.createSequentialGroup()
-                  .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                  .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                   .addGap(85, 85, 85)
-                  .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                  .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
                   .addGap(77, 77, 77)
-                  .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))
+                  .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
             .addGap(85, 85, 85))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createSequentialGroup()
-                  .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(299, 299, 299))
-               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                  .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(18, 18, 18)))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(3, 3, 3)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(txtSearchId, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(buttonSearch)
+               .addComponent(jLabel2))
+            .addGap(16, 16, 16)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jLabel3)
+               .addComponent(comboFilter))
+            .addGap(18, 18, 18)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(18, 18, 18)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(closeButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                .addComponent(deleteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGap(15, 15, 15))
+               .addComponent(editButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
       );
 
       pack();
@@ -202,11 +237,16 @@ public class ViewProductDialog extends javax.swing.JDialog {
 
 	/*JList by default holds strings, went to properties to change the generics*/
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private javax.swing.JButton buttonSearch;
    private javax.swing.JButton closeButton;
+   private javax.swing.JComboBox<String> comboFilter;
    private javax.swing.JList<Product> currentProductList;
    private javax.swing.JButton deleteButton;
    private javax.swing.JButton editButton;
    private javax.swing.JLabel jLabel1;
+   private javax.swing.JLabel jLabel2;
+   private javax.swing.JLabel jLabel3;
    private javax.swing.JScrollPane jScrollPane1;
+   private javax.swing.JTextField txtSearchId;
    // End of variables declaration//GEN-END:variables
 }
