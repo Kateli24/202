@@ -12,7 +12,7 @@ import java.util.TreeSet;
  *
  * @author liji8162
  */
-public class ProductList{
+public class ProductList implements ProductDao{
 	/**Product should be implemented in a TreeMap because we are able to use
 	 * unique identifier to avoid duplicates. 
 	 * A type of product has an unique ID instead of a product has an ID. 
@@ -28,6 +28,7 @@ public class ProductList{
 	
 	
 	
+	@Override
 	public void addProduct(Product product){
 		/**may implement codes to handle what's gonna happen 
 		 * when users try to save a product twice. 
@@ -53,6 +54,7 @@ public class ProductList{
 		
 	}
 	/**delete product by its id*/ 
+	@Override
 	public void deleteProduct(Product product) {
 		products.remove(product.getId());
 		/**the product we wanna delete should be removed from searchProduct as well. 
@@ -63,6 +65,7 @@ public class ProductList{
 		currentProductsByCategory.remove(product);
 	}
 
+	@Override
 	public Product findProduct(Integer id) {
 		boolean doesExist = searchProduct.containsKey(id);
 		if (doesExist) {
@@ -72,16 +75,19 @@ public class ProductList{
 		}
 	}
 
+	@Override
 	public Collection<String> getCategories(){
 		return categories;
 		
 	}
 	
+	@Override
 	public Collection<Product> getProducts(){
 		return products.values();
 		
 	}
 	
+	@Override
 	public TreeSet<Product> productsByCategory(String category){
 		return filterCategory.get(category);
 	}
