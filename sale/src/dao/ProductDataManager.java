@@ -3,8 +3,11 @@ package dao;
 import domain.Product;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.TreeSet;
 
 /**
@@ -57,7 +60,22 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public Collection<String> getCategories() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		String sql = "select * from categories in sorted order";
+		
+		try(
+				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
+				  PreparedStatement stmt = dbCon.prepareStatement(sql);
+				  ){
+			ResultSet rs = stmt.executeQuery();
+			List<String> myCategories = new ArrayList<>();
+			while(rs.next()){
+				String category = rs.getString("category");
+				myCategories.add(category);
+		}
+			return myCategories;
+	}catch (SQLException ex){
+		throw new RuntimeException(ex);
+	}
 	}
 
 	@Override
