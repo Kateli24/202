@@ -16,6 +16,15 @@ public class Product implements Comparable<Product>{
 
 	public Product() {
 	}
+
+	public Product(Integer id, String name, String description, String category, BigDecimal price, Integer quantity) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.category = category;
+		this.price = price;
+		this.quantity = quantity;
+	}
 	
 
 	

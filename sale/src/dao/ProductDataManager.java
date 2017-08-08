@@ -1,6 +1,7 @@
 package dao;
 
 import domain.Product;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -80,8 +81,31 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public Collection<Product> getProducts() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+		String sql = "select * from product order by id";
+		
+		try(
+				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
+				  PreparedStatement stmt = dbCon.prepareStatement(sql);
+				  ){
+			ResultSet rs = stmt.executeQuery();
+			List<Product> myProducts = new ArrayList<>();
+			while(rs.next()){
+				Integer id = rs.getInt("id");
+				String name = rs.getString("name");
+				String description = rs.getString("description");
+				String category = rs.getString("category");
+				BigDecimal price = rs.getBigDecimal("price");
+				Integer quantity  =rs.getInt("price");
+				
+				Product aProduct = new Product(id,name,description,category,price,quantity);
+				myProducts.add(aProduct);
+			}
+			return myProducts;
+			}catch (SQLException ex){
+				throw new RuntimeException(ex);
+			}
+		}
+	
 
 	@Override
 	public TreeSet<Product> productsByCategory(String category) {
