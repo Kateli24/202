@@ -27,7 +27,7 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public void addProduct(Product product) {
-		String sql = "insert into product (PRODUCT_ID, name,description,category,price,quantity) values (?,?,?,?,?,?)";
+		String sql = "merge into product (PRODUCT_ID, name,description,category,price,quantity) values (?,?,?,?,?,?)";
 		
 		try(
 				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
@@ -51,7 +51,18 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public void deleteProduct(Product product) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		String sql = "delete from product where product_id = ?";
+		try(
+				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
+				  PreparedStatement stmt = dbCon.prepareStatement(sql);
+				  ){
+			stmt.setInt(1,product.getId());
+			stmt.executeUpdate();
+		}
+		catch(SQLException ex){
+			throw new RuntimeException(ex);
+			
+		}
 	}
 
 	@Override
