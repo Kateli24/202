@@ -1,11 +1,16 @@
+import dao.ProductList;
 import gui.*;
 /**
  *
  * @author liji8162
  */
-public class Administration {
+
+public class Administration{
+	//private ProductDao productDao;
+	
 	public static void main (String [] args){
-		ProductMainMenu productMainMenu = new ProductMainMenu();
+		ProductList productList = new ProductList();
+		ProductMainMenu productMainMenu = new ProductMainMenu(productList);
 		productMainMenu.setLocationRelativeTo(null);
 		productMainMenu.setVisible(true);
 		

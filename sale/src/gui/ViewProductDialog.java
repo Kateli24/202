@@ -1,5 +1,5 @@
 package gui;
-import dao.ProductList;
+import dao.ProductDao;
 import domain.Product;
 import gui.helpers.SimpleListModel;
 import java.util.Collection;
@@ -13,37 +13,33 @@ import javax.swing.JOptionPane;
  * @author liji8162
  */
 public class ViewProductDialog extends javax.swing.JDialog {
-	/**this instance of list from dao package is the list holds all the 
-	 * product objects that typed by users
-	 * since the collection of Product is static, we can refer it in the entire
-	 * system  */
-	private ProductList myProductList = new ProductList();
+	private ProductDao productDao;
 	SimpleListModel viewProductsModel  = new SimpleListModel();
 	SimpleListModel categoryFilter = new SimpleListModel();
-	/**the instance of the list is just an object. if we get the products that 
-	 * users typed in the system, normally users add new product one by one,
-	 * so we update the product one by one using update method in SimpleListModel
-	 * object.*/
-	Collection<Product> getProductList = myProductList.getProducts();
+	Collection<Product> getProductList;
 	
 	
 	
 	/**
 	 * Creates new form ViewProductDialog
 	 */
-	public ViewProductDialog(java.awt.Frame parent, boolean modal) {
+	public ViewProductDialog(java.awt.Frame parent, boolean modal, ProductDao productDao){
 		super(parent, modal);
+		this.productDao = productDao;
 		initComponents();
-		/**the default displays in JList component*/
+		/**
+		 * the default displays in JList component
+		 */
+
+		getProductList = productDao.getProducts();
 		this.viewProductsModel.updateItems(getProductList);
 		this.currentProductList.setModel(viewProductsModel);
-		/**the default displays in category filter(combo box)*/
-		Collection<String> allCatogories = myProductList.getCategories();
+		/**
+		 * the default displays in category filter(combo box)
+		 */
+		Collection<String> allCatogories = productDao.getCategories();
 		this.categoryFilter.updateItems(allCatogories);
 		this.comboFilter.setModel(categoryFilter);
-		
-		
-		
 	}
 
 	/**
@@ -193,7 +189,7 @@ public class ViewProductDialog extends javax.swing.JDialog {
 				  + "want to delete this product?");
 		if (result == JOptionPane.YES_OPTION) {
 			Product copyOfProductList = (Product) currentProductList.getSelectedValue();
-			this.myProductList.deleteProduct(copyOfProductList);
+			productDao.deleteProduct(copyOfProductList);
 			this.viewProductsModel.updateItems(getProductList);
 		}
 		}
@@ -204,14 +200,14 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		boolean isEmpty = currentProductList.isSelectionEmpty();
 		if (!isEmpty) {
 			Product copyOfProductList2 = (Product) currentProductList.getSelectedValue();
-			ProductDialog currentProductDialog = new ProductDialog(this, true, copyOfProductList2);
+			ProductDialog currentProductDialog = new ProductDialog(this, true, copyOfProductList2,productDao);
 			currentProductDialog.setVisible(true);
 			this.viewProductsModel.updateItems(getProductList);
    }//GEN-LAST:event_editButtonActionPerformed
 	}
    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
 		Integer searchId = new Integer(txtSearchId.getText());
-		Product searchProduct = myProductList.findProduct(searchId);
+		Product searchProduct = productDao.findProduct(searchId);
 		viewProductsModel.updateItems(searchProduct);
 		
 		
@@ -221,50 +217,50 @@ public class ViewProductDialog extends javax.swing.JDialog {
    private void comboFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFilterActionPerformed
       String seletedCategory = (String)comboFilter.getSelectedItem();
 		
-		this.viewProductsModel.updateItems(myProductList.productsByCategory(seletedCategory));
+		this.viewProductsModel.updateItems(productDao.productsByCategory(seletedCategory));
    }//GEN-LAST:event_comboFilterActionPerformed
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(ViewProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(ViewProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(ViewProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(ViewProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		//</editor-fold>
-
-		/* Create and display the dialog */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				ViewProductDialog dialog = new ViewProductDialog(new javax.swing.JFrame(), true);
-				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-					@Override
-					public void windowClosing(java.awt.event.WindowEvent e) {
-						System.exit(0);
-					}
-				});
-				dialog.setVisible(true);
-			}
-		});
-	}
+//	/**
+//	 * @param args the command line arguments
+//	 */
+//	public static void main(String args[]) {
+//		/* Set the Nimbus look and feel */
+//		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//		 */
+//		try {
+//			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//				if ("Nimbus".equals(info.getName())) {
+//					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//					break;
+//				}
+//			}
+//		} catch (ClassNotFoundException ex) {
+//			java.util.logging.Logger.getLogger(ViewProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (InstantiationException ex) {
+//			java.util.logging.Logger.getLogger(ViewProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (IllegalAccessException ex) {
+//			java.util.logging.Logger.getLogger(ViewProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//			java.util.logging.Logger.getLogger(ViewProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		}
+//		//</editor-fold>
+//
+//		/* Create and display the dialog */
+//		java.awt.EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				ViewProductDialog dialog = new ViewProductDialog(new javax.swing.JFrame(), true,productDao);
+//				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//					@Override
+//					public void windowClosing(java.awt.event.WindowEvent e) {
+//						System.exit(0);
+//					}
+//				});
+//				dialog.setVisible(true);
+//			}
+//		});
+//	}
 
 	/*JList by default holds strings, went to properties to change the generics*/
    // Variables declaration - do not modify//GEN-BEGIN:variables

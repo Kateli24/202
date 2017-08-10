@@ -1,5 +1,7 @@
 package gui;
 
+import dao.ProductDao;
+
 /**
  *
  * @author liji8162
@@ -9,12 +11,13 @@ public class ProductMainMenu extends javax.swing.JFrame {
 	/**
 	 * Creates new form ProductMainMenu
 	 */
-	public ProductMainMenu() {
+	private ProductDao productDao;
+	public ProductMainMenu(ProductDao productDao) {
 		initComponents();
+		this.productDao = productDao;
+		
 	}
 	
-	
-
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,7 +97,7 @@ public class ProductMainMenu extends javax.swing.JFrame {
 		/**a new instance of dialog to add new product will be activated once 
 		 * the Add a New Product button is clicked*/
 		 
-		ProductDialog productDialog1 = new ProductDialog(this,true);
+		ProductDialog productDialog1 = new ProductDialog(this,true,productDao);
 		productDialog1.setLocationRelativeTo(this);
 		productDialog1.setVisible(true);
 		
@@ -110,46 +113,46 @@ public class ProductMainMenu extends javax.swing.JFrame {
 		
 		/**a new instance of dialog to view products will be activated once 
 		 * the View Products button is clicked*/
-		ViewProductDialog viewProductDialog1 = new ViewProductDialog(this,true);
+		ViewProductDialog viewProductDialog1 = new ViewProductDialog(this,true,productDao);
 		viewProductDialog1.setLocationRelativeTo(this);
 		viewProductDialog1.setVisible(true);
 		
    }//GEN-LAST:event_viewProductButtonActionPerformed
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(ProductMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(ProductMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(ProductMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(ProductMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		//</editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new ProductMainMenu().setVisible(true);
-			}
-		});
-	}
+//	/**
+//	 * @param args the command line arguments
+//	 */
+//	public static void main(String args[]) {
+//		/* Set the Nimbus look and feel */
+//		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//		 */
+//		try {
+//			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//				if ("Nimbus".equals(info.getName())) {
+//					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//					break;
+//				}
+//			}
+//		} catch (ClassNotFoundException ex) {
+//			java.util.logging.Logger.getLogger(ProductMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (InstantiationException ex) {
+//			java.util.logging.Logger.getLogger(ProductMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (IllegalAccessException ex) {
+//			java.util.logging.Logger.getLogger(ProductMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//			java.util.logging.Logger.getLogger(ProductMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		}
+//		//</editor-fold>
+//
+//		/* Create and display the form */
+//		java.awt.EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				new ProductMainMenu(productDao).setVisible(true);
+//			}
+//		});
+//	}
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton addProductButton;

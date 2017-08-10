@@ -1,8 +1,8 @@
 package gui;
 
+import dao.ProductDao;
 import java.math.BigDecimal;
 import domain.Product;
-import dao.ProductList;
 import gui.helpers.SimpleListModel;
 import java.util.Collection;
 
@@ -15,7 +15,7 @@ public class ProductDialog extends javax.swing.JDialog {
 	 * objects that typed by users
 	 * since the collection of Product is static, we can refer it in the entire
 	 * system*/
-	private ProductList myProductList = new ProductList();
+	private ProductDao productDao;
 	SimpleListModel mySimpleListModel = new SimpleListModel();
 	Product product = new Product();
 	
@@ -24,22 +24,23 @@ public class ProductDialog extends javax.swing.JDialog {
 	/**
 	 * Creates new form ProductDialog
 	 */
-	public ProductDialog(java.awt.Window parent, boolean modal) {
+	public ProductDialog(java.awt.Window parent, boolean modal,ProductDao productDao) {
 		super(parent);
 		super.setModal(modal);
+		this.productDao = productDao;
 		initComponents();
 		/*make combocategory editable so that users ar able to type new 
 		category in the combo box*/
 		comboCategory.setEditable(true);
 		/*create an ArrayList to hold categories which are retrieved from calling 
 		getCategories method*/
-		Collection<String> myCategories = myProductList.getCategories();
+		Collection<String> myCategories = productDao.getCategories();
 		mySimpleListModel.updateItems(myCategories);
 		this.comboCategory.setModel(mySimpleListModel);
 	}
 	
-	public ProductDialog(java.awt.Window parent, boolean modal, Product product){
-		this(parent, modal);
+	public ProductDialog(java.awt.Window parent, boolean modal, Product product, ProductDao productDao){
+		this(parent,modal,productDao);
 		this.product = product;
 		
 		String stringId = String.valueOf(this.product.getId());
@@ -244,7 +245,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		this.product.setPrice(price);
 		this.product.setQuantity(quantity);
 		/**store this instance of product into myProductList*/
-		myProductList.addProduct(product);
+		productDao.addProduct(product);
 		dispose();
 		
 		
@@ -265,44 +266,44 @@ public class ProductDialog extends javax.swing.JDialog {
 	/**
 	 * @param args the command line arguments
 	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(ProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(ProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(ProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(ProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-		//</editor-fold>
-
-		/* Create and display the dialog */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				ProductDialog dialog = new ProductDialog(new javax.swing.JFrame(), true);
-				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-					@Override
-					public void windowClosing(java.awt.event.WindowEvent e) {
-						System.exit(0);
-					}
-				});
-				dialog.setVisible(true);
-			}
-		});
-	}
+//	public static void main(String args[]) {
+//		/* Set the Nimbus look and feel */
+//		//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//		/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//		 */
+//		try {
+//			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//				if ("Nimbus".equals(info.getName())) {
+//					javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//					break;
+//				}
+//			}
+//		} catch (ClassNotFoundException ex) {
+//			java.util.logging.Logger.getLogger(ProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (InstantiationException ex) {
+//			java.util.logging.Logger.getLogger(ProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (IllegalAccessException ex) {
+//			java.util.logging.Logger.getLogger(ProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//			java.util.logging.Logger.getLogger(ProductDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//		}
+//		//</editor-fold>
+//
+//		/* Create and display the dialog */
+//		java.awt.EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				ProductDialog dialog = new ProductDialog(new javax.swing.JFrame(), true);
+//				dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+//					@Override
+//					public void windowClosing(java.awt.event.WindowEvent e) {
+//						System.exit(0);
+//					}
+//				});
+//				dialog.setVisible(true);
+//			}
+//		});
+//	}
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton cancelButton;
