@@ -27,7 +27,7 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public void addProduct(Product product) {
-		String sql = "insert into product (id, name,description,category,price,quantity) values (?,?,?,?,?,?)";
+		String sql = "insert into product (PRODUCT_ID, name,description,category,price,quantity) values (?,?,?,?,?,?)";
 		
 		try(
 				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
@@ -61,7 +61,7 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public Collection<String> getCategories() {
-		String sql = "select * from categories in sorted order";
+		String sql = "select category from product order by category";
 		
 		try(
 				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
@@ -81,7 +81,7 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public Collection<Product> getProducts() {
-		String sql = "select * from product order by id";
+		String sql = "select * from product order by PRODUCT_ID";
 		
 		try(
 				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
@@ -90,14 +90,14 @@ public class ProductDataManager implements ProductDao{
 			ResultSet rs = stmt.executeQuery();
 			List<Product> myProducts = new ArrayList<>();
 			while(rs.next()){
-				Integer id = rs.getInt("id");
+				Integer PRODUCT_ID = rs.getInt("product_id");
 				String name = rs.getString("name");
 				String description = rs.getString("description");
 				String category = rs.getString("category");
 				BigDecimal price = rs.getBigDecimal("price");
 				Integer quantity  =rs.getInt("price");
 				
-				Product aProduct = new Product(id,name,description,category,price,quantity);
+				Product aProduct = new Product(PRODUCT_ID,name,description,category,price,quantity);
 				myProducts.add(aProduct);
 			}
 			return myProducts;
