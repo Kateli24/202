@@ -67,7 +67,29 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public Product findProduct(Integer id) {
-		throw new UnsupportedOperationException("Not supported yet.");
+		String sql = "select * from product where Product_id = ?";
+		try(
+				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
+				  PreparedStatement stmt = dbCon.prepareStatement(sql);
+				  ){
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()){
+				Integer productId = rs.getInt("product_id");
+				String productName = rs.getString("name");
+				String productDescription = rs.getString("description");
+				String productCategory = rs.getString("category");
+				BigDecimal productPrice = rs.getBigDecimal("price");
+				Integer productQuantity = rs.getInt("quantity");
+				Product searchedProduct = new Product(productId,productName,
+						  productDescription,productCategory,productPrice,productQuantity);
+				return searchedProduct;
+			}
+			return null;
+			}catch(SQLException ex){
+				throw new RuntimeException(ex);
+				
+		}
 	}
 
 	@Override
@@ -120,6 +142,28 @@ public class ProductDataManager implements ProductDao{
 
 	@Override
 	public TreeSet<Product> productsByCategory(String category) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		String sql = "select * from product where category = ? order by product_id";
+		try(
+				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);
+				  PreparedStatement stmt = dbCon.prepareStatement(sql);
+				  ){
+			stmt.setString(1, category);
+			TreeSet<Product> productsHaveSameCategory = new TreeSet<>();
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				Integer productId = rs.getInt("product_id");
+				String name = rs.getString("name");
+				String description = rs.getString("description");
+				String theCategory = rs.getString("category");
+				BigDecimal price = rs.getBigDecimal("price");
+				Integer quantity  =rs.getInt("price");
+				Product aProduct = new Product(productId,name,description,theCategory,price,quantity);
+				
+				productsHaveSameCategory.add(aProduct);
+			}
+			return productsHaveSameCategory;
+		}catch(SQLException ex){
+			throw new RuntimeException(ex);
+		}
 	}
 }
