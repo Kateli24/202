@@ -27,15 +27,16 @@ menu -> editor++ : setVisible(true)
 create "PrductList" as dao <<DAO>>
 editor -> dao : construct
 editor -> dao++ : getProduct()
+dao--
 
 
 create "SimpleListModel" as model <<model>>
 editor -> model : construct
 
 editor -> model++ : updateItems(dao)
-editor -> model : setModel(model)
-dao--
 model--
+editor -> editor : setModel(model)
+
 
 ' dispose dialog
 editor -> editor-- : dispose()
