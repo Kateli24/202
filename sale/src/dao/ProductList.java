@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -33,6 +34,7 @@ public class ProductList implements ProductDao{
 		/**may implement codes to handle what's gonna happen 
 		 * when users try to save a product twice. 
 		 * getQuantity() and then set again*/
+	
 		products.put(product.getId(),product);
 		String category = product.getCategory();
 		categories.add(category);

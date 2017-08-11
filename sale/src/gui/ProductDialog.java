@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import domain.Product;
 import gui.helpers.SimpleListModel;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -245,7 +246,18 @@ public class ProductDialog extends javax.swing.JDialog {
 		this.product.setPrice(price);
 		this.product.setQuantity(quantity);
 		/**store this instance of product into myProductList*/
+		Product test = productDao.findProduct(id);
+		if(test==null){
 		productDao.addProduct(product);
+		}
+		else{
+			int result = JOptionPane.showConfirmDialog(this,"The product you are "
+					  + "adding has already existed. Are you sure you still want to"
+					  + " add the Product?");
+		if (result == JOptionPane.YES_OPTION) {
+			productDao.addProduct(product);
+		}
+		}
 		dispose();
 		
 		
