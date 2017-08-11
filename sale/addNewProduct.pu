@@ -23,8 +23,6 @@ editor++
 create "PrductList" as dao <<DAO>>
 editor -> dao : construct
 
-editor--
-
 menu -> editor++ : setVisible(true)
 
 
@@ -53,13 +51,14 @@ dao--
 
 'display categories
 editor -> dao++ : getCategories()
+dao--
 
 create "SimpleListModel" as model <<model>>
 editor -> model : construct
 editor -> model++ :updateItems(dao)
-editor -> model : setModel(model)
 model--
-dao--
+editor -> editor : setModel(model)
+
 
 
 ' dispose dialog
