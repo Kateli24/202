@@ -16,7 +16,7 @@ public class ProductDialog extends javax.swing.JDialog {
 	 * objects that typed by users
 	 * since the collection of Product is static, we can refer it in the entire
 	 * system*/
-	private ProductDao productDao;
+	private final ProductDao productDao;
 	SimpleListModel mySimpleListModel = new SimpleListModel();
 	Product product = new Product();
 	

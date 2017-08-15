@@ -36,13 +36,13 @@ public class Product implements Comparable<Product>{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj) {
+		if (this.equals(obj)) {
 			return true;
 		}
-		if (obj == null) {
+		if (obj.equals(null)) {
 			return false;
 		}
-		if (getClass() != obj.getClass()) {
+		if (!getClass().equals(obj.getClass())) {
 			return false;
 		}
 		final Product other = (Product) obj;

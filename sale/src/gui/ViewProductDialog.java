@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author liji8162
  */
 public class ViewProductDialog extends javax.swing.JDialog {
-	private ProductDao productDao;
+	private final ProductDao productDao;
 	SimpleListModel viewProductsModel  = new SimpleListModel();
 	SimpleListModel categoryFilter = new SimpleListModel();
 	Collection<Product> getProductList;
