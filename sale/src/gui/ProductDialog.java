@@ -251,12 +251,16 @@ public class ProductDialog extends javax.swing.JDialog {
 		productDao.addProduct(product);
 		}
 		else{
+			if(txtID.isEditable()){
 			int result = JOptionPane.showConfirmDialog(this,"The product you are "
 					  + "adding has already existed. Are you sure you still want to"
 					  + " add the Product?");
 		if (result == JOptionPane.YES_OPTION) {
 			productDao.addProduct(product);
 		}
+		}else{
+				productDao.addProduct(product);
+			}
 		}
 		dispose();
 		

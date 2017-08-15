@@ -190,7 +190,7 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		if (result == JOptionPane.YES_OPTION) {
 			Product copyOfProductList = (Product) currentProductList.getSelectedValue();
 			productDao.deleteProduct(copyOfProductList);
-			this.viewProductsModel.updateItems(getProductList);
+			this.viewProductsModel.updateItems(productDao.getProducts());
 		}
 		}
 	
@@ -202,7 +202,7 @@ public class ViewProductDialog extends javax.swing.JDialog {
 			Product copyOfProductList2 = (Product) currentProductList.getSelectedValue();
 			ProductDialog currentProductDialog = new ProductDialog(this, true, copyOfProductList2,productDao);
 			currentProductDialog.setVisible(true);
-			this.viewProductsModel.updateItems(getProductList);
+			this.viewProductsModel.updateItems(productDao.getProducts());
    }//GEN-LAST:event_editButtonActionPerformed
 	}
    private void buttonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSearchActionPerformed
