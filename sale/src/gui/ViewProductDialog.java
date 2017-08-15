@@ -16,7 +16,6 @@ public class ViewProductDialog extends javax.swing.JDialog {
 	private final ProductDao productDao;
 	SimpleListModel viewProductsModel  = new SimpleListModel();
 	SimpleListModel categoryFilter = new SimpleListModel();
-	Collection<Product> getProductList;
 	
 	
 	
@@ -31,8 +30,8 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		 * the default displays in JList component
 		 */
 
-		getProductList = productDao.getProducts();
-		this.viewProductsModel.updateItems(getProductList);
+		
+		this.viewProductsModel.updateItems(productDao.getProducts());
 		this.currentProductList.setModel(viewProductsModel);
 		/**
 		 * the default displays in category filter(combo box)
