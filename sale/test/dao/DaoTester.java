@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import domain.Product;
 import java.math.BigDecimal;
+import java.util.Collection;
 
 
 /**
@@ -46,6 +47,25 @@ public class DaoTester {
 		Product retrieved = productDao.findProduct(1);
 		assertNull("Product should no longer exist",retrieved);
 	
+	}
+	
+	@Test
+	public void testDaoGetAll(){
+		Collection<Product> products= productDao.getProducts();
+		
+		assertTrue("prodOne should exist", products.contains(prodOne));
+		assertTrue("prodTwo should exist", products.contains(prodTwo));
+		assertEquals("Only 2 products in result", 2, products.size());
+		for(Product p:products){
+			if(p.equals(prodOne)){
+				assertEquals(prodOne.getId(),p.getId());
+				assertEquals(prodOne.getName(),p.getName());
+				assertEquals(prodOne.getDescription(),p.getDescription());
+				assertEquals(prodOne.getCategory(),p.getCategory());
+				assertEquals(prodOne.getPrice(),p.getPrice());
+				assertEquals(prodOne.getQuantity(),p.getQuantity());
+			}
+		}
 	}
 	
 	
