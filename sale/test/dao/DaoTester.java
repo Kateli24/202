@@ -14,7 +14,7 @@ import java.util.Collection;
  * @author liji8162
  */
 public class DaoTester {
-	ProductDao productDao = new ProductList();
+	ProductDao productDao = new ProductDataManager("jdbc:h2:tcp://localhost:8067/project-testing");
 	
 	private Product prodOne;
 	private Product prodTwo;
@@ -78,6 +78,7 @@ public class DaoTester {
 		assertEquals(prodOne.getCategory(),productOne.getCategory());
 		assertEquals(prodOne.getPrice(),productOne.getPrice());
 		assertEquals(prodOne.getQuantity(),productOne.getQuantity());
+		
 		Product notExist = productDao.findProduct(0);
 		assertNull("product shouls not exist",notExist);
 		
@@ -89,8 +90,7 @@ public class DaoTester {
 	public void tearDown() {
 		productDao.deleteProduct(prodOne);
 		productDao.deleteProduct(prodTwo);
-		/**no more product three*/
-		
+		productDao.deleteProduct(prodThree);
 	}
 	
 	

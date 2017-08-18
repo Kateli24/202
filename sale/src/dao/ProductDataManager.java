@@ -128,7 +128,7 @@ public class ProductDataManager implements ProductDao{
 				String description = rs.getString("description");
 				String category = rs.getString("category");
 				BigDecimal price = rs.getBigDecimal("price");
-				Integer quantity  =rs.getInt("price");
+				Integer quantity  =rs.getInt("quantity");
 				
 				Product aProduct = new Product(PRODUCT_ID,name,description,category,price,quantity);
 				myProducts.add(aProduct);
