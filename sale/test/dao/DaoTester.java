@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  * @author liji8162
  */
 public class DaoTester {
-	ProductDao productDao;
+	ProductDao productDao = new ProductList();
 	
 	private Product prodOne;
 	private Product prodTwo;
@@ -30,6 +30,7 @@ public class DaoTester {
 		productDao.addProduct(prodOne);
 		productDao.addProduct(prodTwo);
 		
+		
 	}
 	
 	@Test
@@ -39,12 +40,21 @@ public class DaoTester {
 		assertEquals("Retrieved product should be the same", prodThree, retrieved);
 	}
 	
+	@Test
+	public void testDaoDelete(){
+		productDao.deleteProduct(prodOne);
+		Product retrieved = productDao.findProduct(1);
+		assertNull("Product should no longer exist",retrieved);
+	
+	}
+	
 	
 	@After
 	public void tearDown() {
 		productDao.deleteProduct(prodOne);
 		productDao.deleteProduct(prodTwo);
-		productDao.deleteProduct(prodThree);
+		/**no more product three*/
+		
 	}
 	
 	
