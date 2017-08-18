@@ -68,6 +68,22 @@ public class DaoTester {
 		}
 	}
 	
+	@Test
+	public void testDaoFindProduct(){
+		Product productOne = productDao.findProduct(1);
+		assertEquals("products should be the same",prodOne, productOne);
+		assertEquals(prodOne.getId(),productOne.getId());
+		assertEquals(prodOne.getName(),productOne.getName());
+		assertEquals(prodOne.getDescription(),productOne.getDescription());
+		assertEquals(prodOne.getCategory(),productOne.getCategory());
+		assertEquals(prodOne.getPrice(),productOne.getPrice());
+		assertEquals(prodOne.getQuantity(),productOne.getQuantity());
+		Product notExist = productDao.findProduct(0);
+		assertNull("product shouls not exist",notExist);
+		
+		
+	}
+	
 	
 	@After
 	public void tearDown() {
