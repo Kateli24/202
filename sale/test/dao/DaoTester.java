@@ -61,6 +61,13 @@ public class DaoTester {
 		assertNull("Product should no longer exist",retrieved);
 	}
 	
+	@Test
+	public void testGetCategories(){
+		Collection<String> testCategories = productDao.getCategories();
+		assertTrue("the category of prodOne should exist",testCategories.contains("cat1"));
+		assertTrue("the category of prodTwo should exist", testCategories.contains("cat2"));
+		assertEquals("Only 2 categories in result", 2, testCategories.size());
+	}
 	
 	@Test
 	public void testDaoGetAll(){
