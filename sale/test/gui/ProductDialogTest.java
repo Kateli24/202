@@ -32,7 +32,7 @@ public class ProductDialogTest {
 	public void setUp() {
 		robot = BasicRobot.robotWithNewAwtHierarchy();
 		
-		robot.settings().delayBetweenEvents(100);
+		robot.settings().delayBetweenEvents(50);
 		
 		Collection<String> categories = new TreeSet<>();
 		categories.add("Junk");
@@ -75,6 +75,36 @@ public class ProductDialogTest {
 		
 		assertEquals("Enture the name was changed","name5",editedProduct.getName());
 		assertEquals("Enture the category was changed", "Organic", editedProduct.getCategory());	
+		
+	}
+	@Test
+	public void testSave(){
+		ProductDialog testProductDialog= new ProductDialog(null,true,productDao);
+		
+		fixture = new DialogFixture(robot,testProductDialog);
+		fixture.show().requireVisible();
+		
+		fixture.textBox("txtID").enterText("4");
+		fixture.textBox("txtName").enterText("name4");
+		fixture.textBox("txtDescription").enterText("des4");
+		fixture.comboBox("comboCategory").selectItem("Junk");
+		fixture.textBox("txtPrice").enterText("88.00");
+		fixture.textBox("txtQuantity").enterText("44");
+		
+		
+		fixture.button("saveButton").click();
+		
+		ArgumentCaptor<Product> argument = ArgumentCaptor.forClass(Product.class);
+		verify(productDao).addProduct(argument.capture());
+		Product savedProduct = argument.getValue();
+		
+		assertEquals("Ensure the ID was saved", new Integer(4), savedProduct.getId());
+		assertEquals("Enture the name was saved", "name4", savedProduct.getName());
+		assertEquals("Enture the description was saved", "des4", savedProduct.getDescription());
+		assertEquals("Enture the category was saved","Junk",savedProduct.getCategory());
+		/**when converting string to BigDecimal, brackets are needed*/
+		assertEquals("Enture the price was saved",new BigDecimal("88.00"),savedProduct.getPrice());
+		assertEquals("Enture the quantity was saved", new Integer(44), savedProduct.getQuantity());
 		
 	}
 	
