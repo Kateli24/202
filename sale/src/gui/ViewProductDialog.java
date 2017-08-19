@@ -2,7 +2,7 @@ package gui;
 import dao.ProductDao;
 import domain.Product;
 import gui.helpers.SimpleListModel;
-import java.util.Collection;
+import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
 
@@ -36,7 +36,7 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		/**
 		 * the default displays in category filter(combo box)
 		 */
-		Collection<String> allCatogories = productDao.getCategories();
+		TreeSet<String> allCatogories = productDao.getCategories();
 		this.categoryFilter.updateItems(allCatogories);
 		this.comboFilter.setModel(categoryFilter);
 	}

@@ -17,7 +17,7 @@ public interface ProductDao {
 
 	Product findProduct(Integer id);
 
-	Collection<String> getCategories();
+	TreeSet<String> getCategories();
 
 	Collection<Product> getProducts();
 

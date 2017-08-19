@@ -93,7 +93,7 @@ public class ProductDataManager implements ProductDao{
 	}
 
 	@Override
-	public Collection<String> getCategories() {
+	public TreeSet<String> getCategories() {
 		String sql = "select category from product order by category";
 		
 		try(
@@ -101,7 +101,7 @@ public class ProductDataManager implements ProductDao{
 				  PreparedStatement stmt = dbCon.prepareStatement(sql);
 				  ){
 			ResultSet rs = stmt.executeQuery();
-			List<String> myCategories = new ArrayList<>();
+			TreeSet<String> myCategories = new TreeSet<>();
 			while(rs.next()){
 				String category = rs.getString("category");
 				myCategories.add(category);

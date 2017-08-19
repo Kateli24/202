@@ -3,6 +3,7 @@ package dao;
 import domain.Product;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -22,7 +23,7 @@ public class ProductList implements ProductDao{
 	private static Map<Integer, Product > products = new TreeMap<>();
 	/**categories should be implemented in a TreeSet collection because 
 	 * categories are unique and we expect them to be sorted*/
-	private static Collection<String> categories = new TreeSet<>();
+	private static TreeSet<String> categories = new TreeSet<>();
 	private static Map<Integer, Product> searchProduct = new HashMap<>();
 	private static Map<String, TreeSet<Product>> filterCategory= new HashMap<>();
 	
@@ -77,7 +78,7 @@ public class ProductList implements ProductDao{
 	}
 
 	@Override
-	public Collection<String> getCategories(){
+	public TreeSet<String> getCategories(){
 		return categories;
 		
 	}

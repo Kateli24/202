@@ -4,7 +4,7 @@ import dao.ProductDao;
 import java.math.BigDecimal;
 import domain.Product;
 import gui.helpers.SimpleListModel;
-import java.util.Collection;
+import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
 /**
@@ -35,7 +35,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		comboCategory.setEditable(true);
 		/*create an ArrayList to hold categories which are retrieved from calling 
 		getCategories method*/
-		Collection<String> myCategories = productDao.getCategories();
+		TreeSet<String> myCategories = productDao.getCategories();
 		mySimpleListModel.updateItems(myCategories);
 		this.comboCategory.setModel(mySimpleListModel);
 	}

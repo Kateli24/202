@@ -34,7 +34,7 @@ public class ProductDialogTest {
 		
 		robot.settings().delayBetweenEvents(50);
 		
-		Collection<String> categories = new TreeSet<>();
+		TreeSet<String> categories = new TreeSet<>();
 		categories.add("Junk");
 		categories.add("Organic");
 		
