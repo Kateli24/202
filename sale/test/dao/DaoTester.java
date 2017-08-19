@@ -42,12 +42,25 @@ public class DaoTester {
 	}
 	
 	@Test
+	public void testEdit(){
+		prodOne.setName("editedName");
+		productDao.addProduct(prodOne);
+		Product retrieved = productDao.findProduct(1);
+		assertEquals("the names should the changed","editedName",retrieved.getName());
+		assertEquals("the id should be the same",new Integer(1),retrieved.getId());
+		assertEquals("the description should be the same", "des1", retrieved.getDescription());
+		assertEquals("the category should be the same","cat1", retrieved.getCategory());
+		assertEquals("the price should be the same", new BigDecimal("11.00"), retrieved.getPrice());
+		assertEquals("the quantity should be the same", new Integer(22), retrieved.getQuantity());
+	}
+	
+	@Test
 	public void testDaoDelete(){
 		productDao.deleteProduct(prodOne);
 		Product retrieved = productDao.findProduct(1);
 		assertNull("Product should no longer exist",retrieved);
-	
 	}
+	
 	
 	@Test
 	public void testDaoGetAll(){
