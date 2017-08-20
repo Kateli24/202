@@ -1,0 +1,29 @@
+@startuml
+' use strict UML mode
+skinparam style strictuml
+
+actor "User" as user
+
+participant "ViewProductDialog" as editor <<dialog>>
+user -> editor++ : click 'Edit'
+
+create "ProductDialog" as dialog <<dialog>>
+editor -> dialog: construct
+editor -> dialog++: setVisible(true)
+
+create "Product:product" as product <<domain>>
+dialog -> product++: get fields
+dialog -> dialog: set details entered by user
+product--
+dialog--
+
+create "SimpleListModel" as model <<model>>
+editor -> model : construct
+
+editor -> model++ : updateItems(dao)
+model--
+
+
+editor –> user-- : ready for next operation
+@enduml
+
