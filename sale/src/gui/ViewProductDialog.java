@@ -1,28 +1,25 @@
 package gui;
+
 import dao.ProductDao;
 import domain.Product;
 import gui.helpers.SimpleListModel;
 import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
-
-
-
 /**
  *
  * @author liji8162
  */
 public class ViewProductDialog extends javax.swing.JDialog {
+
 	private final ProductDao productDao;
-	SimpleListModel viewProductsModel  = new SimpleListModel();
+	SimpleListModel viewProductsModel = new SimpleListModel();
 	SimpleListModel categoryFilter = new SimpleListModel();
-	
-	
-	
+
 	/**
 	 * Creates new form ViewProductDialog
 	 */
-	public ViewProductDialog(java.awt.Frame parent, boolean modal, ProductDao productDao){
+	public ViewProductDialog(java.awt.Frame parent, boolean modal, ProductDao productDao) {
 		super(parent, modal);
 		this.productDao = productDao;
 		initComponents();
@@ -30,7 +27,6 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		 * the default displays in JList component
 		 */
 
-		
 		this.viewProductsModel.updateItems(productDao.getProducts());
 		this.currentProductList.setModel(viewProductsModel);
 		/**
@@ -177,29 +173,29 @@ public class ViewProductDialog extends javax.swing.JDialog {
    }// </editor-fold>//GEN-END:initComponents
 
    private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
-      
+
 		dispose();
    }//GEN-LAST:event_closeButtonActionPerformed
 
    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-      boolean isEmpty = currentProductList.isSelectionEmpty();
-		if(!isEmpty){
-		int result = JOptionPane.showConfirmDialog(this,"Are you sure that you "
-				  + "want to delete this product?");
-		if (result == JOptionPane.YES_OPTION) {
-			Product copyOfProductList = (Product) currentProductList.getSelectedValue();
-			productDao.deleteProduct(copyOfProductList);
-			this.viewProductsModel.updateItems(productDao.getProducts());
+		boolean isEmpty = currentProductList.isSelectionEmpty();
+		if (!isEmpty) {
+			int result = JOptionPane.showConfirmDialog(this, "Are you sure that you "
+					  + "want to delete this product?");
+			if (result == JOptionPane.YES_OPTION) {
+				Product copyOfProductList = (Product) currentProductList.getSelectedValue();
+				productDao.deleteProduct(copyOfProductList);
+				this.viewProductsModel.updateItems(productDao.getProducts());
+			}
 		}
-		}
-	
+
    }//GEN-LAST:event_deleteButtonActionPerformed
 
    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
 		boolean isEmpty = currentProductList.isSelectionEmpty();
 		if (!isEmpty) {
 			Product copyOfProductList2 = (Product) currentProductList.getSelectedValue();
-			ProductDialog currentProductDialog = new ProductDialog(this, true, copyOfProductList2,productDao);
+			ProductDialog currentProductDialog = new ProductDialog(this, true, copyOfProductList2, productDao);
 			currentProductDialog.setVisible(true);
 			this.viewProductsModel.updateItems(productDao.getProducts());
    }//GEN-LAST:event_editButtonActionPerformed
@@ -208,14 +204,13 @@ public class ViewProductDialog extends javax.swing.JDialog {
 		Integer searchId = new Integer(txtSearchId.getText());
 		Product searchProduct = productDao.findProduct(searchId);
 		viewProductsModel.updateItems(searchProduct);
-		
-		
+
 
    }//GEN-LAST:event_buttonSearchActionPerformed
 
    private void comboFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFilterActionPerformed
-      String seletedCategory = (String)comboFilter.getSelectedItem();
-		
+		String seletedCategory = (String) comboFilter.getSelectedItem();
+
 		this.viewProductsModel.updateItems(productDao.productsByCategory(seletedCategory));
    }//GEN-LAST:event_comboFilterActionPerformed
 

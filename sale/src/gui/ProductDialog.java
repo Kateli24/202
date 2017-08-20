@@ -12,20 +12,21 @@ import javax.swing.JOptionPane;
  * @author liji8162
  */
 public class ProductDialog extends javax.swing.JDialog {
-	/**this instance of list from dao package is the list holds all the product
-	 * objects that typed by users
-	 * since the collection of Product is static, we can refer it in the entire
-	 * system*/
+
+	/**
+	 * this instance of list from dao package is the list holds all the product
+	 * objects that typed by users since the collection of Product is static, we
+	 * can refer it in the entire
+	 * system
+	 */
 	private final ProductDao productDao;
 	SimpleListModel mySimpleListModel = new SimpleListModel();
 	Product product = new Product();
-	
-	
 
 	/**
 	 * Creates new form ProductDialog
 	 */
-	public ProductDialog(java.awt.Window parent, boolean modal,ProductDao productDao) {
+	public ProductDialog(java.awt.Window parent, boolean modal, ProductDao productDao) {
 		super(parent);
 		super.setModal(modal);
 		this.productDao = productDao;
@@ -39,27 +40,28 @@ public class ProductDialog extends javax.swing.JDialog {
 		mySimpleListModel.updateItems(myCategories);
 		this.comboCategory.setModel(mySimpleListModel);
 	}
-	
-	public ProductDialog(java.awt.Window parent, boolean modal, Product product, ProductDao productDao){
-		this(parent,modal,productDao);
+
+	public ProductDialog(java.awt.Window parent, boolean modal, Product product, ProductDao productDao) {
+		this(parent, modal, productDao);
 		this.product = product;
-		
+
 		String stringId = String.valueOf(this.product.getId());
 		String stringPrice = String.valueOf(this.product.getPrice());
 		String stringQuantity = String.valueOf(this.product.getQuantity());
-		
+
 		this.txtID.setText(stringId);
 		this.txtName.setText(this.product.getName());
 		this.txtPrice.setText(stringPrice);
 		this.txtQuantity.setText(stringQuantity);
 		this.txtDescription.setText(this.product.getDescription());
 		this.comboCategory.setSelectedItem(this.product.getCategory());
-		
-		/**id is the key, can not be changed*/
+
+		/**
+		 * id is the key, can not be changed
+		 */
 		this.txtID.setEditable(false);
-		
+
 	}
-	
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -229,49 +231,49 @@ public class ProductDialog extends javax.swing.JDialog {
    }// </editor-fold>//GEN-END:initComponents
 
    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-      	
-		/**convert values to right formats*/
+
+		/**
+		 * convert values to right formats
+		 */
 		Integer id = new Integer(txtID.getText());
 		BigDecimal price = new BigDecimal(txtPrice.getText());
 		Integer quantity = new Integer(txtQuantity.getText());
-		
-		/**create an instance of product to store all the values held 
-		 * by text fields.*/
-		
-		
+
+		/**
+		 * create an instance of product to store all the values held by text fields.
+		 */
 		this.product.setId(id);
 		this.product.setName(txtName.getText());
 		this.product.setDescription(txtDescription.getText());
-		this.product.setCategory((String)comboCategory.getSelectedItem());
+		this.product.setCategory((String) comboCategory.getSelectedItem());
 		this.product.setPrice(price);
 		this.product.setQuantity(quantity);
-		/**store this instance of product into myProductList*/
+		/**
+		 * store this instance of product into myProductList
+		 */
 		Product test = productDao.findProduct(id);
-		if(test==null){
-		productDao.addProduct(product);
-		}
-		else{
-			if(txtID.isEditable()){
-			int result = JOptionPane.showConfirmDialog(this,"The product you are "
-					  + "adding has already existed. Are you sure you still want to"
-					  + " add the Product?");
-		if (result == JOptionPane.YES_OPTION) {
+		if (test == null) {
 			productDao.addProduct(product);
-		}
-		}else{
+		} else {
+			if (txtID.isEditable()) {
+				int result = JOptionPane.showConfirmDialog(this, "The product you are "
+						  + "adding has already existed. Are you sure you still want to"
+						  + " add the Product?");
+				if (result == JOptionPane.YES_OPTION) {
+					productDao.addProduct(product);
+				}
+			} else {
 				productDao.addProduct(product);
 			}
 		}
 		dispose();
-		
-		
+
+
    }//GEN-LAST:event_saveButtonActionPerformed
 
    private void comboCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoryActionPerformed
 
-		
-		
-		
+
    }//GEN-LAST:event_comboCategoryActionPerformed
 
    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
