@@ -16,8 +16,7 @@ public class ProductDialog extends javax.swing.JDialog {
 	/**
 	 * this instance of list from dao package is the list holds all the product
 	 * objects that typed by users since the collection of Product is static, we
-	 * can refer it in the entire
-	 * system
+	 * can refer it in the entire system
 	 */
 	private final ProductDao productDao;
 	SimpleListModel mySimpleListModel = new SimpleListModel();
@@ -240,7 +239,8 @@ public class ProductDialog extends javax.swing.JDialog {
 		Integer quantity = new Integer(txtQuantity.getText());
 
 		/**
-		 * create an instance of product to store all the values held by text fields.
+		 * create an instance of product to store all the values held by text
+		 * fields.
 		 */
 		this.product.setId(id);
 		this.product.setName(txtName.getText());

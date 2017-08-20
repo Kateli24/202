@@ -12,7 +12,9 @@ public interface ProductDao {
 
 	void addProduct(Product product);
 
-	/**delete product by its id*/
+	/**
+	 * delete product by its id
+	 */
 	void deleteProduct(Product product);
 
 	Product findProduct(Integer id);
@@ -22,6 +24,5 @@ public interface ProductDao {
 	Collection<Product> getProducts();
 
 	TreeSet<Product> productsByCategory(String category);
-	
-	
+
 }

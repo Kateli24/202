@@ -12,12 +12,13 @@ public class ProductMainMenu extends javax.swing.JFrame {
 	 * Creates new form ProductMainMenu
 	 */
 	private ProductDao productDao;
+
 	public ProductMainMenu(ProductDao productDao) {
 		initComponents();
 		this.productDao = productDao;
-		
+
 	}
-	
+
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,30 +94,32 @@ public class ProductMainMenu extends javax.swing.JFrame {
    }// </editor-fold>//GEN-END:initComponents
 
    private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
-      
-		/**a new instance of dialog to add new product will be activated once 
-		 * the Add a New Product button is clicked*/
-		 
-		ProductDialog productDialog1 = new ProductDialog(this,true,productDao);
+
+		/**
+		 * a new instance of dialog to add new product will be activated once the
+		 * Add a New Product button is clicked
+		 */
+		ProductDialog productDialog1 = new ProductDialog(this, true, productDao);
 		productDialog1.setLocationRelativeTo(this);
 		productDialog1.setVisible(true);
-		
+
    }//GEN-LAST:event_addProductButtonActionPerformed
 
    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-      // TODO add your handling code here:
+		// TODO add your handling code here:
 		System.exit(0);
    }//GEN-LAST:event_exitButtonActionPerformed
 
    private void viewProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProductButtonActionPerformed
-      
-		
-		/**a new instance of dialog to view products will be activated once 
-		 * the View Products button is clicked*/
-		ViewProductDialog viewProductDialog1 = new ViewProductDialog(this,true,productDao);
+
+		/**
+		 * a new instance of dialog to view products will be activated once the
+		 * View Products button is clicked
+		 */
+		ViewProductDialog viewProductDialog1 = new ViewProductDialog(this, true, productDao);
 		viewProductDialog1.setLocationRelativeTo(this);
 		viewProductDialog1.setVisible(true);
-		
+
    }//GEN-LAST:event_viewProductButtonActionPerformed
 
 
