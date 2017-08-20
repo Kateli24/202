@@ -3,7 +3,6 @@ package gui;
 import dao.ProductDao;
 import domain.Product;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.TreeSet;
 import static junit.framework.Assert.assertEquals;
 import org.assertj.swing.core.BasicRobot;
@@ -49,34 +48,7 @@ public class ProductDialogTest {
 		
 	}
 	
-	@Test
-	public void testEdit(){
-		Product aProduct = new Product(4,"name4","des4","Junk",new BigDecimal("66.00"),new Integer("33"));
-		ProductDialog testDialog = new ProductDialog(null,true,aProduct,productDao);
-		fixture = new DialogFixture(robot,testDialog);
-		fixture.show().requireVisible();
-		
-		fixture.textBox("txtID").requireText("4");
-		fixture.textBox("txtName").requireText("name4");
-		fixture.textBox("txtDescription").requireText("des4");
-		fixture.comboBox("comboCategory").requireSelection("Junk");
-		fixture.textBox("txtPrice").requireText("66.00");
-		fixture.textBox("txtQuantity").requireText("33");
-		
-		fixture.textBox("txtName").selectAll().deleteText().enterText("name5");
-		fixture.comboBox("comboCategory").selectItem("Organic");
-		
-		fixture.button("saveButton").click();
-		
-		ArgumentCaptor<Product> argument = ArgumentCaptor.forClass(Product.class);
-		verify(productDao).addProduct(argument.capture());
-		
-		Product editedProduct = argument.getValue();
-		
-		assertEquals("Enture the name was changed","name5",editedProduct.getName());
-		assertEquals("Enture the category was changed", "Organic", editedProduct.getCategory());	
-		
-	}
+	
 	@Test
 	public void testSave(){
 		ProductDialog testProductDialog= new ProductDialog(null,true,productDao);
@@ -108,5 +80,33 @@ public class ProductDialogTest {
 		
 	}
 	
+	@Test
+	public void testEdit(){
+		Product aProduct = new Product(4,"name4","des4","Junk",new BigDecimal("66.00"),new Integer("33"));
+		ProductDialog testDialog = new ProductDialog(null,true,aProduct,productDao);
+		fixture = new DialogFixture(robot,testDialog);
+		fixture.show().requireVisible();
+		
+		fixture.textBox("txtID").requireText("4");
+		fixture.textBox("txtName").requireText("name4");
+		fixture.textBox("txtDescription").requireText("des4");
+		fixture.comboBox("comboCategory").requireSelection("Junk");
+		fixture.textBox("txtPrice").requireText("66.00");
+		fixture.textBox("txtQuantity").requireText("33");
+		
+		fixture.textBox("txtName").selectAll().deleteText().enterText("name5");
+		fixture.comboBox("comboCategory").selectItem("Organic");
+		
+		fixture.button("saveButton").click();
+		
+		ArgumentCaptor<Product> argument = ArgumentCaptor.forClass(Product.class);
+		verify(productDao).addProduct(argument.capture());
+		
+		Product editedProduct = argument.getValue();
+		
+		assertEquals("Enture the name was changed","name5",editedProduct.getName());
+		assertEquals("Enture the category was changed", "Organic", editedProduct.getCategory());	
+		
+	}	
 
 }
