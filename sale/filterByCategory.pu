@@ -1,0 +1,33 @@
+@startuml
+' use strict UML mode
+skinparam style strictuml
+
+actor "User" as user
+
+participant "ViewProductDialog" as editor <<dialog>>
+user -> editor++ : select a category '
+
+editor -> editor: getSelectedItem():category
+
+create "PrductList" as dao <<DAO>>
+
+create "ProductDao" as interface <<interface>> 
+dao -> interface : implement
+
+
+editor -> interface : construct
+editor -> interface++ : productsByCategory(category)
+dao++
+
+interface--
+dao--
+
+create "SimpleListModel" as model <<model>>
+editor -> model : construct
+
+editor -> model++ : updateItems(dao)
+model--
+
+
+editor –> user-- : ready for next operation
+@enduml
