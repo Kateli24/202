@@ -1,0 +1,32 @@
+@startuml
+' use strict UML mode
+skinparam style strictuml
+
+actor "User" as user
+
+participant "ViewProductDialog" as editor <<dialog>>
+user -> editor++ : click 'Delete'
+
+create "PrductList" as dao <<DAO>>
+
+create "ProductDao" as interface <<interface>> 
+dao -> interface : implement
+
+
+editor -> interface : construct
+editor -> interface++ : deleteProduct(product)
+dao++
+
+interface--
+dao--
+
+create "SimpleListModel" as model <<model>>
+editor -> model : construct
+
+editor -> model++ : updateItems(dao)
+model--
+
+
+editor –> user-- : ready for next operation
+@enduml
+
