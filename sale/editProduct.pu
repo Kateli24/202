@@ -6,13 +6,14 @@ actor "User" as user
 
 participant "ViewProductDialog" as editor <<dialog>>
 user -> editor++ : click 'Edit'
+editor -> editor: getSelectedValue():product
 
 create "ProductDialog" as dialog <<dialog>>
 editor -> dialog: construct
 editor -> dialog++: setVisible(true)
 
 create "Product:product" as product <<domain>>
-dialog -> product++: get fields
+dialog -> product++: get fields of the product
 dialog -> dialog: set details entered by user
 product--
 dialog--

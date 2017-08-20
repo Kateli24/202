@@ -6,6 +6,7 @@ actor "User" as user
 
 participant "ViewProductDialog" as editor <<dialog>>
 user -> editor++ : click 'Delete'
+editor -> editor : getSeletedValue():product
 
 create "PrductList" as dao <<DAO>>
 
