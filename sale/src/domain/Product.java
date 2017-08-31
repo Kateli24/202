@@ -2,6 +2,10 @@ package domain;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import net.sf.oval.constraint.Length;
+import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNegative;
+import net.sf.oval.constraint.NotNull;
 
 /**
  *
@@ -9,9 +13,14 @@ import java.util.Objects;
  */
 public class Product implements Comparable<Product>{
 	private Integer id;
+	@NotNull(message = "Name must be provided.")
+	@NotBlank(message = "Name must be provided.")
+	@Length(min = 2, message = "Name must contain at least two characters.")
 	private String name;
 	private String description;
 	private String category;
+	@NotNull(message = "Price must be provided.")
+	@NotNegative(message = "price must be zero or greater.")
 	private BigDecimal price;
 	private Integer quantity;
 
