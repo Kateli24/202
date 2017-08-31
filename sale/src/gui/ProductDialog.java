@@ -4,6 +4,7 @@ import dao.ProductDao;
 import java.math.BigDecimal;
 import domain.Product;
 import gui.helpers.SimpleListModel;
+import gui.helpers.ValidationHelper;
 import java.util.TreeSet;
 import javax.swing.JOptionPane;
 
@@ -21,6 +22,7 @@ public class ProductDialog extends javax.swing.JDialog {
 	private final ProductDao productDao;
 	SimpleListModel mySimpleListModel = new SimpleListModel();
 	Product product = new Product();
+	ValidationHelper validationHelper = new ValidationHelper();
 
 	/**
 	 * Creates new form ProductDialog
@@ -38,6 +40,8 @@ public class ProductDialog extends javax.swing.JDialog {
 		TreeSet<String> myCategories = productDao.getCategories();
 		mySimpleListModel.updateItems(myCategories);
 		this.comboCategory.setModel(mySimpleListModel);
+		//add a formatter to the price field
+		validationHelper.addTypeFormatter(txtPrice, "#0.00", BigDecimal.class);
 	}
 
 	public ProductDialog(java.awt.Window parent, boolean modal, Product product, ProductDao productDao) {
@@ -45,12 +49,12 @@ public class ProductDialog extends javax.swing.JDialog {
 		this.product = product;
 
 		String stringId = String.valueOf(this.product.getId());
-		String stringPrice = String.valueOf(this.product.getPrice());
+		
 		String stringQuantity = String.valueOf(this.product.getQuantity());
 
 		this.txtID.setText(stringId);
 		this.txtName.setText(this.product.getName());
-		this.txtPrice.setText(stringPrice);
+		this.txtPrice.setValue(this.product.getPrice());
 		this.txtQuantity.setText(stringQuantity);
 		this.txtDescription.setText(this.product.getDescription());
 		this.comboCategory.setSelectedItem(this.product.getCategory());
@@ -236,7 +240,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		 * convert values to right formats
 		 */
 		Integer id = new Integer(txtID.getText());
-		BigDecimal price = new BigDecimal(txtPrice.getText());
+		//BigDecimal price = new BigDecimal();
 		Integer quantity = new Integer(txtQuantity.getText());
 
 		/**
@@ -247,7 +251,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		this.product.setName(txtName.getText());
 		this.product.setDescription(txtDescription.getText());
 		this.product.setCategory((String) comboCategory.getSelectedItem());
-		this.product.setPrice(price);
+		this.product.setPrice((BigDecimal) txtPrice.getValue());
 		this.product.setQuantity(quantity);
 		/**
 		 * store this instance of product into myProductList

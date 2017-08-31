@@ -74,7 +74,7 @@ public class ProductDialogTest {
 		/**
 		 * when converting string to BigDecimal, brackets are needed
 		 */
-		assertEquals("Enture the price was saved", new BigDecimal("88.00"), savedProduct.getPrice());
+		assertEquals("Enture the price was saved", new BigDecimal("88"), savedProduct.getPrice());
 		assertEquals("Enture the quantity was saved", new Integer(44), savedProduct.getQuantity());
 
 	}
