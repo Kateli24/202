@@ -77,16 +77,16 @@ public class ProductDialog extends javax.swing.JDialog {
       jLabel4 = new javax.swing.JLabel();
       jLabel5 = new javax.swing.JLabel();
       jLabel6 = new javax.swing.JLabel();
-      txtID = new javax.swing.JTextField();
       txtName = new javax.swing.JTextField();
-      txtPrice = new javax.swing.JTextField();
-      txtQuantity = new javax.swing.JTextField();
       jScrollPane1 = new javax.swing.JScrollPane();
       txtDescription = new javax.swing.JTextArea();
       saveButton = new javax.swing.JButton();
       cancelButton = new javax.swing.JButton();
       comboCategory = new javax.swing.JComboBox<>();
       labelTitle = new javax.swing.JLabel();
+      txtID = new javax.swing.JFormattedTextField();
+      txtPrice = new javax.swing.JFormattedTextField();
+      txtQuantity = new javax.swing.JFormattedTextField();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -108,13 +108,7 @@ public class ProductDialog extends javax.swing.JDialog {
       jLabel6.setText("Quantity:");
       jLabel6.setName("jLabel6"); // NOI18N
 
-      txtID.setName("txtID"); // NOI18N
-
       txtName.setName("txtName"); // NOI18N
-
-      txtPrice.setName("txtPrice"); // NOI18N
-
-      txtQuantity.setName("txtQuantity"); // NOI18N
 
       jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -150,12 +144,29 @@ public class ProductDialog extends javax.swing.JDialog {
       labelTitle.setText("Product Editor");
       labelTitle.setName("labelTitle"); // NOI18N
 
+      txtID.setName("txtID"); // NOI18N
+      txtID.addActionListener(new java.awt.event.ActionListener() {
+         public void actionPerformed(java.awt.event.ActionEvent evt) {
+            txtIDActionPerformed(evt);
+         }
+      });
+
+      txtPrice.setName("txtPrice"); // NOI18N
+
+      txtQuantity.setName("txtQuantity"); // NOI18N
+
       javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
       getContentPane().setLayout(layout);
       layout.setHorizontalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addGap(38, 38, 38)
+            .addGap(115, 115, 115)
+            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(240, 240, 240)
+            .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(190, 190, 190))
+         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -163,38 +174,28 @@ public class ProductDialog extends javax.swing.JDialog {
                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createSequentialGroup()
-                  .addGap(66, 66, 66)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                     .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE))
-                     .addComponent(txtName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-               .addGroup(layout.createSequentialGroup()
-                  .addGap(85, 85, 85)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                     .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtPrice, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
-                        .addComponent(txtQuantity))))))
-         .addGroup(layout.createSequentialGroup()
             .addGap(115, 115, 115)
-            .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGap(240, 240, 240)
-            .addComponent(cancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGap(190, 190, 190))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+               .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(comboCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtPrice)
+               .addComponent(txtQuantity)
+               .addComponent(labelTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(91, 91, 91))
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(layout.createSequentialGroup()
-            .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-            .addGap(28, 28, 28)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jLabel1)
-               .addComponent(txtID))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(layout.createSequentialGroup()
+                  .addGap(98, 98, 98)
+                  .addComponent(jLabel1))
+               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                  .addComponent(labelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addGap(31, 31, 31)
+                  .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                .addGroup(layout.createSequentialGroup()
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -206,19 +207,19 @@ public class ProductDialog extends javax.swing.JDialog {
                   .addGap(12, 12, 12)
                   .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
+                  .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)))
             .addGap(6, 6, 6)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel4)
                .addComponent(comboCategory))
             .addGap(30, 30, 30)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(txtPrice)
-               .addComponent(jLabel5))
+               .addComponent(jLabel5)
+               .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(28, 28, 28)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(txtQuantity)
-               .addComponent(jLabel6))
+               .addComponent(jLabel6)
+               .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGap(40, 40, 40)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(saveButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -281,6 +282,10 @@ public class ProductDialog extends javax.swing.JDialog {
 		dispose();
    }//GEN-LAST:event_cancelButtonActionPerformed
 
+   private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_txtIDActionPerformed
+
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton cancelButton;
@@ -295,9 +300,13 @@ public class ProductDialog extends javax.swing.JDialog {
    private javax.swing.JLabel labelTitle;
    private javax.swing.JButton saveButton;
    private javax.swing.JTextArea txtDescription;
-   private javax.swing.JTextField txtID;
+   private javax.swing.JFormattedTextField txtID;
    private javax.swing.JTextField txtName;
-   private javax.swing.JTextField txtPrice;
-   private javax.swing.JTextField txtQuantity;
+   private javax.swing.JFormattedTextField txtPrice;
+   private javax.swing.JFormattedTextField txtQuantity;
    // End of variables declaration//GEN-END:variables
+   
+
 }
+
+
