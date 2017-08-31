@@ -232,7 +232,7 @@ public class ProductDialog extends javax.swing.JDialog {
    }// </editor-fold>//GEN-END:initComponents
 
    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-      /**
+		/**
 		 * create an instance of product to store all the values held by text
 		 * fields.
 		 */
@@ -242,27 +242,31 @@ public class ProductDialog extends javax.swing.JDialog {
 		this.product.setCategory((String) comboCategory.getSelectedItem());
 		this.product.setPrice((BigDecimal) txtPrice.getValue());
 		this.product.setQuantity((Integer) txtQuantity.getValue());
+
+		
 		/**
 		 * store this instance of product into myProductList
 		 */
 		Product test = productDao.findProduct((Integer) txtID.getValue());
-		if (test == null) {
-			productDao.addProduct(product);
-		} else {
-			if (txtID.isEditable()) {
-				int result = JOptionPane.showConfirmDialog(this, "The product you are "
-						  + "adding has already existed. Are you sure you still want to"
-						  + " add the Product?");
-				if (result == JOptionPane.YES_OPTION) {
+		
+		boolean flag = validationHelper.isObjectValid(this.product);
+		if (flag == true) {
+			if (test == null) {
+				productDao.addProduct(product);
+			} else {
+				if (txtID.isEditable()) {
+					int result = JOptionPane.showConfirmDialog(this, "The product you are "
+							  + "adding has already existed. Are you sure you still want to"
+							  + " add the Product?");
+					if (result == JOptionPane.YES_OPTION) {
+						productDao.addProduct(product);
+					}
+				} else {
 					productDao.addProduct(product);
 				}
-			} else {
-				productDao.addProduct(product);
 			}
+			dispose();
 		}
-		dispose();
-
-
    }//GEN-LAST:event_saveButtonActionPerformed
 
    private void comboCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCategoryActionPerformed
