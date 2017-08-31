@@ -23,7 +23,7 @@ public class ProductDataManager implements ProductDao {
 	}
 
 	public ProductDataManager(String connection) {
-		this.TcpConnection = TcpConnection;
+		ProductDataManager.TcpConnection = TcpConnection;
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class ProductDataManager implements ProductDao {
 			stmt.setInt(6, product.getQuantity());
 			stmt.executeUpdate();
 		} catch (SQLException ex) {
-			throw new RuntimeException(ex);
+			throw new DAOException(ex.getMessage(),ex);
 		}
 
 	}
@@ -55,7 +55,7 @@ public class ProductDataManager implements ProductDao {
 			stmt.setInt(1, product.getId());
 			stmt.executeUpdate();
 		} catch (SQLException ex) {
-			throw new RuntimeException(ex);
+			throw new DAOException(ex.getMessage(),ex);
 
 		}
 	}
@@ -81,7 +81,7 @@ public class ProductDataManager implements ProductDao {
 			}
 			return null;
 		} catch (SQLException ex) {
-			throw new RuntimeException(ex);
+			throw new DAOException(ex.getMessage(),ex);
 
 		}
 	}
@@ -101,7 +101,7 @@ public class ProductDataManager implements ProductDao {
 			}
 			return myCategories;
 		} catch (SQLException ex) {
-			throw new RuntimeException(ex);
+			throw new DAOException(ex.getMessage(),ex);
 		}
 	}
 
@@ -127,7 +127,7 @@ public class ProductDataManager implements ProductDao {
 			}
 			return myProducts;
 		} catch (SQLException ex) {
-			throw new RuntimeException(ex);
+			throw new DAOException(ex.getMessage(),ex);
 		}
 	}
 
@@ -153,7 +153,7 @@ public class ProductDataManager implements ProductDao {
 			}
 			return productsHaveSameCategory;
 		} catch (SQLException ex) {
-			throw new RuntimeException(ex);
+			throw new DAOException(ex.getMessage(),ex);
 		}
 	}
 }

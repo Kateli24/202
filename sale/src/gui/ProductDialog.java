@@ -1,5 +1,6 @@
 package gui;
 
+import dao.DAOException;
 import dao.ProductDao;
 import java.math.BigDecimal;
 import domain.Product;
@@ -236,20 +237,19 @@ public class ProductDialog extends javax.swing.JDialog {
 		 * create an instance of product to store all the values held by text
 		 * fields.
 		 */
+		try{
 		this.product.setId((Integer) txtID.getValue());
 		this.product.setName(txtName.getText());
 		this.product.setDescription(txtDescription.getText());
 		this.product.setCategory((String) comboCategory.getSelectedItem());
 		this.product.setPrice((BigDecimal) txtPrice.getValue());
 		this.product.setQuantity((Integer) txtQuantity.getValue());
-
-		
 		/**
 		 * store this instance of product into myProductList
 		 */
 		Product test = productDao.findProduct((Integer) txtID.getValue());
-		
 		boolean flag = validationHelper.isObjectValid(this.product);
+		
 		if (flag == true) {
 			if (test == null) {
 				productDao.addProduct(product);
@@ -266,6 +266,11 @@ public class ProductDialog extends javax.swing.JDialog {
 				}
 			}
 			dispose();
+		}
+		}
+		catch(DAOException ex){
+			throw new DAOException(ex.getMessage(),ex);
+			
 		}
    }//GEN-LAST:event_saveButtonActionPerformed
 
