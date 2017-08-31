@@ -81,7 +81,7 @@ public class ProductDataManager implements ProductDao {
 			}
 			return null;
 		} catch (SQLException ex) {
-			throw new DAOException(ex.getMessage(),ex);
+			throw new DAOException(ex.getMessage(), ex);
 
 		}
 	}

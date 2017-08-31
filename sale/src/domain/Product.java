@@ -13,6 +13,7 @@ import net.sf.oval.constraint.NotNull;
  */
 public class Product implements Comparable<Product>{
 	@NotNull(message = "ID must be provided.")
+	@NotBlank(message = "ID must be provided.")
 	@NotNegative(message = "ID must be zero or greater.")
 	private Integer id;
 	

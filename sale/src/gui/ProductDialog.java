@@ -247,10 +247,9 @@ public class ProductDialog extends javax.swing.JDialog {
 		/**
 		 * store this instance of product into myProductList
 		 */
-		Product test = productDao.findProduct((Integer) txtID.getValue());
 		boolean flag = validationHelper.isObjectValid(this.product);
-		
-		if (flag == true) {
+		if (flag) {
+			Product test = productDao.findProduct((Integer) txtID.getValue());
 			if (test == null) {
 				productDao.addProduct(product);
 			} else {
