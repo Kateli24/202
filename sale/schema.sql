@@ -6,9 +6,9 @@ create table Product(
 Product_ID integer,
 Name varchar(50) not null,
 Description varchar(255),
-Category varchar(50),
-Price decimal,
-Quantity integer,
+Category varchar(50) not null,
+Price decimal not null,
+Quantity integer not null,
 constraint Product_PK primary key (Product_ID)
 );
 
