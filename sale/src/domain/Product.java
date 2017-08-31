@@ -12,6 +12,8 @@ import net.sf.oval.constraint.NotNull;
  * @author liji8162
  */
 public class Product implements Comparable<Product>{
+	@NotNull(message = "ID must be provided.")
+	@NotNegative(message = "ID must be zero or greater.")
 	private Integer id;
 	
 	@NotNull(message = "Name must be provided.")
@@ -19,13 +21,19 @@ public class Product implements Comparable<Product>{
 	@Length(min = 2, message = "Name must contain at least two characters.")
 	private String name;
 	
+	
 	private String description;
+	
+	@NotNull(message = "Category must be provided.")
+	@NotBlank(message = "Category must be provided.")
 	private String category;
 	
 	@NotNull(message = "Price must be provided.")
-	@NotNegative(message = "price must be zero or greater.")
+	@NotNegative(message = "Price must be zero or greater.")
 	private BigDecimal price;
 	
+	@NotNull(message = "Quantity must be provided.")
+	@NotNegative(message = "Quantity must be zero or greater.")
 	private Integer quantity;
 
 	public Product() {
