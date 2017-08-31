@@ -42,20 +42,18 @@ public class ProductDialog extends javax.swing.JDialog {
 		this.comboCategory.setModel(mySimpleListModel);
 		//add a formatter to the price field
 		validationHelper.addTypeFormatter(txtPrice, "#0.00", BigDecimal.class);
+		validationHelper.addTypeFormatter(txtID, "#0", Integer.class);
+		validationHelper.addTypeFormatter(txtQuantity, "#0", Integer.class);
 	}
 
 	public ProductDialog(java.awt.Window parent, boolean modal, Product product, ProductDao productDao) {
 		this(parent, modal, productDao);
 		this.product = product;
 
-		String stringId = String.valueOf(this.product.getId());
-		
-		String stringQuantity = String.valueOf(this.product.getQuantity());
-
-		this.txtID.setText(stringId);
+		this.txtID.setValue(this.product.getId());
 		this.txtName.setText(this.product.getName());
 		this.txtPrice.setValue(this.product.getPrice());
-		this.txtQuantity.setText(stringQuantity);
+		this.txtQuantity.setValue(this.product.getQuantity());
 		this.txtDescription.setText(this.product.getDescription());
 		this.comboCategory.setSelectedItem(this.product.getCategory());
 
@@ -63,7 +61,6 @@ public class ProductDialog extends javax.swing.JDialog {
 		 * id is the key, can not be changed
 		 */
 		this.txtID.setEditable(false);
-
 	}
 
 	/**
@@ -235,28 +232,20 @@ public class ProductDialog extends javax.swing.JDialog {
    }// </editor-fold>//GEN-END:initComponents
 
    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-
-		/**
-		 * convert values to right formats
-		 */
-		Integer id = new Integer(txtID.getText());
-		//BigDecimal price = new BigDecimal();
-		Integer quantity = new Integer(txtQuantity.getText());
-
-		/**
+      /**
 		 * create an instance of product to store all the values held by text
 		 * fields.
 		 */
-		this.product.setId(id);
+		this.product.setId((Integer) txtID.getValue());
 		this.product.setName(txtName.getText());
 		this.product.setDescription(txtDescription.getText());
 		this.product.setCategory((String) comboCategory.getSelectedItem());
 		this.product.setPrice((BigDecimal) txtPrice.getValue());
-		this.product.setQuantity(quantity);
+		this.product.setQuantity((Integer) txtQuantity.getValue());
 		/**
 		 * store this instance of product into myProductList
 		 */
-		Product test = productDao.findProduct(id);
+		Product test = productDao.findProduct((Integer) txtID.getValue());
 		if (test == null) {
 			productDao.addProduct(product);
 		} else {
