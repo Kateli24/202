@@ -23,7 +23,7 @@ public class ProductDataManager implements ProductDao {
 	}
 
 	public ProductDataManager(String connection) {
-		ProductDataManager.TcpConnection = TcpConnection;
+		ProductDataManager.TcpConnection = connection;
 	}
 
 	@Override
