@@ -19,10 +19,10 @@ public interface ProductDao {
 
 	Product findProduct(Integer id);
 
-	TreeSet<String> getCategories();
+	Collection<String> getCategories();
 
 	Collection<Product> getProducts();
 
-	TreeSet<Product> productsByCategory(String category);
+	Collection<Product> productsByCategory(String category);
 
 }

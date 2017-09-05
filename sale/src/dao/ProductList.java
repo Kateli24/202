@@ -3,7 +3,6 @@ package dao;
 import domain.Product;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -26,8 +25,8 @@ public class ProductList implements ProductDao {
 	 * categories should be implemented in a TreeSet collection because
 	 * categories are unique and we expect them to be sorted
 	 */
-	private static TreeSet<String> categories = new TreeSet<>();
-	private static Map<Integer, Product> searchProduct = new HashMap<>();
+//	private static TreeSet<String> categories = new TreeSet<>();
+//	private static Map<Integer, Product> searchProduct = new HashMap<>();
 	private static Map<String, TreeSet<Product>> filterCategory = new HashMap<>();
 
 	@Override
@@ -39,8 +38,8 @@ public class ProductList implements ProductDao {
 
 		products.put(product.getId(), product);
 		String category = product.getCategory();
-		categories.add(category);
-		searchProduct.put(product.getId(), product);
+//		categories.add(category);
+//		searchProduct.put(product.getId(), product);
 
 		/**
 		 * if the product's category is exist, then add the product to the
@@ -64,32 +63,34 @@ public class ProductList implements ProductDao {
 	 */
 	@Override
 	public void deleteProduct(Product product) {
-		products.remove(product.getId());
-		/**
-		 * the product we wanna delete should be removed from searchProduct as
-		 * well. otherwise deleted product still can be searched.
-		 */
-		searchProduct.remove(product.getId());
-		/**
-		 * remove the product in filterCategory collection
-		 */
-		TreeSet<Product> currentProductsByCategory = filterCategory.get(product.getCategory());
-		currentProductsByCategory.remove(product);
+		if (products.containsKey(product.getId())) {
+			products.remove(product.getId());
+			/**
+			 * the product we wanna delete should be removed from searchProduct as
+			 * well. otherwise deleted product still can be searched.
+			 */
+//		searchProduct.remove(product.getId());
+			/**
+			 * remove the product in filterCategory collection
+			 */
+			TreeSet<Product> currentProductsByCategory = filterCategory.get(product.getCategory());
+			currentProductsByCategory.remove(product);
+		}
 	}
 
 	@Override
 	public Product findProduct(Integer id) {
-		boolean doesExist = searchProduct.containsKey(id);
+		boolean doesExist = products.containsKey(id);
 		if (doesExist) {
-			return searchProduct.get(id);
+			return products.get(id);
 		} else {
 			return null;
 		}
 	}
 
 	@Override
-	public TreeSet<String> getCategories() {
-		return categories;
+	public Collection<String> getCategories() {
+		return filterCategory.keySet();
 
 	}
 
@@ -100,7 +101,7 @@ public class ProductList implements ProductDao {
 	}
 
 	@Override
-	public TreeSet<Product> productsByCategory(String category) {
+	public Collection<Product> productsByCategory(String category) {
 		return filterCategory.get(category);
 	}
 

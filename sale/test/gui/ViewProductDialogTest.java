@@ -15,6 +15,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -58,6 +59,8 @@ public class ViewProductDialogTest {
 		fixture = new DialogFixture(robot, testView);
 		fixture.show().requireVisible();
 
+		verify(productDao).getProducts();
+		
 		SimpleListModel model = (SimpleListModel) fixture.list("currentProductList").target().getModel();
 		assertTrue("List contains the expected product", model.contains(prodOne));
 		assertTrue("List contains the expected product", model.contains(prodTwo));

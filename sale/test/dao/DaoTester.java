@@ -14,7 +14,8 @@ import java.util.Collection;
  */
 public class DaoTester {
 
-	ProductDao productDao = new ProductDataManager("jdbc:h2:tcp://localhost:8067/project-testing;IFEXISTS=TRUE");
+//	ProductDao productDao = new ProductDataManager("jdbc:h2:tcp://localhost:8067/project-testing;IFEXISTS=TRUE");
+	ProductDao productDao = new ProductList();
 
 	private Product prodOne;
 	private Product prodTwo;

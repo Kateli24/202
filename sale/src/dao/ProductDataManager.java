@@ -87,7 +87,7 @@ public class ProductDataManager implements ProductDao {
 	}
 
 	@Override
-	public TreeSet<String> getCategories() {
+	public Collection<String> getCategories() {
 		String sql = "select category from product order by category";
 
 		try (
@@ -132,7 +132,7 @@ public class ProductDataManager implements ProductDao {
 	}
 
 	@Override
-	public TreeSet<Product> productsByCategory(String category) {
+	public Collection<Product> productsByCategory(String category) {
 		String sql = "select * from product where category = ? order by product_id";
 		try (
 				  Connection dbCon = JdbcConnection.getConnection(TcpConnection);

@@ -1,3 +1,5 @@
+package web;
+
 
 import org.jooby.Jooby;
 
@@ -13,7 +15,8 @@ public class Server extends Jooby {
 	}
 	
 	public Server(){
-		port(8080);
+		port(6900);
+		get("/", () -> "Hello World");
 		
 	}
 	
