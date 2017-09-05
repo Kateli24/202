@@ -14,7 +14,7 @@ public class Server extends Jooby {
 	
 	public Server(){
 		port(8080);
-		get("\",() -> "")
+		
 	}
 	
 	
