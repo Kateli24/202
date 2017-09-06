@@ -91,7 +91,6 @@ public class ProductList implements ProductDao {
 	@Override
 	public Collection<String> getCategories() {
 		return filterCategory.keySet();
-
 	}
 
 	@Override
