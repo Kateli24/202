@@ -4,6 +4,7 @@ package web;
 import dao.ProductDao;
 import dao.ProductDataManager;
 import org.jooby.Jooby;
+import org.jooby.json.Gzon;
 
 
 /**
@@ -21,6 +22,9 @@ public class Server extends Jooby {
 		port(6900);
 		ProductDao productDao = new ProductDataManager();
 		use(new ProductModule(productDao));
+		use(new Gzon().doWith(gson ->{
+			gson.setPrettyPrinting();
+		}));
 		
 	}
 	
