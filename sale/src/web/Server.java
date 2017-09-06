@@ -19,11 +19,8 @@ public class Server extends Jooby {
 	
 	public Server(){
 		port(6900);
-		ProductDao newProductDao = new ProductDataManager();
-		get("/api/products/:id", (req) -> {
-			String id = req.param("id").value();
-			return newProductDao.findProduct((new Integer(id)));
-		});
+		ProductDao productDao = new ProductDataManager();
+		use(new ProductModule(productDao));
 		
 	}
 	
