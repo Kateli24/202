@@ -12,3 +12,12 @@ Quantity integer not null,
 constraint Product_PK primary key (Product_ID)
 );
 
+create table Customer(
+username varchar(50) not null,
+name varchar(50) not null,
+email varchar(70) not null unique,
+shippingAddress varchar(255) not null,
+creditCardDetail varchar(255) not null,
+password varchar(50) not null,
+constraint Customer_PK primary key (username)
+);
