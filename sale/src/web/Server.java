@@ -1,6 +1,8 @@
 package web;
 
 
+import dao.CustomerCollectionsDAO;
+import dao.CustomerDao;
 import dao.ProductDao;
 import dao.ProductDataManager;
 import org.jooby.Jooby;
@@ -26,6 +28,8 @@ public class Server extends Jooby {
 			gson.setPrettyPrinting();
 		}));
 		
+		CustomerDao customerDao = new CustomerCollectionsDAO();
+		use(new CustomerModule(customerDao));
 	}
 	
 	
