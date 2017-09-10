@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Quantity to Purchase</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<h1>How many do you want to buy?</h1>
+		<section id="list">
+			<ul>
+				<li>
+					<label for="id">ID:</label>
+					<input type="text" name="id" id="id">
+				</li>
+				<li>
+					<label for="name" id="name">Name:</label>
+					<input type="text" name="name" id="name">
+				</li>
+				<li>
+					<label for="description" id="description">Description:</label>
+					<input type="text" name="description" id="description">
+				</li>
+				<li>
+					<label for="price" id="price">price:</label>
+					<input type="text" name="price" id="price">
+				</li>
+				<li>
+					<label for="Quantity" id="Quantity">Quantity:</label>
+					<input type="text" name="Quantity" id="Quantity">
+				</li>
+			</ul> 
+		</section>
+
+		<fieldset id="quantity">
+			<legend>Quantity to buy</legend>
+			<ul>
+				<li>
+					<label id="howMany" for="amount">How many?</label>
+					<input type="text" name="amount" id="amount">
+				</li> 
+				<li>
+					<input id="addToCart" type="submit" value="Add to Cart">
+				</li>
+
+			</ul>
+		</fieldset>
+
+	</body>
+</html>

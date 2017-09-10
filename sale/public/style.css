@@ -1,0 +1,68 @@
+html{
+	background-color:#F5F5F5;
+	color:black;
+	font-family:Times,Geneva,serif;
+	font-size:medium;
+	min-width:600px;
+}
+
+h1,h2{
+	font-family:"Apple Chancery",Courier,serif;
+	text-align:center;
+}
+
+table{
+	border:1px solid black;
+	margin:auto;
+}
+
+th,td{
+	border-bottom:1px solid black;
+	padding:5px;
+	text-align:center;
+}
+
+fieldset{
+	width:25%;
+	margin:auto;
+}
+
+ul li{
+	list-style-type:none;
+}
+
+label{
+	float:left;
+	width:100px;
+	
+}
+
+input{
+	float:left;
+	width:300px;
+	
+}
+
+.buy{
+width:50px;
+}	
+
+#list{
+width:25%;
+}
+
+#addToCart{
+float:left;
+width:100px;
+margin-left:10px;
+}
+
+#quantity{
+width:100%;
+}
+
+#createAccount{
+margin:20px;
+width:150px;
+margin-left:100px;
+}
