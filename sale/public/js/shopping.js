@@ -17,6 +17,9 @@ app.factory('categoryDAO', function ($resource) {
 app.controller('ProductController', function(productDAO, categoryDAO){
 this.products = productDAO.query();
 this.categories = categoryDAO.query();
+this.selectCategory = function(selectedCat){
+	this.products = categoryDAO.query({"cat": selectedCat});
+};
 });
 
 /**controller for customer*/

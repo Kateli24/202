@@ -16,7 +16,7 @@
 		</header>
 		<section id = "buttons">
 			
-			<button ng-repeat="cat in prodCtrl.categories">{{cat}}</button>
+			<button id= "cat" ng-repeat="cat in prodCtrl.categories" ng-click="prodCtrl.selectCategory(cat)">{{cat}}</button>
 			
 			</section>
 		<section>
