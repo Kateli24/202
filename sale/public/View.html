@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ShoppingApp">
 	<head>
 		<title>View Products Page</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-resource.min.js"></script>
+		<script src="js/ngStorage.min.js"></script>
+		<script src="js/shopping.js"></script>
 
 	</head>
-	<body>
+	<body ng-controller="ProductController as prodCtrl">
 		<header>
 			<h1>Products</h1>
 		</header>
@@ -19,20 +23,14 @@
 					<th>Available</th>
 					<th> </th>
 				</tr>
-				<tr>
-					<th> </th>
-					<td> </td>
-					<td> </td>
-					<td> </td>
+				<tr ng-repeat="product in prodCtrl.products">
+					<th>{{product.name}}</th>
+					<td>{{product.description}}</td>
+					<td>{{product.price}}</td>
+					<td>{{product.quantity}}</td>
 					<td><input class="buy" type="submit" value="buy"></td>
 				</tr>
-				<tr>
-					<th> </th>			
-					<td> </td>
-					<td> </td>
-					<td> </td>
-					<td><input class="buy" type="submit" value="buy"></td>
-				</tr>
+				
 			</table>
 		</section>
 
