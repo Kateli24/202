@@ -14,6 +14,7 @@ h1,h2{
 table{
 	border:1px solid black;
 	margin:auto;
+	margin-top:30px;
 }
 
 th,td{
@@ -65,4 +66,9 @@ width:100%;
 margin:20px;
 width:150px;
 margin-left:100px;
+}
+
+#buttons{
+	margin-left:50%;
+	
 }

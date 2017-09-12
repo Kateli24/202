@@ -3,12 +3,25 @@
 /*create application, and load used modules*/
 var app = angular.module('ShoppingApp' , ['ngResource', 'ngStorage']);
 
+/**factory for products*/
 app.factory('productDAO', function ($resource){
 	return $resource('/api/products/:id');
 });
 
-app.controller('ProductController', function(productDAO){
+/**factory for category*/
+app.factory('categoryDAO', function ($resource) {
+	return $resource('/api/categories/:cat');
+});
+
+/**controller for product*/
+app.controller('ProductController', function(productDAO, categoryDAO){
 this.products = productDAO.query();
+this.categories = categoryDAO.query();
+});
+
+/**controller for customer*/
+app.controller('CustomerController', function(registerDAO){
+	
 });
 
 
