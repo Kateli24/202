@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ShoppingApp">
 	<head>
 		<title>Create Account Page</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-resource.min.js"></script>
+		<script src="js/ngStorage.min.js"></script>
+		<script src="js/shopping.js"></script>
 
 	</head>
 	<body>
@@ -15,45 +19,45 @@
 					<li>
 						<label for="username">User Name:</label>
 						<input type="text" ng-model = "customer.username" name="username"
-								 id="username" title="Please enter your user name" 
-								 placeholder="Please enter your user name" required>
+								 id="username" title="Please enter a user name" 
+								 placeholder="Please enter a user name" required>
 					</li>
 					<li>
-						<label for="name" id="name">Name:</label>
+						<label for="name">Name:</label>
 						<input type="text" ng-model = "customer.name" name="name" id="name" 
-								 title="Please enter your name"
+								 title="Please enter a name"
 								 placeholder="Please enter your name" required>
 					</li>
 					<li>
-						<label for="sender" id="Sender">Email Address:</label>
+						<label for="sender">Email Address:</label>
 						<input type="email" ng-model = "customer.email" name="emailaddress" 
 								 id="sender" title="username@XXX.com" 
 								 placeholder="Please enter your email address" required>
 					</li>
 
 					<li>
-						<label for="CreditCard" id="CreditCard">Credit Card:</label>
+						<label for="CreditCard">Credit Card:</label>
 						<input type="text" ng-model = "customer.creditCardDetail" 
 								 name="CreditCard" id="CreditCard" 
 								 title="Please enter your credit card details" 
 								 placeholder="Please enter your credit card details" required>
 					</li>
 					<li>
-						<label for="password" id="password">Password:</label>
+						<label for="password">Password:</label>
 						<input type="password" ng-model = "customer.password" name="password" 
-								 id="password" title="Please enter your password" 
-								 placeholder="Please enter your password" required>
+								 id="password" title="Please enter a password" 
+								 placeholder="Please enter a password" required>
 					</li>
 					<li>
-						<label for="address" id="address">Address:</label>
+						<label for="address">Address:</label>
 
 						<label><textarea ng-model = "customer.shippingAddress" cols="25" 
 											  rows="10" name="address" id="address" 
 											  title="Please enter your address" required>Please enter your address</textarea></label>
 					</li>
 					<li>
-						<div id="createAccount">
-							<button id="createAccount" type="submit">Create Account</button>
+						<div class="createAccount">
+							<button class="createAccount" type="submit">Create Account</button>
 						</div>
 					</li>
 				</ul>

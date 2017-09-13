@@ -30,6 +30,7 @@ fieldset{
 
 ul li{
 	list-style-type:none;
+	margin-bottom:5px;
 }
 
 label{
@@ -62,7 +63,7 @@ margin-left:10px;
 width:100%;
 }
 
-#createAccount{
+.createAccount{
 margin-left:50px;
 width:150px;
 
