@@ -12,7 +12,6 @@ import org.jooby.Status;
  */
 public class CustomerModule extends Jooby {
 	public CustomerModule(CustomerDao customerDao){
-		
 		get("/api/customers/:userName", (req) -> {
 			String userName = req.param("userName").value();
 			/**set password to null so that it will not be sent to the client side*/

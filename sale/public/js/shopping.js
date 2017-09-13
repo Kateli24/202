@@ -20,7 +20,7 @@ app.factory('registerDAO', function ($resource){
 
 /**factory for sign in*/
 app.factory('signInDAO', function($resource){
-	return $resource('api/customers/:userName');
+	return $resource('/api/customers/:userName');
 });
 
 /**controller for product*/
@@ -33,7 +33,7 @@ this.selectCategory = function(selectedCat){
 });
 
 /**controller for customer*/
-app.controller('CustomerController', function (registerDAO, signInDAO,$sessionStorage,$window) {
+app.controller('CustomerController', function (registerDAO,signInDAO,$sessionStorage,$window) {
 	this.registerCustomer = function (customer) {
 		registerDAO.save(null,customer);
 		console.log(customer);
@@ -48,6 +48,7 @@ app.controller('CustomerController', function (registerDAO, signInDAO,$sessionSt
 // success
 				  function (customer) {
 // also store the retrieved customer
+
 					  $sessionStorage.customer = customer;
 // redirect to home
 					  $window.window.location.href = '.';
