@@ -22,9 +22,18 @@ this.selectCategory = function(selectedCat){
 };
 });
 
+/**factory for customer*/
+app.factory('registerDAO', function (){
+	return $resource('/api/register');
+});
+
 /**controller for customer*/
-app.controller('CustomerController', function(registerDAO){
-	
+app.controller('CustomerController', function (registerDAO) {
+	this.registerCustomer = function (customer) {
+		alert("register customer");
+		//registerDAO.save(null,customer);
+		console.log(customer);
+	};
 });
 
 

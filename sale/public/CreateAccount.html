@@ -8,43 +8,45 @@
 	</head>
 	<body>
 		<h1>Create an account</h1>
+		<form ng-controller="CustomerController as custCtrl"  ng-submit="custCtrl.registerCustomer(customer)">
 		<fieldset id="account">
 			<legend>Account Details</legend>
 			<ul>
 				<li>
 					<label for="username">User Name:</label>
-					<input type="text" name="username" id="username" title="Please enter your user name" placeholder="Please enter your user name">
+					<input type="text" ng-model = "customer.username" name="username" id="username" title="Please enter your user name" placeholder="Please enter your user name">
 				</li>
 				<li>
 					<label for="name" id="name">Name:</label>
-					<input type="text" name="name" id="name" title="Please enter your name" placeholder="Please enter your name">
+					<input type="text" ng-model = "customer.name" name="name" id="name" title="Please enter your name" placeholder="Please enter your name">
 				</li>
 				<li>
 					<label for="sender" id="Sender">Email Address:</label>
-					<input type="email" name="emailaddress" id="sender" title="username@XXX.com" required placeholder="Please enter your email address">
+					<input type="email" ng-model = "customer.email" name="emailaddress" id="sender" title="username@XXX.com" required placeholder="Please enter your email address">
 				</li>
 
 				<li>
 					<label for="CreditCard" id="CreditCard">Credit Card:</label>
-					<input type="text" name="CreditCard" id="CreditCard" title="Please enter your credit card details" required placeholder="Please enter your credit card details">
+					<input type="text" ng-model = "customer.creditCardDetail" name="CreditCard" id="CreditCard" title="Please enter your credit card details" required placeholder="Please enter your credit card details">
 				</li>
 				<li>
 					<label for="password" id="password">Password:</label>
-					<input type="password" name="password" id="password" title="Please enter your password" placeholder="Please enter your password">
+					<input type="password" ng-model = "customer.password" name="password" id="password" title="Please enter your password" placeholder="Please enter your password">
 				</li>
 				<li>
 					<label for="address" id="address">Address:</label>
 
-					<label><textarea cols="30" rows="5" name="address" id="address" title="Please enter your address">Please enter your address</textarea></label>
+					<label><textarea ng-model = "customer.shippingAddress" cols="25" rows="10" name="address" id="address" title="Please enter your address">Please enter your address</textarea></label>
 				</li>
 				<li>
 					<div id="createAccount">
-						<input id="createAccount" type="submit" value="Create Account">
+						<button id="createAccount" type="submit">Create Account</button>
 					</div>
 				</li>
 			</ul>
 
 		</fieldset>
+			</form>
 
 	</body>
 </html>
