@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="ShoppingApp">
 	<head>
 		<title>Sign in</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-resource.min.js"></script>
+		<script src="js/ngStorage.min.js"></script>
+		<script src="js/shopping.js"></script>
 	</head>
+	
 	<body>
-		<p>{{custCtrl.signInMessage}}</p>
+		<h1>Sign In</h1>
+		
       <form ng-controller="CustomerController as custCtrl"  ng-submit="custCtrl.signIn(userName, password)">
+			<p id="message">{{custCtrl.signInMessage}}</p>
 			<fieldset>
 				<legend>Account Details</legend>
 				<ul>
 					<li>
 						<label for="username">User Name:</label>
-						<input type="text" ng-model = "customer.username" name="username"
+						<input type="text" ng-model = "username" name="username"
 								 id="username" title="Please enter your user name" 
-								 placeholder="Please enter a user name" required>
+								 placeholder="Please enter your user name" required>
 					</li>
 					<li>
 						<label for="password">Password:</label>
-						<input type="password" ng-model = "customer.password" name="password" 
+						<input type="password" ng-model = "password" name="password" 
 								 id="password" title="Please enter your password" 
-								 placeholder="Please enter a password" required>
+								 placeholder="Please enter your password" required>
 					</li>
 					<li>
 						<div class="createAccount">
