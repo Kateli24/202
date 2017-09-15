@@ -3,9 +3,14 @@
 /*create application, and load used modules*/
 var app = angular.module('ShoppingApp' , ['ngResource', 'ngStorage']);
 
-/**factory for products*/
+/**factory for products according to id*/
 app.factory('productDAO', function ($resource){
 	return $resource('/api/products/:id');
+});
+
+/**factory for getting all the products*/
+app.factory('allProductDAO', function ($resource){
+	return $resource('/api/products');
 });
 
 /**factory for category*/
@@ -24,12 +29,15 @@ app.factory('signInDAO', function($resource){
 });
 
 /**controller for product*/
-app.controller('ProductController', function(productDAO, categoryDAO){
+app.controller('ProductController', function(productDAO, categoryDAO, allProductDAO){
 this.products = productDAO.query();
 this.categories = categoryDAO.query();
 this.selectCategory = function(selectedCat){
 	this.products = categoryDAO.query({"cat": selectedCat});
 };
+this.allProducts = function(allPro){
+	this.products = allProductDAO.query({"all" : allPro});
+	};
 });
 
 /**controller for customer*/

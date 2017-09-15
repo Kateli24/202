@@ -14,12 +14,10 @@
 		<header>
 			<h1>Products</h1>
 		</header>
-		<section id = "buttons">
-			
+		<section id="please">
+			<button id="all" ng-click="prodCtrl.allProducts(all)">All</button>
 			<button id= "cat" ng-repeat="cat in prodCtrl.categories" ng-click="prodCtrl.selectCategory(cat)">{{cat}}</button>
-			
-			</section>
-		<section>
+		</section>
 			<table>
 				<tr>
 					<th>Name</th>
@@ -37,7 +35,7 @@
 				</tr>
 				
 			</table>
-		</section>
+		
 
 
 	</body>

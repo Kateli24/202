@@ -69,14 +69,18 @@ width:150px;
 
 }
 
-#buttons{
-	margin-left:50%;
-	
-}
-
 #cat{
 	padding:5px;
-	margin-right:10px;
+	margin-right:20px;
+}
+
+#all{
+	padding:5px;
+	margin-right: 20px;
+}
+
+#please{
+	margin-left:45%;
 }
 
 #message{
