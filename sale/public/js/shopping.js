@@ -69,6 +69,3 @@ app.controller('CustomerController', function (registerDAO,signInDAO,$sessionSto
 	};
 });
 
-
-
-
