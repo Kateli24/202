@@ -6,10 +6,39 @@ html{
 	min-width:600px;
 }
 
-h1,h2{
+h1{
 	font-family:"Apple Chancery",Courier,serif;
 	text-align:center;
+	border: 1px solid black;
+	background-color:#C6D8E4;
+	color:inherit;
+	
 }
+#welcome{
+	float:right;
+}
+
+nav{
+	margin:auto;
+	margin-left:25%;
+	padding-bottom:30px;
+	
+}
+nav ul li{
+	float:left;
+	list-style-type:none;
+	padding-left:30px;
+	padding-right:30px;
+	padding-top:4px;
+	padding-bottom:4px;
+	background-color:#C6D8E4;
+	color:inherit;
+	border-radius:10px;
+	margin-right:80px;
+	text-align:center;
+	border:1px solid black;
+}
+
 
 table{
 	border:1px solid black;
