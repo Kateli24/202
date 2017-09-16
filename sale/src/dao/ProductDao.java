@@ -2,7 +2,6 @@ package dao;
 
 import domain.Product;
 import java.util.Collection;
-import java.util.TreeSet;
 
 /**
  *
