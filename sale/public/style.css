@@ -16,12 +16,17 @@ h1{
 }
 #welcome{
 	float:right;
+	position: relative;
+	right:20px;
+	bottom:10px;
+	
 }
 
 nav{
 	margin:auto;
 	margin-left:25%;
 	padding-bottom:30px;
+	
 	
 }
 nav ul li{
