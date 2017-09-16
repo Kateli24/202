@@ -12,6 +12,17 @@ public class Customer {
 	private String creditCardDetail;
 	private String password;
 
+	public Customer(String username, String name, String email, String shippingAddress, String creditCardDetail, String password) {
+		this.username = username;
+		this.name = name;
+		this.email = email;
+		this.shippingAddress = shippingAddress;
+		this.creditCardDetail = creditCardDetail;
+		this.password = password;
+	}
+	
+	public Customer(){}
+	
 	public String getUsername() {
 		return username;
 	}
