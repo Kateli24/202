@@ -56,13 +56,15 @@
 						<label for="CreditCard">Credit Card:</label>
 						<input type="text" ng-model = "customer.creditCardDetail" 
 								 name="CreditCard" id="CreditCard" 
-								 title="Please enter your credit card details" 
+								 title="Please enter 16 or more numbers" 
+								 pattern="(?=.*\d).{16,}"
 								 placeholder="Please enter your credit card details" required>
 					</li>
 					<li>
 						<label for="password">Password:</label>
 						<input type="password" ng-model = "customer.password" name="password" 
-								 id="password" title="Please enter a password" 
+								 id="password" title="Please enter at least one number and one letter, and at least 6 or more characters" 
+								 pattern="(?=.*\d)(?=.*[A-Z a-z]).{6,}"
 								 placeholder="Please enter a password" required>
 					</li>
 					<li>
@@ -70,7 +72,7 @@
 
 						<label><textarea ng-model = "customer.shippingAddress" cols="25" 
 											  rows="10" name="address" id="address" 
-											  title="Please enter your address" required>Please enter your address</textarea></label>
+											  title="Please enter your address" required></textarea></label>
 					</li>
 					<li>
 						<div class="createAccount">

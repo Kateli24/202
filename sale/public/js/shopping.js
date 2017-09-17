@@ -60,6 +60,7 @@ app.controller('CustomerController', function (registerDAO,signInDAO,$sessionSto
 					  $sessionStorage.customer = customer;
 // redirect to home
 					  $window.window.location.href = '.';
+					  this.welcome=signInDAO.get({'userName':userName});
 				  },
 // fail
 				  function () {

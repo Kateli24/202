@@ -42,7 +42,7 @@ public class ProductDialog extends javax.swing.JDialog {
 		Collection<String> myCategories = productDao.getCategories();
 		mySimpleListModel.updateItems(myCategories);
 		this.comboCategory.setModel(mySimpleListModel);
-		//add a formatter to the price field
+		//add a formatter to the price id, and quantity
 		validationHelper.addTypeFormatter(txtPrice, "#0.00", BigDecimal.class);
 		validationHelper.addTypeFormatter(txtID, "#0", Integer.class);
 		validationHelper.addTypeFormatter(txtQuantity, "#0", Integer.class);

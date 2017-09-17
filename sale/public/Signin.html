@@ -41,7 +41,8 @@
 					<li>
 						<label for="password">Password:</label>
 						<input type="password" ng-model = "password" name="password" 
-								 id="password" title="Please enter your password" 
+								 id="password" title="Please enter at least one number and one letter, and at least 6 or more characters"
+								 pattern="(?=.*\d)(?=.*[A-Z a-z]).{6,}"
 								 placeholder="Please enter your password" required>
 					</li>
 					<li>
