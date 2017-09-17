@@ -45,6 +45,7 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 	this.registerCustomer = function (customer) {
 		registerDAO.save(null, customer);
 		console.log(customer);
+		alert("Your account has created.");
 	};
 
 	this.signInMessage = "Please sign in to continue.";
@@ -54,16 +55,16 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 // get customer from web service
 		signInDAO.get({'userName': userName},
 // success
-				  function (customer) {						 
+				  function (customer) {
 // also store the retrieved custome
-									 $sessionStorage.customer = customer;
+					  $sessionStorage.customer = customer;
+					  alert("logged in successfully.");
 // redirect to home
-									 $window.window.location.href = '.';
-								 },
+					  $window.window.location.href = '.';
+				  },
 				  function () {
 					  ctrl.signInMessage = 'Sign in failed. Please try again.';
 				  }
-
 		);
 	};
 });

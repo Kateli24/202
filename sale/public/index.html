@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	
+
 	<head>
 		<title>Home</title>
 		<meta charset="UTF-8">
@@ -11,10 +11,10 @@
 		<script src="js/ngStorage.min.js"></script>
 		<script src="js/shopping.js"></script>
 	</head>
-	
+
 	<body>
 		<nav id="menu" ng-controller="CustomerController as custCtrl" ng-init="custCtrl.checkSignIn()">
-			
+
 			<ul>
 				<li><a href=".">Home</a></li>
 				<li><a href="View.html">Browse Products</a></li>
@@ -23,13 +23,9 @@
 			</ul>
 			<p id="welcome">Welcome {{custCtrl.welcome}}</p>
 		</nav>
-		
-		
-		
-		<h1>Hello World</h1>
-		
 
-				
+		<h1>Hello World</h1>
+
 		<form action="post">
 			<label for="ia">XX:</label>
 			<input type="text" data-ng-model="">
