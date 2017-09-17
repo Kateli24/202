@@ -1,0 +1,40 @@
+@startuml
+' use strict UML mode
+skinparam style strictuml
+
+actor "User" as user
+
+participant "Web Page" as webPage
+
+user -> webPage++: interact
+
+participant "AngularJS" as AngularJS 
+webPage -> AngularJS++
+
+
+participant "shopping" as Javascript <<Javascript>>
+AngularJS -> Javascript++ :JSON
+
+participant "ProductModule" as Jooby <<Jooby>>
+Javascript -> Jooby++ :query()
+
+participant "ProductDao" as ProductDao <<Interface>>
+Jooby ->ProductDao++: getProducts()
+return products
+ProductDao--
+
+Jooby -->Javascript: resource(Products)
+Jooby--
+
+Javascript -->AngularJS:JSON
+Javascript--
+
+AngularJS ->AngularJS: update
+
+AngularJS--> webPage: display
+AngularJS--
+
+webPage-->user: products web page 
+webPage--
+
+@enduml
