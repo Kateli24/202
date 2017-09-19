@@ -73,7 +73,7 @@ app.factory('cart', function ($sessionStorage) {
 });
 
 /**controller for product*/
-app.controller('ProductController', function (productDAO, categoryDAO, allProductDAO) {
+app.controller('ProductController', function (productDAO, categoryDAO, allProductDAO,$sessionStorage, $window) {
 	this.products = productDAO.query();
 	this.categories = categoryDAO.query();
 	this.selectCategory = function (selectedCat) {
@@ -82,6 +82,15 @@ app.controller('ProductController', function (productDAO, categoryDAO, allProduc
 	this.allProducts = function (allPro) {
 		this.products = allProductDAO.query({"all": allPro});
 	};
+	this.buy = function(id){
+		allProductDAO.get({'id': id},
+		function(product){
+			$sessionStorage.product = product;
+			$window.window.location.href='QuantityToPurchase.html';
+		});
+		
+	
+};
 });
 
 /**controller for customer*/
