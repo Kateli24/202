@@ -1,5 +1,38 @@
 "use strict";
 
+class SaleItem {
+	constructor(product, quantity) {
+		this.product = product;
+		this.quantityPurchased = quantity;
+	}
+}
+
+class ShoppingCart {
+	constructor(items) {
+		if (items) {
+			this.items = items;
+		} else {
+			this.items = new Array();
+		}
+	}
+	getItems() {
+		return this.items;
+	}
+	addItem(item) {
+		this.items.push(item);
+	}
+	setCustomer(customer) {
+		this.customer = customer;
+	}
+	getTotal() {
+		let total = 0;
+		for (const item of this.items) {
+			total += item.product.purchusePrice * item.quantityPurchased;
+		}
+		return total;
+	}
+}
+
 /*create application, and load used modules*/
 var app = angular.module('ShoppingApp', ['ngResource', 'ngStorage']);
 
@@ -26,6 +59,17 @@ app.factory('registerDAO', function ($resource) {
 /**factory for sign in*/
 app.factory('signInDAO', function ($resource) {
 	return $resource('/api/customers/:userName');
+});
+
+/**factory for shopping cart*/
+app.factory('cart', function ($sessionStorage) {
+// is the cart in the session storage?
+	if ($sessionStorage.cart) {
+// recreate the object from the items array
+		return new ShoppingCart($sessionStorage.cart.items);
+	} else {
+		return new ShoppingCart();
+	}
 });
 
 /**controller for product*/
@@ -67,5 +111,11 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 				  }
 		);
 	};
+});
+
+/**controller for shopping cart*/
+app.controller('ShoppingCartController', function(cart)){
+	this.items = cart.getItems();
+	this.total = cart.getTotal();
 });
 
