@@ -269,8 +269,8 @@ public class ProductDialog extends javax.swing.JDialog {
 		}
 		}
 		catch(DAOException ex){
-			throw new DAOException(ex.getMessage(),ex);
-			
+//			throw new DAOException(ex.getMessage(),ex);
+			JOptionPane.showConfirmDialog(this,ex.getMessage());
 		}
    }//GEN-LAST:event_saveButtonActionPerformed
 
