@@ -112,13 +112,16 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 				  },
 				  function () {
 					  ctrl.signInMessage = 'Sign in failed. Please try again.';
-					  ctrl.welcome = 'popp';
+					 
 				  }
 		);
 	};
+	
+	let control = this;
 	this.checkSignIn = function () {
 		if ($sessionStorage.customer) {
-		this.signedIn = true;
+			control.welcome = $sessionStorage.customer.username;
+			this.signedIn = true;
 			return true;
 		}
 		return false;
