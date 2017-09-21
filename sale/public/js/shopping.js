@@ -93,6 +93,7 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 	};
 
 	this.signInMessage = "Please sign in to continue.";
+	this.welcome= 'guest';
 
 	let ctrl = this;
 	this.signIn = function (userName, password) {
@@ -102,12 +103,16 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 				  function (customer) {
 // also store the retrieved custome
 					  $sessionStorage.customer = customer;
+					  
 					  alert("logged in successfully.");
+					  
 // redirect to home
 					  $window.window.location.href = '.';
+					  
 				  },
 				  function () {
 					  ctrl.signInMessage = 'Sign in failed. Please try again.';
+					  ctrl.welcome = 'popp';
 				  }
 		);
 	};

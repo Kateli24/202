@@ -13,19 +13,18 @@ import org.jooby.Status;
 public class CustomerModule extends Jooby {
 
 	public CustomerModule(CustomerDao customerDao) {
+		
 		get("/api/customers/:userName", (req) -> {
 			String userName = req.param("userName").value();
-			/**
-			 * set password to null so that it will not be sent to the client side
-			 */
-			if (userName != null) {
-				customerDao.getCustomer(userName).setPassword(null);
-				return customerDao.getCustomer(userName);
-			} else {
+			if(customerDao.getCustomer(userName)==null) {
 				throw new Err(Status.NOT_FOUND);
 			}
-
+		
+				return customerDao.getCustomer(userName);
+			
 		});
+				  
+		
 
 		post("/api/register", (req, rsp) -> {
 			Customer customer = req.body(Customer.class);
@@ -34,3 +33,6 @@ public class CustomerModule extends Jooby {
 		});
 	}
 }
+
+	
+
