@@ -10,15 +10,15 @@
 		<script src="js/ngStorage.min.js"></script>
 		<script src="js/shopping.js"></script>
 	</head>
+	
 	<body>
-      <div id="menu" ng-controller="CustomerController as custCtrl" ng-init="custCtrl.checkSignIn()">
 
-			<ul>
-				<li><a href="index.html">Home</a></li>
-				<li><a href="View.html">Browse Products</a></li>
-				<li><a href="cart.html">View Cart </a></li>
-				<li><a href="#" ng-if="custCtrl.signedIn" ng-click="custCtrl.signOut()">Sign Out</a></li>
-			</ul>
+      <div id="menu" ng-controller="CustomerController as custCtrl" ng-init="custCtrl.checkSignIn()">
+			<a href="index.html">Home</a>
+			<a href="View.html" ng-if="custCtrl.signedIn">Browse Products</a>
+			<a href="cart.html" ng-if="custCtrl.signedIn">View Cart</a>
+			<a href="#" ng-if="custCtrl.signedIn" ng-click="custCtrl.signOut()">Sign Out</a>
+			<a href="Signin.html" ng-if="!custCtrl.signedIn">Sign In</a>
 			<div id="welcome">Welcome, {{custCtrl.welcome}}</div>
 		</div>
 

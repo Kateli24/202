@@ -11,39 +11,16 @@ h1{
 	text-align:center;
 	border: 1px solid black;
 	background-color:#C6D8E4;
-	color:inherit;
-	
+	color:inherit;	
 }
+
+div a{
+	margin-right:20px;
+}
+
 #welcome{
 	float:right;
-	position: relative;
-	right:20px;
-	bottom:20px;
-	
 }
-
-div{
-	margin:auto;
-	margin-left:25%;
-	padding-bottom:30px;
-	
-	
-}
-div ul li{
-	float:left;
-	list-style-type:none;
-	padding-left:30px;
-	padding-right:30px;
-	padding-top:4px;
-	padding-bottom:4px;
-	background-color:#C6D8E4;
-	color:inherit;
-	border-radius:10px;
-	margin-right:80px;
-	text-align:center;
-	border:1px solid black;
-}
-
 
 table{
 	border:1px solid black;

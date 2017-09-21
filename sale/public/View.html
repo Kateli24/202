@@ -8,7 +8,6 @@
 		<script src="js/angular-resource.min.js"></script>
 		<script src="js/ngStorage.min.js"></script>
 		<script src="js/shopping.js"></script>
-
 	</head>
 	<body ng-controller="ProductController as prodCtrl">
 
@@ -20,6 +19,7 @@
 			<button id="all" ng-click="prodCtrl.allProducts(all)">All</button>
 			<button id= "cat" ng-repeat="cat in prodCtrl.categories" ng-click="prodCtrl.selectCategory(cat)">{{cat}}</button>
 		</section>
+		
 		<table>
 			<tr>
 				<th>Name</th>
@@ -35,7 +35,7 @@
 				<td>{{product.quantity}}</td>
 				<td><button ng-click="prodCtrl.buy(name)">buy</button></td>
 			</tr>
-
 		</table>
+		
 	</body>
 </html>

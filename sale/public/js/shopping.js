@@ -113,19 +113,17 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 	};
 	this.checkSignIn = function () {
 		if ($sessionStorage.customer) {
-			this.signedIn = true;
+		this.signedIn = true;
+			return true;
 		}
-		this.signedIn= false;
+		return false;
 	};
-
+	
 	this.signOut = function () {
 		$sessionStorage.$reset();
 		alert("logged out!");
-	};
-	
-	
-
-		
+		$window.window.location.href = '.';
+	};	
 });
 
 /**controller for shopping cart*/
