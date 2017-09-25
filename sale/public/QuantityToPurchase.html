@@ -32,7 +32,7 @@
 				<td>{{quantCtrl.selectedProduct.price}}</td>
 			</tr>
 			<tr>
-				<th>Quantity</th>
+				<th>Quantity available</th>
 				<td>{{quantCtrl.selectedProduct.quantity}}</td>
 			</tr>
 			</table>
@@ -43,10 +43,10 @@
 			<ul>
 				<li>
 					<label id="howMany" for="amount">How many?</label>
-					<input type="text" name="amount" id="amount">
+					<input type="text" name="amount" id="amount" ng-model="quantCtrl.selectedProduct.amount">
 				</li> 
 				<li>
-					<input id="addToCart" type="submit" value="Add to Cart">
+					<button id="addToCart" ng-click="quantCtrl.addToCart(quantCtrl.selectedProduct)">Add to Cart</button>
 				</li>
 
 			</ul>

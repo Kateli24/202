@@ -98,7 +98,40 @@ app.controller('QuantityController',function($sessionStorage,$window){
 				this.selectedProduct = $sessionStorage.selectedProduct;
 			}
 		};
+		this.addToCart = function(selectedProduct){
+			if($sessionStorage.cart){
+				var saleItem = [];
+				var i;
+				for(i=0;i<$sessionStorage.cart.length;i++){
+					saleItem.push($sessionStorage.cart[i]);
+				}
+				saleItem.push(selectedProduct);
+				$sessionStorage.cart = saleItem;
+				alert('the product has been added to shopping cart');
+				$window.window.location.href = '/cart.html';
+			}
+			else{
+				var saleItem = [];
+				saleItem.push(selectedProduct);
+				$sessionStorage.cart = saleItem;
+				alert('the product has been added to shopping cart');
+				$window.window.location.href = '/cart.html';
+				}
+			
+		};
 	});
+
+/**controller for shopping cart*/
+app.controller('ShoppingCartController', function(cart,$sessionStorage,$window){
+	this.items = cart.getItems();
+	this.total = cart.getTotal();
+	
+	this.bindItems = function(){
+		if($sessionStorage.cart){
+			this.cartItems = $sessionStorage.cart;
+		}
+	};
+});
 
 /**controller for customer*/
 app.controller('CustomerController', function (registerDAO, signInDAO, $sessionStorage, $window) {
@@ -150,9 +183,5 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 	};	
 });
 
-/**controller for shopping cart*/
-app.controller('ShoppingCartController', function(cart){
-	this.items = cart.getItems();
-	this.total = cart.getTotal();
-});
+
 
