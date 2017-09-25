@@ -4,36 +4,39 @@
 		<title>Quantity to Purchase</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
 		<meta charset="utf-8">
+		<script src="js/angular.min.js"></script>
+		<script src="js/angular-resource.min.js"></script>
+		<script src="js/ngStorage.min.js"></script>
+		<script src="js/shopping.js"></script>
 	</head>
-	<body>
+	<body ng-controller="QuantityController as quantCtrl" ng-init="quantCtrl.getProduct()">
 		
 		<div ng-include="'menu.html'"></div>
 
 		<h1>How many do you want to buy?</h1>
-		<section id="list">
-			<ul>
-				<li>
-					<label for="id">ID:</label>
-					<input type="text" name="id" id="id">
-				</li>
-				<li>
-					<label for="name" id="name">Name:</label>
-					<input type="text" name="name" id="name">
-				</li>
-				<li>
-					<label for="description" id="description">Description:</label>
-					<input type="text" name="description" id="description">
-				</li>
-				<li>
-					<label for="price" id="price">price:</label>
-					<input type="text" name="price" id="price">
-				</li>
-				<li>
-					<label for="Quantity" id="Quantity">Quantity:</label>
-					<input type="text" name="Quantity" id="Quantity">
-				</li>
-			</ul> 
-		</section>
+			<table>
+			<tr>
+				<th>ID</th>
+				<td>{{quantCtrl.selectedProduct.id}}</td>
+			</tr>
+			<tr>
+				<th>Name</th>
+				<td>{{quantCtrl.selectedProduct.name}}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{quantCtrl.selectedProduct.description}}</td>
+			</tr>
+			<tr>
+				<th>Price</th>
+				<td>{{quantCtrl.selectedProduct.price}}</td>
+			</tr>
+			<tr>
+				<th>Quantity</th>
+				<td>{{quantCtrl.selectedProduct.quantity}}</td>
+			</tr>
+			</table>
+		
 
 		<fieldset id="quantity">
 			<legend>Quantity to buy</legend>

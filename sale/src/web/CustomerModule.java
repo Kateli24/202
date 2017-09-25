@@ -19,7 +19,6 @@ public class CustomerModule extends Jooby {
 			if(userName!=null&&customerDao.getCustomer(userName)==null) {
 				throw new Err(Status.NOT_FOUND);
 			}
-		
 				return customerDao.getCustomer(userName);
 			
 		});
