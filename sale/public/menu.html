@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html ng-app="ShoppingApp">
-	<head>
-		<title>TODO supply a title</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" type="text/css" href="style.css">
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-resource.min.js"></script>
-		<script src="js/ngStorage.min.js"></script>
-		<script src="js/shopping.js"></script>
-	</head>
-	
-	<body>
-
-      <div id="menu" ng-controller="CustomerController as custCtrl" ng-init="custCtrl.checkSignIn()">
-			<a href="index.html">Home</a>
-			<a href="View.html" ng-if="custCtrl.signedIn">Browse Products</a>
-			<a href="cart.html" ng-if="custCtrl.signedIn">View Cart</a>
-			<a href="#" ng-if="custCtrl.signedIn" ng-click="custCtrl.signOut()">Sign Out</a>
-			<a href="Signin.html" ng-if="!custCtrl.signedIn">Sign In</a>
-			<div id="wel">Welcome, {{custCtrl.welcome}}</div>
-		</div>
-
-	</body>
-</html>
+<div id="menu" ng-controller="CustomerController as custCtrl" ng-init="custCtrl.checkSignIn()">
+	<a href="index.html">Home</a>
+	<a href="View.html" ng-if="custCtrl.signedIn">Browse Products</a>
+	<a href="cart.html" ng-if="custCtrl.signedIn">View Cart</a>
+	<a href="#" ng-if="custCtrl.signedIn" ng-click="custCtrl.signOut()">Sign Out</a>
+	<a href="Signin.html" ng-if="!custCtrl.signedIn">Sign In</a>
+	<div id="wel">Welcome, {{custCtrl.welcome}}</div>
+</div>

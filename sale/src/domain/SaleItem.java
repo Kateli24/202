@@ -7,14 +7,14 @@ import java.math.BigDecimal;
  * @author liji8162
  */
 public class SaleItem {
-	private Integer quantityPurchused;
-	private BigDecimal purchusePrice;
+	private Integer quantityPurchased;
+	private BigDecimal purchasePrice;
 	private Product product;
 	private Sale sale;
 
-	public SaleItem(Integer quantityPurchused, BigDecimal purchusePrice, Product product, Sale sale) {
-		this.quantityPurchused = quantityPurchused;
-		this.purchusePrice = purchusePrice;
+	public SaleItem(Integer quantityPurchased, BigDecimal purchasePrice, Product product, Sale sale) {
+		this.quantityPurchased = quantityPurchased;
+		this.purchasePrice = purchasePrice;
 		this.product = product;
 		this.sale = sale;
 	}
@@ -28,11 +28,11 @@ public class SaleItem {
 	}
 
 	public Integer getQuantityPurchused() {
-		return quantityPurchused;
+		return quantityPurchased;
 	}
 
 	public BigDecimal getPurchusePrice() {
-		return purchusePrice;
+		return purchasePrice;
 	}
 	
 	public void setSale(Sale sale) {
@@ -44,17 +44,17 @@ public class SaleItem {
 	}
 
 	public void setQuantityPurchused(Integer quantityPurchused) {
-		this.quantityPurchused = quantityPurchused;
+		this.quantityPurchased = quantityPurchused;
 	}
 
 	public void setPurchusePrice(BigDecimal purchusePrice) {
-		this.purchusePrice = purchusePrice;
+		this.purchasePrice = purchusePrice;
 	}
 	
 	/**this line is to get total=(purchsePrice*quantityPurchused)
 	 to make them as the same type, we need to convert Integer to BigDecimal*/
 	public BigDecimal getItemTotal(){
-		return (purchusePrice.multiply(new BigDecimal(quantityPurchused)));
+		return (purchasePrice.multiply(new BigDecimal(quantityPurchased)));
 	}
 	
 }

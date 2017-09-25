@@ -27,7 +27,7 @@ class ShoppingCart {
 	getTotal() {
 		let total = 0;
 		for (const item of this.items) {
-			total += item.product.purchusePrice * item.quantityPurchased;
+			total += item.product.price * item.quantityPurchased;
 		}
 		return total;
 	}
@@ -91,33 +91,22 @@ app.controller('ProductController',function (productDAO, categoryDAO, allProduct
 });
 
 /**cotroller for quantityToPurchase*/
-app.controller('QuantityController',function($sessionStorage,$window){
+app.controller('QuantityController',function($sessionStorage,$window,cart){
 	
 		this.getProduct = function(){
 			if($sessionStorage.selectedProduct){
 				this.selectedProduct = $sessionStorage.selectedProduct;
 			}
 		};
-		this.addToCart = function(selectedProduct){
-			if($sessionStorage.cart){
-				var saleItem = [];
-				var i;
-				for(i=0;i<$sessionStorage.cart.length;i++){
-					saleItem.push($sessionStorage.cart[i]);
-				}
-				saleItem.push(selectedProduct);
-				$sessionStorage.cart = saleItem;
-				alert('the product has been added to shopping cart');
-				$window.window.location.href = '/cart.html';
-			}
-			else{
-				var saleItem = [];
-				saleItem.push(selectedProduct);
-				$sessionStorage.cart = saleItem;
-				alert('the product has been added to shopping cart');
-				$window.window.location.href = '/cart.html';
-				}
-			
+		
+		this.addToCart = function(quantity){
+			let selectedProduct = $sessionStorage.selectedProduct;
+			let saleItem = new SaleItem(selectedProduct,quantity);
+			cart.addItem(saleItem);
+			$sessionStorage.cart = cart;
+			alert('the product has been added to shopping cart');
+			$window.window.location.href = '/cart.html';
+	
 		};
 	});
 
@@ -125,12 +114,6 @@ app.controller('QuantityController',function($sessionStorage,$window){
 app.controller('ShoppingCartController', function(cart,$sessionStorage,$window){
 	this.items = cart.getItems();
 	this.total = cart.getTotal();
-	
-	this.bindItems = function(){
-		if($sessionStorage.cart){
-			this.cartItems = $sessionStorage.cart;
-		}
-	};
 });
 
 /**controller for customer*/
