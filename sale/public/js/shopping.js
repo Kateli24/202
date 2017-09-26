@@ -72,6 +72,11 @@ app.factory('cart', function ($sessionStorage) {
 	}
 });
 
+/**factory for sale*/
+app.factory('saleDAO', function($resource){
+	return $resource('/api/sales');
+});
+
 /**controller for product*/
 app.controller('ProductController',function (productDAO, categoryDAO, allProductDAO,$sessionStorage, $window) {
 	this.products = productDAO.query();
@@ -111,9 +116,14 @@ app.controller('QuantityController',function($sessionStorage,$window,cart){
 	});
 
 /**controller for shopping cart*/
-app.controller('ShoppingCartController', function(cart,$sessionStorage,$window){
+app.controller('ShoppingCartController', function(cart,$sessionStorage,$window,saleDAO){
 	this.items = cart.getItems();
 	this.total = cart.getTotal();
+	this.checkOut = function () {
+		cart.setCustomer = $sessionStorage.customer;
+		saleDAO.save(cart);
+		$sessionStorage.$reset();
+	};
 });
 
 /**controller for customer*/
