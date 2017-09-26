@@ -123,6 +123,8 @@ app.controller('ShoppingCartController', function(cart,$sessionStorage,$window,s
 		cart.setCustomer = $sessionStorage.customer;
 		saleDAO.save(cart);
 		$sessionStorage.$reset();
+		alert("You have checked out.");
+		$window.window.location.href = '/thankYou.html';
 	};
 });
 
