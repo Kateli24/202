@@ -22,9 +22,7 @@ public class CustomerModule extends Jooby {
 				return customerDao.getCustomer(userName);
 			
 		});
-				  
-		
-
+			
 		post("/api/register", (req, rsp) -> {
 			Customer customer = req.body(Customer.class);
 			customerDao.save(customer);

@@ -21,3 +21,22 @@ creditCardDetail varchar(255) not null,
 password varchar(50) not null,
 constraint Customer_PK primary key (username)
 );
+
+create table Sale_Item(
+Product_ID integer,
+quantityPurchased integer not null,
+purchasePrice decimal not null,
+constraint Sale_Item_Product_FK foreign key (Product_ID) references Product
+);
+
+create sequence id_seq_1;
+
+create table Sale( 
+id bigint auto_increment(1000), 
+Product_ID integer, 
+username varchar(50), 
+date Date, 
+constraint Sale_Customer_FK foreign key (username) references Customer, 
+constraint Sale_Sale_Item_FK foreign key (Product_ID) references Sale_Item,
+primary key (id) 
+);

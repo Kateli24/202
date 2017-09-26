@@ -121,7 +121,8 @@ app.controller('ShoppingCartController', function(cart,$sessionStorage,$window,s
 	this.total = cart.getTotal();
 	this.checkOut = function () {
 		cart.setCustomer = $sessionStorage.customer;
-		saleDAO.save(cart);
+		saleDAO.save(null,cart);
+		console.log(cart);
 		$sessionStorage.$reset();
 		alert("You have checked out.");
 		$window.window.location.href = '/thankYou.html';

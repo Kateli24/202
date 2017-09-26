@@ -30,6 +30,8 @@ public class Server extends Jooby {
 		use(new CustomerModule(customerDao));
 		assets("/**");
 		assets("/", "index.html");
+		
+		
 	}
 
 }
