@@ -26,7 +26,8 @@ create table Sale_Item(
 Product_ID integer,
 quantityPurchased integer not null,
 purchasePrice decimal not null,
-constraint Sale_Item_Product_FK foreign key (Product_ID) references Product
+constraint Sale_Item_Product_FK foreign key (Product_ID) references Product,
+constraint sale_item_PK primary key (Product_id)
 );
 
 create sequence id_seq_1;
