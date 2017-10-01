@@ -9,6 +9,7 @@ import dao.SaleJdbcDAO;
 import java.util.Arrays;
 import java.util.List;
 import org.jooby.Jooby;
+import org.jooby.Results;
 import org.jooby.json.Gzon;
 import web.auth.BasicHttpAuthenticator;
 
@@ -31,6 +32,8 @@ public class Server extends Jooby {
 		
 		List<String> noAuth = Arrays.asList("/api/register");
 		use(new BasicHttpAuthenticator(customerDao, noAuth));
+		// explicitly send an empty response when a favicon is requested
+		get("/favicon.ico", () -> Results.noContent());
 
 		
 		use(new ProductModule(productDao));

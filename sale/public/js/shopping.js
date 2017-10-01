@@ -36,6 +36,22 @@ class ShoppingCart {
 /*create application, and load used modules*/
 var app = angular.module('ShoppingApp', ['ngResource', 'ngStorage']);
 
+/**We have taken care of the sign in process itself but we also need to ensure 
+ * that the authentication token has been added to Authorization header for each
+ *  HTTP request. We can do this by adding a config block to our ShoppingApp module*/
+
+app.config(function ($sessionStorageProvider, $httpProvider) {
+   // get the auth token from the session storage
+   let authToken = $sessionStorageProvider.get('authToken');
+
+   // does the auth token actually exist?
+   if (authToken) {
+      // add the token to all HTTP requests
+      $httpProvider.defaults.headers.common.Authorization = 'Basic ' + authToken;
+   }
+});
+
+
 /**factory for products according to id*/
 app.factory('productDAO', function ($resource) {
 	return $resource('/api/products/:id');
@@ -73,12 +89,12 @@ app.factory('cart', function ($sessionStorage) {
 });
 
 /**factory for sale*/
-app.factory('saleDAO', function($resource){
+app.factory('saleDAO', function ($resource) {
 	return $resource('/api/sales');
 });
 
 /**controller for product*/
-app.controller('ProductController',function (productDAO, categoryDAO, allProductDAO,$sessionStorage, $window) {
+app.controller('ProductController', function (productDAO, categoryDAO, allProductDAO, $sessionStorage, $window) {
 	this.products = productDAO.query();
 	this.categories = categoryDAO.query();
 	this.selectCategory = function (selectedCat) {
@@ -87,41 +103,41 @@ app.controller('ProductController',function (productDAO, categoryDAO, allProduct
 	this.allProducts = function (allPro) {
 		this.products = allProductDAO.query({"all": allPro});
 	};
-	
-	this.buy = function(data){
+
+	this.buy = function (data) {
 		$sessionStorage.selectedProduct = data;
 		$window.window.location.href = '/QuantityToPurchase.html';
 	};
-	
+
 });
 
 /**cotroller for quantityToPurchase*/
-app.controller('QuantityController',function($sessionStorage,$window,cart){
-	
-		this.getProduct = function(){
-			if($sessionStorage.selectedProduct){
-				this.selectedProduct = $sessionStorage.selectedProduct;
-			}
-		};
-		
-		this.addToCart = function(quantity){
-			let selectedProduct = $sessionStorage.selectedProduct;
-			let saleItem = new SaleItem(selectedProduct,quantity);
-			cart.addItem(saleItem);
-			$sessionStorage.cart = cart;
-			alert('the product has been added to shopping cart');
-			$window.window.location.href = '/cart.html';
-	
-		};
-	});
+app.controller('QuantityController', function ($sessionStorage, $window, cart) {
+
+	this.getProduct = function () {
+		if ($sessionStorage.selectedProduct) {
+			this.selectedProduct = $sessionStorage.selectedProduct;
+		}
+	};
+
+	this.addToCart = function (quantity) {
+		let selectedProduct = $sessionStorage.selectedProduct;
+		let saleItem = new SaleItem(selectedProduct, quantity);
+		cart.addItem(saleItem);
+		$sessionStorage.cart = cart;
+		alert('the product has been added to shopping cart');
+		$window.window.location.href = '/cart.html';
+
+	};
+});
 
 /**controller for shopping cart*/
-app.controller('ShoppingCartController', function(cart,$sessionStorage,$window,saleDAO){
+app.controller('ShoppingCartController', function (cart, $sessionStorage, $window, saleDAO) {
 	this.items = cart.getItems();
 	this.total = cart.getTotal();
 	this.checkOut = function () {
 		cart.setCustomer = $sessionStorage.customer;
-		saleDAO.save(null,cart);
+		saleDAO.save(null, cart);
 		console.log(cart);
 		$sessionStorage.$reset();
 		alert("You have checked out.");
@@ -130,7 +146,7 @@ app.controller('ShoppingCartController', function(cart,$sessionStorage,$window,s
 });
 
 /**controller for customer*/
-app.controller('CustomerController', function (registerDAO, signInDAO, $sessionStorage, $window) {
+app.controller('CustomerController', function (registerDAO, signInDAO, $sessionStorage, $window, $http) {
 	this.registerCustomer = function (customer) {
 		registerDAO.save(null, customer);
 		console.log(customer);
@@ -138,26 +154,29 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 	};
 
 	this.signInMessage = "Please sign in to continue.";
-	this.welcome= 'guest';
+	this.welcome = 'guest';
 
 	let ctrl = this;
 	this.signIn = function (userName, password) {
+		
 // get customer from web service
 		signInDAO.get({'userName': userName},
 // success
 				  function (customer) {
+
+
 // also store the retrieved custome
 					  $sessionStorage.customer = customer;
-					  
+
 					  alert("logged in successfully.");
-					  
+
 // redirect to home
 					  $window.window.location.href = '.';
-					  
+
 				  },
 				  function () {
 					  ctrl.signInMessage = 'Sign in failed. Please try again.';
-					 
+
 				  }
 		);
 	};
