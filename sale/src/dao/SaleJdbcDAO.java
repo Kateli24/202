@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class SaleJdbcDAO implements SaleDAO {
 
-	private static final String url = "**** JDBC URL ****";
+	private static final String url = "jdbc:h2:tcp://localhost:8067/project;IFEXISTS=TRUE";
 
 	@Override
 	public void save(Sale sale) {
@@ -28,14 +28,14 @@ public class SaleJdbcDAO implements SaleDAO {
 		try {
 			try (
 					PreparedStatement insertOrderStmt = con.prepareStatement(
-							"**** SQL for saving Sale goes here ****",
+							"merge into sale (PRODUCT_ID, username,date) values (?,?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 
 					PreparedStatement insertOrderItemStmt = con.prepareStatement(
-							"**** SQL for saving SaleItem goes here ****");
+							"merge into sale_item(Product_ID,quantityPurchased,purchasePrice)values (?,?,?)");
 
 					PreparedStatement updateProductStmt = con.prepareStatement(
-							"**** SQL for updating product quantity goes here ****");
+							"UPDATE sale_item SET quantityPurchased = '?' WHERE Product_ID = ?");
 
 					) {
 
@@ -63,6 +63,8 @@ public class SaleJdbcDAO implements SaleDAO {
 				// write code here that saves the timestamp and username in the
 				// sale table using the insertOrderStmt statement.
 				// ****
+				insertOrderStmt.setString(2,customer.getUsername());
+				insertOrderStmt.setTimestamp(3, timestamp);
 
 
 				// get the auto-generated order ID from the database

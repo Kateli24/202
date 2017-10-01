@@ -4,6 +4,8 @@ import dao.CustomerDao;
 import dao.CustomerDataManager;
 import dao.ProductDao;
 import dao.ProductDataManager;
+import dao.SaleDAO;
+import dao.SaleJdbcDAO;
 import org.jooby.Jooby;
 import org.jooby.json.Gzon;
 
@@ -31,7 +33,8 @@ public class Server extends Jooby {
 		assets("/**");
 		assets("/", "index.html");
 		
-		
+		SaleDAO saleDAO = new SaleJdbcDAO();
+		use(new SaleModule(saleDAO));
 	}
 
 }
