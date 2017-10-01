@@ -62,6 +62,11 @@ public class Sale {
 		}
 		return amount;
 	}
+	
+	public Collection<SaleItem> getItems(){
+		return items;
+	
+}
 		
 	
 	

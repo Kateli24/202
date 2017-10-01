@@ -1,7 +1,5 @@
 package dao;
 
-import dao.DAOException;
-import dao.SaleDAO;
 import domain.Customer;
 import domain.Product;
 import domain.Sale;
@@ -28,11 +26,11 @@ public class SaleJdbcDAO implements SaleDAO {
 		try {
 			try (
 					PreparedStatement insertOrderStmt = con.prepareStatement(
-							"merge into sale (PRODUCT_ID, username,date) values (?,?,?)",
+							"merge into sale (username,date) values (?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 
 					PreparedStatement insertOrderItemStmt = con.prepareStatement(
-							"merge into sale_item(Product_ID,quantityPurchased,purchasePrice)values (?,?,?)");
+							"merge into sale_item(Product_ID,id,quantityPurchased,purchasePrice)values (?,?,?,?)");
 
 					PreparedStatement updateProductStmt = con.prepareStatement(
 							"UPDATE sale_item SET quantityPurchased = '?' WHERE Product_ID = ?");
@@ -63,8 +61,8 @@ public class SaleJdbcDAO implements SaleDAO {
 				// write code here that saves the timestamp and username in the
 				// sale table using the insertOrderStmt statement.
 				// ****
-				insertOrderStmt.setString(2,customer.getUsername());
-				insertOrderStmt.setTimestamp(3, timestamp);
+				insertOrderStmt.setString(1,customer.getUsername());
+				insertOrderStmt.setTimestamp(2, timestamp);
 
 
 				// get the auto-generated order ID from the database
@@ -87,6 +85,13 @@ public class SaleJdbcDAO implements SaleDAO {
 				// write code here that iterates through the order items and
 				// saves them using the insertOrderItemStmt statement.
 				// ****
+				
+				for(SaleItem item:items){
+					insertOrderItemStmt.setInt(1,item.getProduct().getId());
+					insertOrderItemStmt.setInt(2, orderId);
+					insertOrderItemStmt.setInt(3,item.getQuantityPurchused());
+					insertOrderItemStmt.setBigDecimal(4,item.getPurchusePrice());
+				}
 
 
 				// ## update the product quantities ## //
@@ -99,7 +104,11 @@ public class SaleJdbcDAO implements SaleDAO {
 					// write code here that updates the product quantity using
 					// the using the updateProductStmt statement.
 					// ****
-
+					updateProductStmt.setInt(2, product.getId());
+					ResultSet thers = updateProductStmt.executeQuery();
+					if (thers.next()) {
+						insertOrderItemStmt.setInt(1, product.getQuantity());
+					}
 
 				}
 
