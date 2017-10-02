@@ -29,6 +29,9 @@ public class Server extends Jooby {
 		ProductDao productDao = new ProductDataManager();
 		CustomerDao customerDao = new CustomerDataManager();
 		SaleDAO saleDAO = new SaleJdbcDAO();
+
+		assets("/**");
+		assets("/", "index.html");	
 		
 		List<String> noAuth = Arrays.asList("/api/register");
 		use(new BasicHttpAuthenticator(customerDao, noAuth));
@@ -42,8 +45,7 @@ public class Server extends Jooby {
 		}));
 
 		use(new CustomerModule(customerDao));
-		assets("/**");
-		assets("/", "index.html");
+
 		
 		use(new SaleModule(saleDAO));
 	}

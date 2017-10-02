@@ -158,7 +158,15 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 
 	let ctrl = this;
 	this.signIn = function (userName, password) {
-		
+		// generate authentication token
+		let authToken = $window.btoa(userName + ":" + password);
+
+// store token
+		$sessionStorage.authToken = authToken;
+
+// add token to the sign in HTTP request
+		$http.defaults.headers.common.Authorization = 'Basic ' + authToken;
+
 // get customer from web service
 		signInDAO.get({'userName': userName},
 // success

@@ -26,14 +26,14 @@ public class SaleJdbcDAO implements SaleDAO {
 		try {
 			try (
 					PreparedStatement insertOrderStmt = con.prepareStatement(
-							"merge into sale (username,date) values (?,?)",
+							"insert into sale (username,date) values (?,?)",
 							Statement.RETURN_GENERATED_KEYS);
 
 					PreparedStatement insertOrderItemStmt = con.prepareStatement(
-							"merge into sale_item(Product_ID,id,quantityPurchased,purchasePrice)values (?,?,?,?)");
+							"insert into sale_item(Product_ID,id,quantityPurchased,purchasePrice)values (?,?,?,?)");
 
 					PreparedStatement updateProductStmt = con.prepareStatement(
-							"UPDATE sale_item SET quantityPurchased = '?' WHERE Product_ID = ?");
+							"UPDATE product SET quantityPurchased = ? WHERE Product_ID = ?");
 
 					) {
 
@@ -63,7 +63,7 @@ public class SaleJdbcDAO implements SaleDAO {
 				// ****
 				insertOrderStmt.setString(1,customer.getUsername());
 				insertOrderStmt.setTimestamp(2, timestamp);
-
+				insertOrderStmt.executeUpdate();
 
 				// get the auto-generated order ID from the database
 				ResultSet rs = insertOrderStmt.getGeneratedKeys();
@@ -91,6 +91,9 @@ public class SaleJdbcDAO implements SaleDAO {
 					insertOrderItemStmt.setInt(2, orderId);
 					insertOrderItemStmt.setInt(3,item.getQuantityPurchused());
 					insertOrderItemStmt.setBigDecimal(4,item.getPurchusePrice());
+					
+					// execute
+					
 				}
 
 
@@ -105,11 +108,10 @@ public class SaleJdbcDAO implements SaleDAO {
 					// the using the updateProductStmt statement.
 					// ****
 					updateProductStmt.setInt(2, product.getId());
-					ResultSet thers = updateProductStmt.executeQuery();
-					if (thers.next()) {
-						insertOrderItemStmt.setInt(1, product.getQuantity());
-					}
-
+				
+						updateProductStmt.setInt(1, product.getQuantity());
+						//exexute
+				
 				}
 
 				// commit the transaction

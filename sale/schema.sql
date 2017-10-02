@@ -39,5 +39,5 @@ quantityPurchased integer not null,
 purchasePrice decimal not null,
 constraint Sale_Item_Product_FK foreign key (Product_ID) references Product,
 constraint sale_sale_Item_FK foreign key(id) references Sale, 
-constraint sale_item_PK primary key (Product_id)
+constraint sale_item_PK primary key (Product_id, id)
 );
