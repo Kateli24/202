@@ -136,7 +136,7 @@ app.controller('ShoppingCartController', function (cart, $sessionStorage, $windo
 	this.items = cart.getItems();
 	this.total = cart.getTotal();
 	this.checkOut = function () {
-		cart.setCustomer = $sessionStorage.customer;
+		cart.setCustomer($sessionStorage.customer);
 		saleDAO.save(null, cart);
 		console.log(cart);
 		$sessionStorage.$reset();

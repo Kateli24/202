@@ -33,11 +33,10 @@ public class Server extends Jooby {
 		assets("/**");
 		assets("/", "index.html");	
 		
+		get("/favicon.ico", () -> Results.noContent());
 		List<String> noAuth = Arrays.asList("/api/register");
 		use(new BasicHttpAuthenticator(customerDao, noAuth));
 		// explicitly send an empty response when a favicon is requested
-		get("/favicon.ico", () -> Results.noContent());
-
 		
 		use(new ProductModule(productDao));
 		use(new Gzon().doWith(gson -> {
@@ -46,7 +45,6 @@ public class Server extends Jooby {
 
 		use(new CustomerModule(customerDao));
 
-		
 		use(new SaleModule(saleDAO));
 	}
 

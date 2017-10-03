@@ -33,10 +33,9 @@ public class SaleJdbcDAO implements SaleDAO {
 							"insert into sale_item(Product_ID,id,quantityPurchased,purchasePrice)values (?,?,?,?)");
 
 					PreparedStatement updateProductStmt = con.prepareStatement(
-							"UPDATE product SET quantityPurchased = ? WHERE Product_ID = ?");
+							"UPDATE product SET quantity = ? WHERE Product_ID = ?");
 
 					) {
-
 				// since saving and order involves multiple statements across
 				// multiple tables we need to control the transaction ourselves
 				// to ensure our DB remains consistent
@@ -87,13 +86,13 @@ public class SaleJdbcDAO implements SaleDAO {
 				// ****
 				
 				for(SaleItem item:items){
+					
+					item.setPurchusePrice(item.getProduct().getPrice());
 					insertOrderItemStmt.setInt(1,item.getProduct().getId());
 					insertOrderItemStmt.setInt(2, orderId);
 					insertOrderItemStmt.setInt(3,item.getQuantityPurchused());
 					insertOrderItemStmt.setBigDecimal(4,item.getPurchusePrice());
-					
-					// execute
-					
+					insertOrderItemStmt.executeUpdate();	
 				}
 
 
@@ -101,17 +100,13 @@ public class SaleJdbcDAO implements SaleDAO {
 				for (SaleItem item : items) {
 
 					Product product = item.getProduct();
-
-
 					// ****
 					// write code here that updates the product quantity using
-					// the using the updateProductStmt statement.
+					// the updateProductStmt statement.
 					// ****
 					updateProductStmt.setInt(2, product.getId());
-				
-						updateProductStmt.setInt(1, product.getQuantity());
-						//exexute
-				
+					updateProductStmt.setInt(1, (product.getQuantity()-item.getQuantityPurchused()));
+					updateProductStmt.executeUpdate();
 				}
 
 				// commit the transaction
