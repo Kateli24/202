@@ -1,21 +1,30 @@
 package domain;
 
+import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
+
 /**
  *
  * @author liji8162
  */
 public class Customer {
-
+	@NotNull(message = "userName must be provided.")
+	@NotBlank(message = "userName must be provided.")
 	private String username;
-
+	@NotNull(message = "Name must be provided.")
+	@NotBlank(message = "Name must be provided.")
 	private String name;
-
+	@NotNull(message = "email must be provided.")
+	@NotBlank(message = "email must be provided.")
 	private String email;
-
+	@NotNull(message = "Address must be provided.")
+	@NotBlank(message = "Address must be provided.")
 	private String shippingAddress;
-
+	@NotNull(message = "credit card details must be provided.")
+	@NotBlank(message = "credit card details must be provided.")
 	private String creditCardDetail;
-
+	@NotNull(message = "Password must be provided.")
+	@NotBlank(message = "Password must be provided.")
 	private String password;
 
 	public Customer(String username, String name, String email, String shippingAddress, String creditCardDetail, String password) {

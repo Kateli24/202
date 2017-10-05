@@ -150,7 +150,7 @@ app.controller('ShoppingCartController', function (cart, $sessionStorage, $windo
 /**controller for customer*/
 app.controller('CustomerController', function (registerDAO, signInDAO, $sessionStorage, $window, $http) {
 	this.registerCustomer = function (customer) {
-		registerDAO.save(null, customer);
+		registerDAO.save(null,customer);
 		console.log(customer);
 		alert("Your account has created.");
 	};
