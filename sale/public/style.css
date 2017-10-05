@@ -53,38 +53,48 @@ ul li{
 label{
 	float:left;
 	width:100px;
-	
+
 }
 
 input{
 	float:left;
 	width:300px;
-	
+
 }
 
 .buy{
-width:50px;
+	width:50px;
 }	
 
 #list{
-width:25%;
+	width:25%;
 }
 
 #addToCart{
-float:left;
-width:100px;
-margin-left:10px;
+	float:left;
+	width:100px;
+	margin-left:10px;
 }
 
 #quantity{
-width:100%;
+	width:100%;
 }
 
-.createAccount{
-margin-left:50px;
-margin-top:8px;
-width:150px;
+#sign{
+	margin-left:35%;
+	margin-top:8px;
+	width:150px;
 
+}
+
+#createAccount{
+	margin-left:35%;
+	margin-top:8px;
+	width:150px;
+}
+
+#text{
+	text-align: center;
 }
 
 #cat{

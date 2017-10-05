@@ -33,6 +33,7 @@ class ShoppingCart {
 	}
 }
 
+
 /*create application, and load used modules*/
 var app = angular.module('ShoppingApp', ['ngResource', 'ngStorage']);
 
@@ -141,6 +142,7 @@ app.controller('ShoppingCartController', function (cart, $sessionStorage, $windo
 		console.log(cart);
 		$sessionStorage.$reset();
 		alert("You have checked out.");
+		
 		$window.window.location.href = '/thankYou.html';
 	};
 });

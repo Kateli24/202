@@ -8,12 +8,12 @@ import org.apache.commons.mail.MultiPartEmail;
  *
  * @author liji8162
  */
-public class Text {
+public class Text extends Thread {
 
-	public void body() {
+	@Override
+	public void run() {
 
 		try {
-
 			// Create the attachment
 			EmailAttachment attachment = new EmailAttachment();
 			attachment.setPath("h:/lab11report/receipt.pdf");
@@ -39,4 +39,16 @@ public class Text {
 			throw new RuntimeException(ex);
 		}
 	}
+	
+	public static void main(String[] args) {
+		Text text = new Text();
+		text.start();
+	}
 }
+
+	
+	
+	
+	
+		
+

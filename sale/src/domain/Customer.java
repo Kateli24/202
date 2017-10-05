@@ -5,14 +5,21 @@ package domain;
  * @author liji8162
  */
 public class Customer {
+
 	private String username;
+
 	private String name;
+
 	private String email;
+
 	private String shippingAddress;
+
 	private String creditCardDetail;
+
 	private String password;
 
 	public Customer(String username, String name, String email, String shippingAddress, String creditCardDetail, String password) {
+
 		this.username = username;
 		this.name = name;
 		this.email = email;
@@ -20,9 +27,10 @@ public class Customer {
 		this.creditCardDetail = creditCardDetail;
 		this.password = password;
 	}
-	
-	public Customer(){}
-	
+
+	public Customer() {
+	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -75,7 +83,5 @@ public class Customer {
 	public String toString() {
 		return "Customer{" + "username=" + username + ", name=" + name + ", email=" + email + '}';
 	}
-	
-	
-	
+
 }
