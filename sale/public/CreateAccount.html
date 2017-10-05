@@ -23,38 +23,38 @@
 						<label for="username">User Name:</label>
 						<input type="text" ng-model = "customer.username" 
 								 title="Please enter a user name" 
-								 placeholder="Please enter a user name">
+								 placeholder="Please enter a user name" required>
 					</li>
 					<li>
 						<label for="name">Name:</label>
 						<input type="text" ng-model = "customer.name" 
 								 title="Please enter a name"
-								 placeholder="Please enter your name">
+								 placeholder="Please enter your name" required>
 					</li>
 					<li>
 						<label for="sender">Email Address:</label>
 						<input type="email" ng-model = "customer.email" 
 								 title="username@XXX.com" 
-								 placeholder="Please enter your email address">
+								 placeholder="Please enter your email address" required>
 					</li>
 
 					<li>
 						<label for="CreditCard">Credit Card:</label>
 						<input type="text" ng-model = "customer.creditCardDetail" 
-								 placeholder="Please enter your credit card details">
+								 placeholder="Please enter your credit card details" required>
 					</li>
 					<li>
 						<label for="password">Password:</label>
 						<input type="password" ng-model = "customer.password"
 								 title="Please enter at least one number and one letter, and at least 6 or more characters" 
 								 pattern="(?=.*\d)(?=.*[A-Z a-z]).{6,}"
-								 placeholder="Please enter a password">
+								 placeholder="Please enter a password" required>
 					</li>
 					<li>
 						<label for="address">Address:</label>
 
 						<label><textarea ng-model = "customer.shippingAddress" cols="25" 
-											  rows="10" title="Please enter your address"></textarea></label>
+											  rows="10" title="Please enter your address" required></textarea></label>
 					</li>
 				</ul>
 				<button id="createAccount" type="submit">Create Account</button>
