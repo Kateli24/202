@@ -15,7 +15,6 @@ import org.jooby.Status;
 public class CustomerModule extends Jooby {
 
 	public CustomerModule(CustomerDao customerDao) {
-ValidationHelper validationHelper = new ValidationHelper();
 
 		get("/api/customers/:userName", (req) -> {
 			String userName = req.param("userName").value();
@@ -23,20 +22,12 @@ ValidationHelper validationHelper = new ValidationHelper();
 				throw new Err(Status.NOT_FOUND);
 			}
 			return customerDao.getCustomer(userName);
-
 		});
 
 		post("/api/register", (req, rsp) -> {
-			try {
-				Customer customer = req.body(Customer.class);
-				boolean flag = validationHelper.isObjectValid(customer);
-				if (flag) {
-					customerDao.save(customer);
-					rsp.status(Status.CREATED);
-				}
-			} catch (DAOException ex) {
-				throw new DAOException(ex.getMessage(), ex);
-			}
+			Customer customer = req.body(Customer.class);
+			customerDao.save(customer);
+			rsp.status(Status.CREATED);
 		});
 	}
 }

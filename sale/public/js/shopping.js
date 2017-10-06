@@ -34,6 +34,8 @@ class ShoppingCart {
 }
 
 
+
+
 /*create application, and load used modules*/
 var app = angular.module('ShoppingApp', ['ngResource', 'ngStorage']);
 
@@ -140,6 +142,8 @@ app.controller('ShoppingCartController', function (cart, $sessionStorage, $windo
 		cart.setCustomer($sessionStorage.customer);
 		saleDAO.save(null, cart);
 		console.log(cart);
+		
+		
 		$sessionStorage.$reset();
 		alert("You have checked out.");
 		
@@ -149,6 +153,8 @@ app.controller('ShoppingCartController', function (cart, $sessionStorage, $windo
 
 /**controller for customer*/
 app.controller('CustomerController', function (registerDAO, signInDAO, $sessionStorage, $window, $http) {
+	let cust = this;
+	this.register = "Please enter your details here.";
 	this.registerCustomer = function (customer) {
 		registerDAO.save(null,customer);
 		console.log(customer);
