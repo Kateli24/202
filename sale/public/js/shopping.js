@@ -33,8 +33,14 @@ class ShoppingCart {
 	}
 }
 
-
-
+class MailThread{
+	constructor(){
+		
+	}
+	start(){
+		
+	}
+}
 
 /*create application, and load used modules*/
 var app = angular.module('ShoppingApp', ['ngResource', 'ngStorage']);
@@ -142,8 +148,8 @@ app.controller('ShoppingCartController', function (cart, $sessionStorage, $windo
 		cart.setCustomer($sessionStorage.customer);
 		saleDAO.save(null, cart);
 		console.log(cart);
-		
-		
+		let email = new MailThread();
+		email.start();
 		$sessionStorage.$reset();
 		alert("You have checked out.");
 		
@@ -153,8 +159,6 @@ app.controller('ShoppingCartController', function (cart, $sessionStorage, $windo
 
 /**controller for customer*/
 app.controller('CustomerController', function (registerDAO, signInDAO, $sessionStorage, $window, $http) {
-	let cust = this;
-	this.register = "Please enter your details here.";
 	this.registerCustomer = function (customer) {
 		registerDAO.save(null,customer);
 		console.log(customer);
@@ -168,31 +172,22 @@ app.controller('CustomerController', function (registerDAO, signInDAO, $sessionS
 	this.signIn = function (userName, password) {
 		// generate authentication token
 		let authToken = $window.btoa(userName + ":" + password);
-
 // store token
 		$sessionStorage.authToken = authToken;
-
 // add token to the sign in HTTP request
 		$http.defaults.headers.common.Authorization = 'Basic ' + authToken;
-
 // get customer from web service
 		signInDAO.get({'userName': userName},
 // success
 				  function (customer) {
-
-
 // also store the retrieved custome
 					  $sessionStorage.customer = customer;
-
 					  alert("logged in successfully.");
-
 // redirect to home
 					  $window.window.location.href = '.';
-
 				  },
 				  function () {
 					  ctrl.signInMessage = 'Sign in failed. Please try again.';
-
 				  }
 		);
 	};

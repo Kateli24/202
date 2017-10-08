@@ -1,9 +1,7 @@
 package web;
 
 import dao.CustomerDao;
-import dao.DAOException;
 import domain.Customer;
-import gui.helpers.ValidationHelper;
 import org.jooby.Err;
 import org.jooby.Jooby;
 import org.jooby.Status;
