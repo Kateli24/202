@@ -6,6 +6,8 @@ import dao.ProductDao;
 import dao.ProductDataManager;
 import dao.SaleDAO;
 import dao.SaleJdbcDAO;
+import email.EmailConnection;
+import email.Text;
 import java.util.Arrays;
 import java.util.List;
 import org.jooby.Jooby;
@@ -19,17 +21,12 @@ import web.auth.BasicHttpAuthenticator;
  */
 public class Server extends Jooby {
 
-	public static void main(String[] args) {
-		new Server().start();
-
-	}
-
 	public Server() {
 		port(6900);
 		ProductDao productDao = new ProductDataManager();
 		CustomerDao customerDao = new CustomerDataManager();
 		SaleDAO saleDAO = new SaleJdbcDAO();
-
+		
 		assets("/**");
 		assets("/", "index.html");	
 		
@@ -47,5 +44,13 @@ public class Server extends Jooby {
 
 		use(new SaleModule(saleDAO));
 	}
+	
+	public static void main(String[] args) {
+		new Server().start();
+		
+	}
+
+	
+	
 
 }

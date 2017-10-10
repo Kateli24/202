@@ -43,7 +43,7 @@
 			<ul>
 				<li>
 					<label id="howMany" for="amount">How many?</label>
-					<input type="text" name="amount" id="amount" ng-model="quantity">
+					<input type="text" name="amount" id="amount" ng-model="quantity" pattern = "[0-9]{1,2}" required>
 				</li> 
 				<li>
 					<button id="addToCart" ng-click="quantCtrl.addToCart(quantity)">Add to Cart</button>

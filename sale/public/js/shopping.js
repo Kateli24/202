@@ -33,15 +33,6 @@ class ShoppingCart {
 	}
 }
 
-class MailThread{
-	constructor(){
-		
-	}
-	start(){
-		
-	}
-}
-
 /*create application, and load used modules*/
 var app = angular.module('ShoppingApp', ['ngResource', 'ngStorage']);
 
@@ -148,8 +139,7 @@ app.controller('ShoppingCartController', function (cart, $sessionStorage, $windo
 		cart.setCustomer($sessionStorage.customer);
 		saleDAO.save(null, cart);
 		console.log(cart);
-		let email = new MailThread();
-		email.start();
+		
 		$sessionStorage.$reset();
 		alert("You have checked out.");
 		
